@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>cheapgames39store | Games</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ================= ROOT ================= */
+:root{
+  --accent:#B50000;
+  --accent-dark:#7A0000;
+  --bg-main:#F5F0E8;
+  --bg-secondary:#ECE3D8;
+  --card-bg:#FFFFFF;
+  --text-main:#1F1F1F;
+  --text-secondary:#2B2B2B;
+}
+
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",Tahoma,sans-serif;
+}
+
+body{
+  background:var(--bg-main);
+  color:var(--text-main);
+}
+
+/* ================= HEADER ================= */
+.header{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:var(--bg-main);
+  border-bottom:2px solid var(--accent);
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  padding:14px 24px;
+}
+
+.logo-left img{ height:36px; }
+
+.logo-center{
+  text-align:center;
+  font-size:14px;
+  letter-spacing:3px;
+  color:var(--text-secondary);
+}
+
+.nav-right a{
+  margin-left:20px;
+  text-decoration:none;
+  color:var(--text-secondary);
+  font-size:14px;
+  position:relative;
+}
+
+.nav-right a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--accent);
+  transition:.3s;
+}
+
+.nav-right a:hover::after{ width:100%; }
+
+.nav-right a.active{
+  color:var(--accent);
+  font-weight:700;
+}
+.nav-right a.active::after{ width:100%; }
+
+/* ================= SEARCH ================= */
+.search-box{
+  max-width:520px;
+  margin:30px auto 40px;
+  position:relative;
+}
+
+.search-icon{
+  position:absolute;
+  left:18px;
+  top:50%;
+  transform:translateY(-50%);
+  width:18px;
+  height:18px;
+}
+
+.search-icon svg{ fill:var(--accent); }
+
+.search-box input{
+  width:100%;
+  padding:14px 18px 14px 48px;
+  border-radius:30px;
+  border:2px solid var(--accent);
+  background:#FFF8EE;
+  outline:none;
+  font-size:14px;
+}
+
+/* ================= GAME LIST (ROW) ================= */
+.game-grid{
+  max-width:1000px;
+  margin:0 auto 60px;
+  padding:0 20px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+/* ================= GAME CARD ROW ================= */
+.game-card{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  background:var(--card-bg);
+  border-radius:16px;
+  padding:14px;
+  border:1px solid rgba(181,0,0,.25);
+  transition:.3s;
+}
+
+.game-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 24px rgba(0,0,0,.15);
+}
+
+/* IMAGE */
+.game-card img{
+  width:150px;
+  height:90px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/* INFO */
+.game-info{
+  flex:1;
+}
+
+.game-info h3{
+  font-size:17px;
+  margin-bottom:6px;
+}
+
+.price{
+  font-size:15px;
+  font-weight:700;
+  color:var(--accent);
+}
+
+/* BUTTON */
+.game-card a{
+  padding:8px 22px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:700;
+  border-radius:20px;
+  white-space:nowrap;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:var(--bg-secondary);
+  border-top:2px solid var(--accent);
+  padding:18px;
+  text-align:center;
+  font-size:13px;
+  color:var(--text-secondary);
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:600px){
+  .game-card{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .game-card img{
+    width:100%;
+    height:160px;
+  }
+
+  .game-card a{
+    margin-top:10px;
+  }
+
+  .header{
+    grid-template-columns:auto 1fr;
+    row-gap:6px;
+  }
+
+  .nav-right{
+    grid-column:1/-1;
+    text-align:center;
+  }
+
+  .nav-right a{ margin:0 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo-left">
+    <img src="IMAGE/1000038482-removebg-preview.png">
+  </div>
+
+  <div class="logo-center">PC GAMES STORE</div>
+
+  <nav class="nav-right">
+    <a href="index.html">Home</a>
+    <a href="games.html" class="active">Games</a>
+    <a href="contact.html">About Us</a>
+  </nav>
+</header>
+
+<!-- SEARCH -->
+<div class="search-box">
+  <span class="search-icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M21 20l-5.2-5.2a7 7 0 10-1.4 1.4L20 21zM10 16a6 6 0 110-12 6 6 0 010 12z"/>
+    </svg>
+  </span>
+  <input type="text" id="gameSearch" placeholder="Search games...">
+</div>
+
+<!-- GAMES LIST -->
+<div class="game-grid">
+
+  <div class="game-card">
+    <img src="IMAGE/header (11).jpg">
+    <div class="game-info">
+      <h3>GTA V</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=gta5">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/rdr2.jpg">
+    <div class="game-info">
+      <h3>Red Dead Redemption 2</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=rdr2">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/gta5.jpg">
+    <div class="game-info">
+      <h3>Grand Theft Auto V</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=gta5">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/witcher3.jpg">
+    <div class="game-info">
+      <h3>The Witcher 3: Wild Hunt</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=witcher3">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/cyberpunk2077.jpg">
+    <div class="game-info">
+      <h3>Cyberpunk 2077</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=cyberpunk2077">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/godofwar2018.jpg">
+    <div class="game-info">
+      <h3>God of War (2018)</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=gow2018">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/dragonsdogma2.jpg">
+    <div class="game-info">
+      <h3>Dragon’s Dogma 2</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=dragonsdogma2">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/hogwartslegacy.jpg">
+    <div class="game-info">
+      <h3>Hogwarts Legacy</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=hogwartslegacy">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/stray.jpg">
+    <div class="game-info">
+      <h3>Stray</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=stray">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/eldenring.jpg">
+    <div class="game-info">
+      <h3>Elden Ring</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=eldenring">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/wwe2k20.jpg">
+    <div class="game-info">
+      <h3>WWE 2K20</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=wwe2k20">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/wwe2k15.jpg">
+    <div class="game-info">
+      <h3>WWE 2K15</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=wwe2k15">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="IMAGE/detroit become human.jpg">
+    <div class="game-info">
+      <h3>Detroit: Become Human</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=detroit">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/tekken7.jpg">
+    <div class="game-info">
+      <h3>Tekken 7</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=tekken7">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/ghostoftsushima.jpg">
+    <div class="game-info">
+      <h3>Ghost of Tsushima</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=ghostoftsushima">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/godofwarragnarok.jpg">
+    <div class="game-info">
+      <h3>God of War Ragnarök</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=gowragnarok">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/lastofus2.jpg">
+    <div class="game-info">
+      <h3>The Last of Us Part II Remastered</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=tlou2">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/spiderman2.jpg">
+    <div class="game-info">
+      <h3>Marvel’s Spider-Man 2</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=spiderman2">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/spidermanremastered.jpg">
+    <div class="game-info">
+      <h3>Marvel’s Spider-Man Remastered</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=spidermanremastered">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/milesmorales.jpg">
+    <div class="game-info">
+      <h3>Spider-Man: Miles Morales</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=milesmorales">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/supermarketsimulator.jpg">
+    <div class="game-info">
+      <h3>Supermarket Simulator</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=supermarket">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/theforest.jpg">
+    <div class="game-info">
+      <h3>The Forest</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=theforest">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/limbo.jpg">
+    <div class="game-info">
+      <h3>Limbo</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=limbo">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/cuphead.jpg">
+    <div class="game-info">
+      <h3>Cuphead</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=cuphead">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/repo.jpg">
+    <div class="game-info">
+      <h3>R.E.P.O.</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=repo">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/chainedtogether.jpg">
+    <div class="game-info">
+      <h3>Chained Together</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=chainedtogether">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/phasmophobia.jpg">
+    <div class="game-info">
+      <h3>Phasmophobia</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=phasmophobia">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/farmingsimulator22.jpg">
+    <div class="game-info">
+      <h3>Farming Simulator 22</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=farmingsim22">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="images/farmingsimulator17.jpg">
+    <div class="game-info">
+      <h3>Farming Simulator 17</h3>
+      <p class="price">₹40</p>
+    </div>
+    <a href="game.html?game=farmingsim17">View</a>
+  </div>
+
+</div>
+
+
+</div>
+
+<footer>
+  © 2025 cheapgames39store
+</footer>
+
+<!-- ================= SEARCH JS ================= -->
+<script>
+const searchInput = document.getElementById("gameSearch");
+const gameCards = document.querySelectorAll(".game-card");
+
+searchInput.addEventListener("keyup", () => {
+  const value = searchInput.value.toLowerCase();
+  gameCards.forEach(card => {
+    const title = card.querySelector("h3").textContent.toLowerCase();
+    card.style.display = title.includes(value) ? "flex" : "none";
+  });
+});
+</script>
+
+</body>
+</html>
+

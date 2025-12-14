@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Game Details | cheapgames39store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --accent:#B50000;
+  --accent-dark:#7A0000;
+  --bg-main:#F5F0E8;
+  --card-bg:#FFFFFF;
+  --text-main:#1F1F1F;
+  --text-secondary:#555;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI,Tahoma,sans-serif;
+}
+
+body{
+  background:var(--bg-main);
+  color:var(--text-main);
+}
+
+/* ================= HEADER (BACK ICON ONLY) ================= */
+.header{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:var(--bg-main);
+  border-bottom:2px solid var(--accent);
+  display:flex;
+  align-items:center;
+  padding:14px 16px;
+}
+
+.back-btn{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  color:var(--accent);
+  font-weight:700;
+  font-size:16px;
+}
+
+.back-btn span{
+  font-size:22px;
+}
+
+/* ================= PAGE ================= */
+.container{
+  max-width:520px;
+  margin:24px auto;
+  padding:0 16px;
+}
+
+/* IMAGE + PRICE CARD */
+.image-card{
+  background:var(--card-bg);
+  border-radius:22px;
+  padding:18px;
+  border:1px solid rgba(181,0,0,.25);
+  text-align:center;
+}
+
+.game-img{
+  width:100%;
+  border-radius:16px;
+  margin-bottom:14px;
+}
+
+.price{
+  font-size:28px;
+  font-weight:800;
+  color:var(--accent);
+  margin:10px 0 14px;
+}
+
+.order-btn{
+  display:inline-block;
+  padding:14px 36px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+  color:#fff;
+  text-decoration:none;
+  border-radius:30px;
+  font-weight:700;
+}
+
+/* DETAILS CARD */
+.details-card{
+  margin-top:22px;
+  background:var(--card-bg);
+  border-radius:22px;
+  padding:22px;
+  border:1px solid rgba(181,0,0,.25);
+}
+
+.details-card h1{
+  font-size:24px;
+  margin-bottom:6px;
+}
+
+.details-card p{
+  color:var(--text-secondary);
+  margin-bottom:14px;
+}
+
+h3{
+  margin-top:18px;
+  margin-bottom:8px;
+}
+
+ul,ol{
+  padding-left:18px;
+}
+
+li{
+  margin-bottom:6px;
+}
+
+/* FOOTER */
+footer{
+  margin:40px 0 20px;
+  text-align:center;
+  font-size:13px;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="games.html" class="back-btn">
+    <span>←</span> Back
+  </a>
+</header>
+
+<div class="container">
+
+  <!-- IMAGE + PRICE -->
+  <div class="image-card">
+    <img id="gameImage" class="game-img" alt="Game Image">
+    <div class="price" id="gamePrice"></div>
+    <a id="orderBtn" class="order-btn" target="_blank">🛒 Order via WhatsApp</a>
+  </div>
+
+  <!-- DETAILS -->
+  <div class="details-card">
+    <h1 id="gameTitle"></h1>
+    <p id="gameType"></p>
+
+    <h3>Game Specifications</h3>
+    <ul id="gameSpecs"></ul>
+
+    <h3>Order Process</h3>
+    <ol>
+      <li>Click Order via WhatsApp</li>
+      <li>Pay mentioned amount</li>
+      <li>Offline activation support</li>
+      <li>Play anytime</li>
+    </ol>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 cheapgames39store
+</footer>
+
+<script>
+/* ================= GAME DATA ================= */
+const games = {
+  gta5:{
+    title:"Grand Theft Auto V",
+    price:"₹40",
+    image:"IMAGE/header (11).jpg",
+    type:"Steam PC • Offline Activation",
+    specs:[
+      "Platform: PC",
+      "Mode: Story",
+      "Storage: 95GB",
+      "Internet: Setup only"
+    ]
+  },
+  rdr2:{
+    title:"Red Dead Redemption 2",
+    price:"₹40",
+    image:"images/rdr2.jpg",
+    type:"Steam PC • Offline Activation",
+    specs:[
+      "Platform: PC",
+      "Mode: Story",
+      "Storage: 120GB"
+    ]
+  },
+  godofwar:{
+    title:"God of War (2018)",
+    price:"₹40",
+    image:"images/godofwar2018.jpg",
+    type:"Steam PC • Offline Activation",
+    specs:[
+      "Platform: PC",
+      "Mode: Story",
+      "Storage: 70GB"
+    ]
+  }
+};
+
+/* ================= LOAD GAME ================= */
+const params = new URLSearchParams(window.location.search);
+const key = params.get("game");
+const g = games[key];
+
+if(g){
+  document.getElementById("gameTitle").innerText = g.title;
+  document.getElementById("gamePrice").innerText = g.price;
+  document.getElementById("gameImage").src = g.image;
+  document.getElementById("gameType").innerText = g.type;
+
+  document.getElementById("orderBtn").href =
+    `https://wa.me/91XXXXXXXXXX?text=Game:%20${g.title}%0APrice:%20${g.price}%0AActivation:%20Offline`;
+
+  const ul = document.getElementById("gameSpecs");
+  ul.innerHTML="";
+  g.specs.forEach(s=>{
+    const li=document.createElement("li");
+    li.innerText=s;
+    ul.appendChild(li);
+  });
+}
+</script>
+
+</body>
+</html>
