@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ================= ROOT ================= */
 :root{
   --accent:#B50000;
   --accent-dark:#7A0000;
@@ -18,7 +16,6 @@
   --text-secondary:#2B2B2B;
 }
 
-/* ================= RESET ================= */
 *{
   margin:0;
   padding:0;
@@ -44,7 +41,7 @@ body{
   padding:14px 24px;
 }
 
-.logo-left img{ height:36px; }
+.logo-left img{height:36px;}
 
 .logo-center{
   text-align:center;
@@ -72,18 +69,18 @@ body{
   transition:.3s;
 }
 
-.nav-right a:hover::after{ width:100%; }
+.nav-right a:hover::after{width:100%;}
 
 .nav-right a.active{
   color:var(--accent);
   font-weight:700;
 }
-.nav-right a.active::after{ width:100%; }
+.nav-right a.active::after{width:100%;}
 
 /* ================= SEARCH ================= */
 .search-box{
   max-width:520px;
-  margin:30px auto 40px;
+  margin:30px auto 30px;
   position:relative;
 }
 
@@ -96,7 +93,7 @@ body{
   height:18px;
 }
 
-.search-icon svg{ fill:var(--accent); }
+.search-icon svg{fill:var(--accent);}
 
 .search-box input{
   width:100%;
@@ -108,17 +105,16 @@ body{
   font-size:14px;
 }
 
-/* ================= GAME LIST (ROW) ================= */
+/* ================= GAME LIST ================= */
 .game-grid{
   max-width:1000px;
-  margin:0 auto 60px;
+  margin:0 auto 40px;
   padding:0 20px;
   display:flex;
   flex-direction:column;
   gap:18px;
 }
 
-/* ================= GAME CARD ROW ================= */
 .game-card{
   display:flex;
   align-items:center;
@@ -135,7 +131,6 @@ body{
   box-shadow:0 10px 24px rgba(0,0,0,.15);
 }
 
-/* IMAGE */
 .game-card img{
   width:150px;
   height:90px;
@@ -143,10 +138,7 @@ body{
   border-radius:10px;
 }
 
-/* INFO */
-.game-info{
-  flex:1;
-}
+.game-info{flex:1;}
 
 .game-info h3{
   font-size:17px;
@@ -159,7 +151,6 @@ body{
   color:var(--accent);
 }
 
-/* BUTTON */
 .game-card a{
   padding:8px 22px;
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
@@ -169,6 +160,23 @@ body{
   font-weight:700;
   border-radius:20px;
   white-space:nowrap;
+}
+
+/* ================= NO GAME FOUND ================= */
+#noGameFound{
+  display:none;
+  max-width:600px;
+  margin:60px auto;
+  background:#fff;
+  border:2px dashed #B50000;
+  border-radius:20px;
+  padding:30px;
+  text-align:center;
+}
+
+#noGameFound h2{
+  color:#B50000;
+  margin-bottom:10px;
 }
 
 /* ================= FOOTER ================= */
@@ -187,27 +195,20 @@ footer{
     flex-direction:column;
     text-align:center;
   }
-
   .game-card img{
     width:100%;
     height:160px;
   }
-
-  .game-card a{
-    margin-top:10px;
-  }
-
+  .game-card a{margin-top:10px;}
   .header{
     grid-template-columns:auto 1fr;
     row-gap:6px;
   }
-
   .nav-right{
     grid-column:1/-1;
     text-align:center;
   }
-
-  .nav-right a{ margin:0 10px; }
+  .nav-right a{margin:0 10px;}
 }
 </style>
 </head>
@@ -218,9 +219,7 @@ footer{
   <div class="logo-left">
     <img src="IMAGE/1000038482-removebg-preview.png">
   </div>
-
   <div class="logo-center">PC GAMES STORE</div>
-
   <nav class="nav-right">
     <a href="index.html">Home</a>
     <a href="games.html" class="active">Games</a>
@@ -238,13 +237,13 @@ footer{
   <input type="text" id="gameSearch" placeholder="Search games...">
 </div>
 
-<!-- GAMES LIST -->
+<!-- GAME LIST -->
 <div class="game-grid">
 
   <div class="game-card">
-    <img src="IMAGE/header (11).jpg">
+    <img src="images/gta5.jpg">
     <div class="game-info">
-      <h3>GTA V</h3>
+      <h3>Grand Theft Auto V</h3>
       <p class="price">₹40</p>
     </div>
     <a href="game.html?game=gta5">View</a>
@@ -260,69 +259,6 @@ footer{
   </div>
 
   <div class="game-card">
-    <img src="images/gta5.jpg">
-    <div class="game-info">
-      <h3>Grand Theft Auto V</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=gta5">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/witcher3.jpg">
-    <div class="game-info">
-      <h3>The Witcher 3: Wild Hunt</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=witcher3">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/cyberpunk2077.jpg">
-    <div class="game-info">
-      <h3>Cyberpunk 2077</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=cyberpunk2077">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/godofwar2018.jpg">
-    <div class="game-info">
-      <h3>God of War (2018)</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=gow2018">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/dragonsdogma2.jpg">
-    <div class="game-info">
-      <h3>Dragon’s Dogma 2</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=dragonsdogma2">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/hogwartslegacy.jpg">
-    <div class="game-info">
-      <h3>Hogwarts Legacy</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=hogwartslegacy">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/stray.jpg">
-    <div class="game-info">
-      <h3>Stray</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=stray">View</a>
-  </div>
-
-  <div class="game-card">
     <img src="images/eldenring.jpg">
     <div class="game-info">
       <h3>Elden Ring</h3>
@@ -331,281 +267,41 @@ footer{
     <a href="game.html?game=eldenring">View</a>
   </div>
 
-  <div class="game-card">
-    <img src="images/wwe2k20.jpg">
-    <div class="game-info">
-      <h3>WWE 2K20</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=wwe2k20">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/wwe2k15.jpg">
-    <div class="game-info">
-      <h3>WWE 2K15</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=wwe2k15">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="IMAGE/detroit become human.jpg">
-    <div class="game-info">
-      <h3>Detroit: Become Human</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=detroit">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/tekken7.jpg">
-    <div class="game-info">
-      <h3>Tekken 7</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=tekken7">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/ghostoftsushima.jpg">
-    <div class="game-info">
-      <h3>Ghost of Tsushima</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=ghostoftsushima">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/godofwarragnarok.jpg">
-    <div class="game-info">
-      <h3>God of War Ragnarök</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=gowragnarok">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/lastofus2.jpg">
-    <div class="game-info">
-      <h3>The Last of Us Part II Remastered</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=tlou2">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/spiderman2.jpg">
-    <div class="game-info">
-      <h3>Marvel’s Spider-Man 2</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=spiderman2">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/spidermanremastered.jpg">
-    <div class="game-info">
-      <h3>Marvel’s Spider-Man Remastered</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=spidermanremastered">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/milesmorales.jpg">
-    <div class="game-info">
-      <h3>Spider-Man: Miles Morales</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=milesmorales">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/supermarketsimulator.jpg">
-    <div class="game-info">
-      <h3>Supermarket Simulator</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=supermarket">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/theforest.jpg">
-    <div class="game-info">
-      <h3>The Forest</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=theforest">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/limbo.jpg">
-    <div class="game-info">
-      <h3>Limbo</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=limbo">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/cuphead.jpg">
-    <div class="game-info">
-      <h3>Cuphead</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=cuphead">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/repo.jpg">
-    <div class="game-info">
-      <h3>R.E.P.O.</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=repo">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/chainedtogether.jpg">
-    <div class="game-info">
-      <h3>Chained Together</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=chainedtogether">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/phasmophobia.jpg">
-    <div class="game-info">
-      <h3>Phasmophobia</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=phasmophobia">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/farmingsimulator22.jpg">
-    <div class="game-info">
-      <h3>Farming Simulator 22</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=farmingsim22">View</a>
-  </div>
-
-  <div class="game-card">
-    <img src="images/farmingsimulator17.jpg">
-    <div class="game-info">
-      <h3>Farming Simulator 17</h3>
-      <p class="price">₹40</p>
-    </div>
-    <a href="game.html?game=farmingsim17">View</a>
-  </div>
-
-</div>
-
-
 </div>
 
 <!-- NO GAME FOUND -->
-<div id="notFound" style="display:none;
-  max-width:600px;
-  margin:80px auto;
-  background:#fff;
-  border:2px dashed #B50000;
-  border-radius:20px;
-  padding:30px;
-  text-align:center;">
-  
-  <h2 style="color:#B50000;margin-bottom:10px;">
-    ❌ No Game Found
-  </h2>
-
-  <p style="color:#555;font-size:15px;">
-    The game you are looking for is not available.<br>
-    Please go back and select a valid game.
-  </p>
-
-  <a href="games.html"
-     style="display:inline-block;
-     margin-top:18px;
-     padding:12px 30px;
-     background:#B50000;
-     color:#fff;
-     text-decoration:none;
-     border-radius:30px;
-     font-weight:700;">
-     ← Back to Games
-  </a>
+<div id="noGameFound">
+  <h2>❌ No Game Found</h2>
+  <p>No games match your search</p>
 </div>
-
 
 <footer>
   © 2025 cheapgames39store
 </footer>
 
-<!-- ================= SEARCH JS ================= -->
+<!-- ================= SEARCH SCRIPT ================= -->
 <script>
 const searchInput = document.getElementById("gameSearch");
 const gameCards = document.querySelectorAll(".game-card");
+const noGameFound = document.getElementById("noGameFound");
 
 searchInput.addEventListener("keyup", () => {
   const value = searchInput.value.toLowerCase();
+  let visible = 0;
+
   gameCards.forEach(card => {
     const title = card.querySelector("h3").textContent.toLowerCase();
-    card.style.display = title.includes(value) ? "flex" : "none";
+    if (title.includes(value)) {
+      card.style.display = "flex";
+      visible++;
+    } else {
+      card.style.display = "none";
+    }
   });
+
+  noGameFound.style.display = visible === 0 ? "block" : "none";
 });
-</script>
-
-
-<script>
-const games = {
-  gta5:{
-    title:"Grand Theft Auto V",
-    price:"₹40",
-    image:"images/gta5.jpg",
-    type:"Steam PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 95GB"]
-  },
-  rdr2:{
-    title:"Red Dead Redemption 2",
-    price:"₹40",
-    image:"images/rdr2.jpg",
-    type:"Steam PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 120GB"]
-  }
-  // add other games here
-};
-
-const params = new URLSearchParams(window.location.search);
-const key = params.get("game");
-const g = games[key];
-
-if(!g){
-  // ❌ GAME NOT FOUND
-  document.querySelector(".container").style.display="none";
-  document.getElementById("notFound").style.display="block";
-}else{
-  // ✅ GAME FOUND
-  document.getElementById("gameTitle").innerText = g.title;
-  document.getElementById("gamePrice").innerText = g.price;
-  document.getElementById("gameImage").src = g.image;
-  document.getElementById("gameType").innerText = g.type;
-
-  document.getElementById("orderBtn").href =
-   `https://wa.me/91XXXXXXXXXX?text=Game:%20${g.title}%0APrice:%20${g.price}`;
-
-  const ul = document.getElementById("gameSpecs");
-  ul.innerHTML="";
-  g.specs.forEach(s=>{
-    const li=document.createElement("li");
-    li.innerText=s;
-    ul.appendChild(li);
-  });
-}
 </script>
 
 </body>
 </html>
-
