@@ -5,6 +5,8 @@
 <title>cheapgames39store | Games</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --accent:#B50000;
@@ -20,7 +22,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Segoe UI",Tahoma,sans-serif;
+  font-family:"Poppins",sans-serif;
 }
 
 body{
@@ -31,73 +33,108 @@ body{
   flex-direction:column;
 }
 
-
 /* ================= HEADER ================= */
 .header{
   position:sticky;
   top:0;
-  z-index:999;
+  z-index:1000;
   background:var(--bg-main);
   border-bottom:2px solid var(--accent);
   display:grid;
   grid-template-columns:auto 1fr auto;
   align-items:center;
-  padding:14px 24px;
+  padding:14px 20px;
 }
 
 .logo-left img{height:36px;}
 
 .logo-center{
   text-align:center;
-  font-size:14px;
+  font-size:13px;
   letter-spacing:3px;
+  font-weight:600;
   color:var(--text-secondary);
 }
 
-.nav-right a{
-  margin-left:20px;
-  text-decoration:none;
-  color:var(--text-secondary);
-  font-size:14px;
-  position:relative;
-}
-
-.nav-right a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:2px;
-  background:var(--accent);
-  transition:.3s;
-}
-
-.nav-right a:hover::after{width:100%;}
-
-.nav-right a.active{
+.menu-btn{
+  font-size:28px;
+  cursor:pointer;
   color:var(--accent);
-  font-weight:700;
 }
-.nav-right a.active::after{width:100%;}
+
+/* ================= OVERLAY ================= */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:998;
+}
+.overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* ================= TOP SLIDE MENU ================= */
+.side-menu{
+  position:fixed;
+  top:-100%;
+  left:0;
+  width:100%;
+  background:var(--bg-main);
+  border-bottom:3px solid var(--accent);
+  padding:22px 20px 30px;
+  transition:.35s ease;
+  z-index:999;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+.side-menu.active{ top:0; }
+
+.close{
+  font-size:26px;
+  color:var(--accent);
+  cursor:pointer;
+  text-align:right;
+  margin-bottom:18px;
+}
+
+/* MENU ITEMS */
+.menu-item{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  max-width:280px;
+  margin:0 auto 14px;
+  padding:14px 18px;
+  background:#fff;
+  border:1.5px solid rgba(181,0,0,.35);
+  border-radius:16px;
+  font-size:15px;
+  font-weight:600;
+  text-decoration:none;
+  color:var(--text-main);
+  transition:.25s;
+}
+
+.menu-item img{
+  width:22px;
+  height:22px;
+}
+
+/* ACTIVE MENU */
+.menu-item.active{
+  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+  color:#fff;
+}
 
 /* ================= SEARCH ================= */
 .search-box{
   max-width:520px;
-  margin:30px auto 30px;
+  margin:30px auto;
   position:relative;
 }
-
-.search-icon{
-  position:absolute;
-  left:18px;
-  top:50%;
-  transform:translateY(-50%);
-  width:18px;
-  height:18px;
-}
-
-.search-icon svg{fill:var(--accent);}
 
 .search-box input{
   width:100%;
@@ -109,35 +146,32 @@ body{
   font-size:14px;
 }
 
-/* ================= GAME LIST ================= */
+.search-icon{
+  position:absolute;
+  left:18px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.search-icon svg{fill:var(--accent);}
+
+/* ================= GAME GRID ================= */
 .game-grid{
   max-width:1100px;
-  margin:0 auto 80px;
+  margin:0 auto 60px;
   padding:0 16px;
   display:grid;
-  grid-template-columns:repeat(2, 1fr); /* MOBILE = 2 cards */
+  grid-template-columns:repeat(2,1fr);
   gap:16px;
 }
 
-
 .game-card{
-  background:var(--card-bg);
+  background:#fff;
   border-radius:18px;
   padding:14px;
   border:1px solid rgba(181,0,0,.25);
   text-align:center;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  height:100%;
 }
-
-
-.game-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 12px 26px rgba(0,0,0,.15);
-}
-
 
 .game-card img{
   width:100%;
@@ -147,41 +181,13 @@ body{
   margin-bottom:10px;
 }
 
-
-.game-info{flex:1;}
-
-.game-info h3{
+.game-card h3{
   font-size:14px;
-  margin-bottom:4px;
-  min-height:38px;   /* 🔥 FIX */
+  margin-bottom:6px;
 }
-
 
 .price{
   font-size:15px;
-  font-weight:700;
-  color:var(--accent);
-}
-
-.game-card a{
-  padding:8px 22px;
-  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-  color:#fff;
-  text-decoration:none;
-  font-size:14px;
-  font-weight:700;
-  border-radius:20px;
-  white-space:nowrap;
-}
-
-
-.game-info h3{
-  font-size:14px;
-  margin-bottom:4px;
-}
-
-.price{
-  font-size:14px;
   font-weight:700;
   color:var(--accent);
   margin-bottom:10px;
@@ -189,7 +195,7 @@ body{
 
 .game-card a{
   display:inline-block;
-  padding:8px 20px;
+  padding:8px 22px;
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
   text-decoration:none;
@@ -198,24 +204,16 @@ body{
   border-radius:20px;
 }
 
-
-
-
-/* ================= NO GAME FOUND ================= */
+/* ================= NO GAME ================= */
 #noGameFound{
   display:none;
   max-width:600px;
   margin:60px auto;
   background:#fff;
-  border:2px dashed #B50000;
+  border:2px dashed var(--accent);
   border-radius:20px;
   padding:30px;
   text-align:center;
-}
-
-#noGameFound h2{
-  color:#B50000;
-  margin-bottom:10px;
 }
 
 /* ================= FOOTER ================= */
@@ -229,71 +227,47 @@ footer{
   color:var(--text-secondary);
 }
 
-
-body{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-
-footer{
-  margin-top:auto;
-}
-
-
-/* ================= MOBILE ================= */
-@media(max-width:600px){
-  .game-card{
-    flex-direction:column;
-    text-align:center;
-  }
-  .game-card img{
-    width:100%;
-    height:160px;
-  }
-  .game-card a{margin-top:10px;}
-  .header{
-    grid-template-columns:auto 1fr;
-    row-gap:6px;
-  }
-  .nav-right{
-    grid-column:1/-1;
-    text-align:center;
-  }
-  .nav-right a{margin:0 10px;}
-}
-
-
+/* ================= RESPONSIVE ================= */
 @media(min-width:768px){
-  .game-grid{
-    grid-template-columns:repeat(3, 1fr);
-  }
+  .game-grid{ grid-template-columns:repeat(3,1fr); }
 }
-
 @media(min-width:1024px){
-  .game-grid{
-    grid-template-columns:repeat(4, 1fr);
-  }
+  .game-grid{ grid-template-columns:repeat(4,1fr); }
 }
-
-
-
 </style>
 </head>
 
 <body>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <header class="header">
   <div class="logo-left">
     <img src="IMAGE/1000038482-removebg-preview.png">
   </div>
   <div class="logo-center">PC GAMES STORE</div>
-  <nav class="nav-right">
-    <a href="index.html">Home</a>
-    <a href="games.html" class="active">Games</a>
-    <a href="contact.html">About Us</a>
-  </nav>
+  <div class="menu-btn" onclick="openMenu()">☰</div>
 </header>
+
+<!-- MENU -->
+<div class="side-menu" id="sideMenu">
+  <div class="close" onclick="closeMenu()">✕</div>
+
+  <a href="index.html" class="menu-item">
+    <img src="IMAGE/icons/home.png">
+    <span>Home</span>
+  </a>
+
+  <a href="games.html" class="menu-item active">
+    <img src="IMAGE/icons/games.png">
+    <span>Games</span>
+  </a>
+
+  <a href="contact.html" class="menu-item">
+    <img src="IMAGE/icons/about.png">
+    <span>About Us</span>
+  </a>
+</div>
 
 <!-- SEARCH -->
 <div class="search-box">
@@ -305,69 +279,69 @@ footer{
   <input type="text" id="gameSearch" placeholder="Search games...">
 </div>
 
-<!-- GAME LIST -->
+<!-- GAMES -->
 <div class="game-grid">
 
   <div class="game-card">
     <img src="IMAGE/header (11).jpg">
-    <div class="game-info">
-      <h3>Grand Theft Auto V</h3>
-      <p class="price">₹40</p>
-    </div>
+    <h3>GTA V</h3>
+    <p class="price">₹40</p>
     <a href="game.html?game=gta5">View</a>
   </div>
 
   <div class="game-card">
-    <img src="images/rdr2.jpg">
-    <div class="game-info">
-      <h3>Red Dead Redemption 2</h3>
-      <p class="price">₹40</p>
-    </div>
+    <img src="IMAGE/header (11).jpg">
+    <h3>God of War</h3>
+    <p class="price">₹49</p>
+    <a href="game.html?game=godofwar2018">View</a>
+  </div>
+
+  <div class="game-card">
+    <img src="IMAGE/header (11).jpg">
+    <h3>RDR 2</h3>
+    <p class="price">₹59</p>
     <a href="game.html?game=rdr2">View</a>
   </div>
 
   <div class="game-card">
-    <img src="images/eldenring.jpg">
-    <div class="game-info">
-      <h3>Elden Ring</h3>
-      <p class="price">₹40</p>
-    </div>
+    <img src="IMAGE/header (11).jpg">
+    <h3>Elden Ring</h3>
+    <p class="price">₹69</p>
     <a href="game.html?game=eldenring">View</a>
   </div>
 
 </div>
 
-<!-- NO GAME FOUND -->
 <div id="noGameFound">
-  <h2>❌ No Game Found</h2>
+  <h2>No Game Found</h2>
   <p>No games match your search</p>
 </div>
 
-<footer>
-  © 2025 cheapgames39store
-</footer>
+<footer>© 2025 cheapgames39store</footer>
 
-<!-- ================= SEARCH SCRIPT ================= -->
 <script>
-const searchInput = document.getElementById("gameSearch");
-const gameCards = document.querySelectorAll(".game-card");
-const noGameFound = document.getElementById("noGameFound");
+function openMenu(){
+  sideMenu.classList.add("active");
+  overlay.classList.add("active");
+}
+function closeMenu(){
+  sideMenu.classList.remove("active");
+  overlay.classList.remove("active");
+}
 
-searchInput.addEventListener("keyup", () => {
-  const value = searchInput.value.toLowerCase();
-  let visible = 0;
+const searchInput=document.getElementById("gameSearch");
+const cards=document.querySelectorAll(".game-card");
+const noGame=document.getElementById("noGameFound");
 
-  gameCards.forEach(card => {
-    const title = card.querySelector("h3").textContent.toLowerCase();
-    if (title.includes(value)) {
-      card.style.display = "flex";
-      visible++;
-    } else {
-      card.style.display = "none";
-    }
+searchInput.addEventListener("keyup",()=>{
+  let v=searchInput.value.toLowerCase();
+  let show=0;
+  cards.forEach(c=>{
+    if(c.innerText.toLowerCase().includes(v)){
+      c.style.display="block"; show++;
+    }else c.style.display="none";
   });
-
-  noGameFound.style.display = visible === 0 ? "block" : "none";
+  noGame.style.display=show? "none":"block";
 });
 </script>
 
