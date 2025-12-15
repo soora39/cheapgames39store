@@ -38,7 +38,7 @@ body{
   display:grid;
   grid-template-columns:auto 1fr auto;
   align-items:center;
-  padding:14px 20px;
+  padding:14px 18px;
 }
 
 .logo-left img{ height:36px; }
@@ -50,7 +50,6 @@ body{
   color:var(--text-secondary);
 }
 
-/* MENU ICON */
 .menu-btn{
   font-size:28px;
   cursor:pointer;
@@ -61,7 +60,7 @@ body{
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.45);
+  background:rgba(0,0,0,.45);
   opacity:0;
   pointer-events:none;
   transition:.3s;
@@ -76,46 +75,60 @@ body{
 .side-menu{
   position:fixed;
   top:0;
-  right:-280px;
-  width:280px;
+  right:-260px;
+  width:260px;
   height:100vh;
   background:var(--bg-main);
   border-left:3px solid var(--accent);
-  padding:24px 20px;
+  padding:24px 18px;
   transition:.35s ease;
   z-index:999;
-  box-shadow:-10px 0 30px rgba(0,0,0,.25);
+  box-shadow:-8px 0 30px rgba(0,0,0,.25);
 }
 
 .side-menu.active{ right:0; }
 
-.side-menu .close{
-  font-size:28px;
+.close{
+  font-size:26px;
   color:var(--accent);
-  cursor:pointer;
   text-align:right;
+  cursor:pointer;
   margin-bottom:30px;
 }
 
-/* MENU LINKS */
-.side-menu a{
+/* MENU ITEM */
+.menu-item{
   display:flex;
   align-items:center;
   gap:12px;
-  padding:14px 16px;
+
+  width:fit-content;
+  padding:12px 18px;
   margin-bottom:14px;
+
+  background:#fff;
+  border:1.5px solid rgba(181,0,0,.35);
   border-radius:14px;
+
   font-size:16px;
   font-weight:700;
-  text-decoration:none;
   color:var(--text-main);
-  background:#fff;
-  border:1px solid rgba(181,0,0,.25);
+  text-decoration:none;
+
   transition:.25s;
 }
 
-.side-menu a:hover{
+.menu-item:hover{
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+  color:#fff;
+}
+
+.menu-icon{
+  font-size:18px;
+  color:var(--accent);
+}
+
+.menu-item:hover .menu-icon{
   color:#fff;
 }
 
@@ -252,9 +265,21 @@ footer{
 <!-- SIDE MENU -->
 <div class="side-menu" id="sideMenu">
   <div class="close" onclick="closeMenu()">✕</div>
-  <a href="index.html">🏠 Home</a>
-  <a href="games.html">🎮 Games</a>
-  <a href="contact.html">ℹ️ About Us</a>
+
+  <a href="index.html" class="menu-item">
+    <span class="menu-icon">⌂</span>
+    <span>Home</span>
+  </a>
+
+  <a href="games.html" class="menu-item">
+    <span class="menu-icon">▣</span>
+    <span>Games</span>
+  </a>
+
+  <a href="contact.html" class="menu-item">
+    <span class="menu-icon">i</span>
+    <span>About Us</span>
+  </a>
 </div>
 
 <!-- HERO -->
