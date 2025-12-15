@@ -155,6 +155,38 @@ body{
 
 .search-icon svg{fill:var(--accent);}
 
+.search-box{
+  max-width:520px;
+  margin:30px auto;
+  position:relative;
+}
+
+.search-icon{
+  position:absolute;
+  left:18px;
+  top:50%;
+  transform:translateY(-50%);
+  width:18px;
+  height:18px;
+}
+
+.search-icon svg{
+  width:100%;
+  height:100%;
+  fill:var(--accent);
+}
+
+.search-box input{
+  width:100%;
+  padding:14px 18px 14px 48px; /* 👈 icon-ku space */
+  border-radius:30px;
+  border:2px solid var(--accent);
+  background:#FFF8EE;
+  outline:none;
+  font-size:14px;
+}
+
+
 /* ================= GAME GRID ================= */
 .game-grid{
   max-width:1100px;
