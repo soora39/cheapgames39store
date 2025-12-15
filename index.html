@@ -38,7 +38,7 @@ body{
   display:grid;
   grid-template-columns:auto 1fr auto;
   align-items:center;
-  padding:14px 18px;
+  padding:14px 20px;
 }
 
 .logo-left img{ height:36px; }
@@ -71,49 +71,50 @@ body{
   pointer-events:auto;
 }
 
-/* ================= SIDE MENU ================= */
+/* ================= TOP SLIDE MENU ================= */
 .side-menu{
   position:fixed;
-  top:0;
-  right:-260px;
-  width:260px;
-  height:100vh;
+  top:-100%;
+  left:0;
+  width:100%;
   background:var(--bg-main);
-  border-left:3px solid var(--accent);
-  padding:24px 18px;
+  border-bottom:3px solid var(--accent);
+  padding:22px 20px 30px;
   transition:.35s ease;
   z-index:999;
-  box-shadow:-8px 0 30px rgba(0,0,0,.25);
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
 
-.side-menu.active{ right:0; }
+.side-menu.active{
+  top:0;
+}
 
 .close{
   font-size:26px;
   color:var(--accent);
-  text-align:right;
   cursor:pointer;
-  margin-bottom:30px;
+  text-align:right;
+  margin-bottom:18px;
 }
 
-/* MENU ITEM */
+/* MENU ITEMS */
 .menu-item{
   display:flex;
   align-items:center;
   gap:12px;
 
-  width:fit-content;
-  padding:12px 18px;
-  margin-bottom:14px;
+  max-width:260px;
+  margin:0 auto 14px;
+  padding:14px 18px;
 
   background:#fff;
   border:1.5px solid rgba(181,0,0,.35);
-  border-radius:14px;
+  border-radius:16px;
 
   font-size:16px;
   font-weight:700;
-  color:var(--text-main);
   text-decoration:none;
+  color:var(--text-main);
 
   transition:.25s;
 }
@@ -124,7 +125,7 @@ body{
 }
 
 .menu-icon{
-  font-size:18px;
+  font-size:17px;
   color:var(--accent);
 }
 
@@ -171,61 +172,6 @@ body{
   font-weight:700;
 }
 
-/* ================= OFFERS ================= */
-.today-offer{
-  padding:40px 20px 60px;
-  text-align:center;
-}
-
-.today-offer h2{
-  font-size:22px;
-  margin-bottom:26px;
-  color:var(--accent);
-}
-
-.offer-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-  max-width:900px;
-  margin:auto;
-}
-
-.offer-card{
-  background:#fff;
-  border-radius:18px;
-  padding:16px;
-  border:1px solid rgba(181,0,0,.25);
-}
-
-.offer-card img{
-  width:100%;
-  height:140px;
-  object-fit:cover;
-  border-radius:12px;
-  margin-bottom:10px;
-}
-
-.offer-card h3{ font-size:16px; }
-
-.offer-price{
-  font-size:18px;
-  font-weight:800;
-  color:var(--accent);
-  margin-bottom:10px;
-}
-
-.offer-btn{
-  display:inline-block;
-  padding:8px 24px;
-  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-  color:#fff;
-  border-radius:22px;
-  text-decoration:none;
-  font-size:14px;
-  font-weight:700;
-}
-
 /* ================= FOOTER ================= */
 footer{
   background:var(--bg-secondary);
@@ -235,23 +181,13 @@ footer{
   font-size:13px;
   color:var(--text-secondary);
 }
-
-/* ================= RESPONSIVE ================= */
-@media(max-width:768px){
-  .offer-grid{ grid-template-columns:repeat(2,1fr); }
-}
-@media(max-width:420px){
-  .offer-grid{ grid-template-columns:1fr; }
-}
 </style>
 </head>
 
 <body>
 
-<!-- OVERLAY -->
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-<!-- HEADER -->
 <header class="header">
   <div class="logo-left">
     <img src="IMAGE/1000038482-removebg-preview.png">
@@ -262,7 +198,7 @@ footer{
   <div class="menu-btn" onclick="openMenu()">☰</div>
 </header>
 
-<!-- SIDE MENU -->
+<!-- TOP MENU -->
 <div class="side-menu" id="sideMenu">
   <div class="close" onclick="closeMenu()">✕</div>
 
@@ -282,40 +218,11 @@ footer{
   </a>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <h1>cheapgames39</h1>
   <p>PC Game Access & Installation Support</p>
   <span>Trusted by Gamers in India</span>
   <a class="btn" href="games.html">Order Game</a>
-</section>
-
-<!-- OFFERS -->
-<section class="today-offer">
-  <h2>Today’s Offers</h2>
-
-  <div class="offer-grid">
-    <div class="offer-card">
-      <img src="IMAGE/header (11).jpg">
-      <h3>GTA V</h3>
-      <p class="offer-price">₹40</p>
-      <a href="game.html?game=gta5" class="offer-btn">View</a>
-    </div>
-
-    <div class="offer-card">
-      <img src="IMAGE/header (11).jpg">
-      <h3>God of War</h3>
-      <p class="offer-price">₹49</p>
-      <a href="game.html?game=godofwar2018" class="offer-btn">View</a>
-    </div>
-
-    <div class="offer-card">
-      <img src="IMAGE/header (11).jpg">
-      <h3>RDR 2</h3>
-      <p class="offer-price">₹59</p>
-      <a href="game.html?game=rdr2" class="offer-btn">View</a>
-    </div>
-  </div>
 </section>
 
 <footer>© 2025 cheapgames39store</footer>
