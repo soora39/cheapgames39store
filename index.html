@@ -5,7 +5,6 @@
 <title>cheapgames39store | Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- GOOGLE FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -31,7 +30,7 @@ body{
   color:var(--text-main);
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 .header{
   position:sticky;
   top:0;
@@ -60,7 +59,7 @@ body{
   color:var(--accent);
 }
 
-/* ================= OVERLAY ================= */
+/* OVERLAY */
 .overlay{
   position:fixed;
   inset:0;
@@ -75,7 +74,7 @@ body{
   pointer-events:auto;
 }
 
-/* ================= TOP SLIDE MENU ================= */
+/* TOP SLIDE MENU */
 .side-menu{
   position:fixed;
   top:-100%;
@@ -88,7 +87,6 @@ body{
   z-index:999;
   box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
-
 .side-menu.active{ top:0; }
 
 .close{
@@ -104,20 +102,16 @@ body{
   display:flex;
   align-items:center;
   gap:14px;
-
-  max-width:260px;
+  max-width:280px;
   margin:0 auto 14px;
   padding:14px 18px;
-
   background:#fff;
   border:1.5px solid rgba(181,0,0,.35);
   border-radius:16px;
-
   font-size:15px;
   font-weight:600;
   text-decoration:none;
   color:var(--text-main);
-
   transition:.25s;
 }
 
@@ -126,24 +120,12 @@ body{
   color:#fff;
 }
 
-.menu-icon{
-  width:18px;
-  height:18px;
-  border:2px solid var(--accent);
-  border-radius:4px;
+.menu-item img{
+  width:22px;
+  height:22px;
 }
 
-.menu-item:hover .menu-icon{
-  border-color:#fff;
-}
-
-.menu-img{
-  width:20px;
-  height:20px;
-  object-fit:contain;
-}
-
-/* ================= HERO ================= */
+/* HERO */
 .hero{
   min-height:70vh;
   display:flex;
@@ -182,7 +164,7 @@ body{
   font-weight:700;
 }
 
-/* ================= TODAY OFFERS ================= */
+/* TODAY OFFERS */
 .today-offer{
   padding:40px 20px 60px;
   text-align:center;
@@ -240,7 +222,7 @@ body{
   font-weight:600;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 footer{
   background:var(--bg-secondary);
   border-top:2px solid var(--accent);
@@ -250,7 +232,7 @@ footer{
   color:var(--text-secondary);
 }
 
-/* ================= RESPONSIVE ================= */
+/* RESPONSIVE */
 @media(max-width:900px){
   .offer-grid{ grid-template-columns:repeat(2,1fr); }
 }
@@ -268,28 +250,37 @@ footer{
   <div class="logo-left">
     <img src="IMAGE/1000038482-removebg-preview.png">
   </div>
-
   <div class="logo-center">PC GAMES STORE</div>
-
   <div class="menu-btn" onclick="openMenu()">☰</div>
 </header>
 
-<a href="index.html" class="menu-item">
-  <img src="IMAGE/icons/home.png" class="menu-img">
-  <span>Home</span>
-</a>
+<!-- MENU -->
+<div class="side-menu" id="sideMenu">
+  <div class="close" onclick="closeMenu()">✕</div>
 
-<a href="games.html" class="menu-item">
-  <img src="IMAGE/icons/games.png" class="menu-img">
-  <span>Games</span>
-</a>
+  <a href="index.html" class="menu-item">
+    <img src="IMAGE/icons/home.png">
+    <span>Home</span>
+  </a>
 
-<a href="contact.html" class="menu-item">
-  <img src="IMAGE/icons/about.png" class="menu-img">
-  <span>About Us</span>
-</a>
+  <a href="games.html" class="menu-item">
+    <img src="IMAGE/icons/games.png">
+    <span>Games</span>
+  </a>
 
-<!-- TODAY OFFERS -->
+  <a href="contact.html" class="menu-item">
+    <img src="IMAGE/icons/about.png">
+    <span>About Us</span>
+  </a>
+</div>
+
+<section class="hero">
+  <h1>cheapgames39</h1>
+  <p>PC Game Access & Installation Support</p>
+  <span>Trusted by Gamers in India</span>
+  <a class="btn" href="games.html">Order Game</a>
+</section>
+
 <section class="today-offer">
   <h2>Today’s Offers</h2>
 
