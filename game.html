@@ -5,6 +5,8 @@
 <title>Game Details | cheapgames39store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --accent:#B50000;
@@ -19,38 +21,44 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Segoe UI,Tahoma,sans-serif;
+  font-family:"Poppins",sans-serif;
 }
 
 body{
-  background:var(--bg-main);
+  background:linear-gradient(180deg,#F5F0E8,#EFE6DA);
   color:var(--text-main);
 }
 
-/* ================= HEADER (BACK ICON ONLY) ================= */
+/* ================= HEADER ================= */
 .header{
   position:sticky;
   top:0;
   z-index:999;
-  background:var(--bg-main);
+  background:rgba(245,240,232,.95);
+  backdrop-filter:blur(6px);
   border-bottom:2px solid var(--accent);
-  display:flex;
-  align-items:center;
-  padding:14px 16px;
+  padding:12px 16px;
 }
 
 .back-btn{
+  width:42px;
+  height:42px;
+  border-radius:50%;
   display:flex;
   align-items:center;
-  gap:8px;
+  justify-content:center;
   text-decoration:none;
+  background:#fff;
+  border:2px solid var(--accent);
   color:var(--accent);
+  font-size:20px;
   font-weight:700;
-  font-size:16px;
+  transition:.25s;
 }
 
-.back-btn span{
-  font-size:22px;
+.back-btn:hover{
+  background:var(--accent);
+  color:#fff;
 }
 
 /* ================= PAGE ================= */
@@ -60,13 +68,14 @@ body{
   padding:0 16px;
 }
 
-/* IMAGE + PRICE CARD */
+/* IMAGE CARD */
 .image-card{
   background:var(--card-bg);
   border-radius:22px;
   padding:18px;
   border:1px solid rgba(181,0,0,.25);
   text-align:center;
+  box-shadow:0 14px 30px rgba(0,0,0,.15);
 }
 
 .game-img{
@@ -75,22 +84,44 @@ body{
   margin-bottom:14px;
 }
 
+/* PRICE BADGE */
 .price{
-  font-size:28px;
-  font-weight:800;
-  color:var(--accent);
-  margin:10px 0 14px;
-}
-
-.order-btn{
   display:inline-block;
-  padding:14px 36px;
+  padding:8px 20px;
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
-  text-decoration:none;
+  font-size:22px;
+  font-weight:800;
+  border-radius:30px;
+  margin:8px 0 18px;
+}
+
+/* BUTTONS */
+.btn{
+  display:block;
+  width:100%;
+  padding:14px 0;
   border-radius:30px;
   font-weight:700;
+  text-decoration:none;
+  margin-bottom:12px;
+  text-align:center;
+  transition:.25s;
 }
+
+/* WHATSAPP */
+.whatsapp-btn{
+  background:linear-gradient(135deg,#25D366,#1EBE57);
+  color:#fff;
+}
+.whatsapp-btn:hover{ filter:brightness(1.1); }
+
+/* INSTAGRAM */
+.instagram-btn{
+  background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);
+  color:#fff;
+}
+.instagram-btn:hover{ filter:brightness(1.1); }
 
 /* DETAILS CARD */
 .details-card{
@@ -99,21 +130,25 @@ body{
   border-radius:22px;
   padding:22px;
   border:1px solid rgba(181,0,0,.25);
+  box-shadow:0 14px 30px rgba(0,0,0,.12);
 }
 
 .details-card h1{
-  font-size:24px;
+  font-size:22px;
+  font-weight:700;
   margin-bottom:6px;
 }
 
 .details-card p{
   color:var(--text-secondary);
   margin-bottom:14px;
+  font-size:14px;
 }
 
 h3{
   margin-top:18px;
   margin-bottom:8px;
+  font-size:15px;
 }
 
 ul,ol{
@@ -122,25 +157,25 @@ ul,ol{
 
 li{
   margin-bottom:6px;
+  font-size:14px;
 }
 
 /* FOOTER */
 footer{
   margin:40px 0 20px;
+  padding-top:14px;
   text-align:center;
   font-size:13px;
   color:#777;
+  border-top:2px solid var(--accent);
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
-  <a href="games.html" class="back-btn">
-    <span>←</span> Back
-  </a>
+  <a href="games.html" class="back-btn">←</a>
 </header>
 
 <div class="container">
@@ -149,7 +184,14 @@ footer{
   <div class="image-card">
     <img id="gameImage" class="game-img" alt="Game Image">
     <div class="price" id="gamePrice"></div>
-    <a id="orderBtn" class="order-btn" target="_blank">🛒 Order via WhatsApp</a>
+
+    <a id="orderBtn" class="btn whatsapp-btn" target="_blank">
+      Order via WhatsApp
+    </a>
+
+    <a id="instaBtn" class="btn instagram-btn" target="_blank">
+      Order via Instagram
+    </a>
   </div>
 
   <!-- DETAILS -->
@@ -162,7 +204,7 @@ footer{
 
     <h3>Order Process</h3>
     <ol>
-      <li>Click Order via WhatsApp</li>
+      <li>Click Order button</li>
       <li>Pay mentioned amount</li>
       <li>Offline activation support</li>
       <li>Play anytime</li>
@@ -172,15 +214,14 @@ footer{
 </div>
 
 <footer>
-  © 2025 cheapgames39store
+  © 2025 cheapgames39
 </footer>
 
 <script>
-/* ================= GAME DATA ================= */
 const games = {
   gta5:{
     title:"Grand Theft Auto V",
-    price:"₹40",
+    price:"Rs. 40",
     image:"IMAGE/header (11).jpg",
     type:"Steam PC • Offline Activation",
     specs:[
@@ -192,7 +233,7 @@ const games = {
   },
   rdr2:{
     title:"Red Dead Redemption 2",
-    price:"₹40",
+    price:"Rs. 59",
     image:"images/rdr2.jpg",
     type:"Steam PC • Offline Activation",
     specs:[
@@ -203,7 +244,7 @@ const games = {
   },
   godofwar:{
     title:"God of War (2018)",
-    price:"₹40",
+    price:"Rs. 49",
     image:"images/godofwar2018.jpg",
     type:"Steam PC • Offline Activation",
     specs:[
@@ -214,26 +255,22 @@ const games = {
   }
 };
 
-/* ================= LOAD GAME ================= */
-const params = new URLSearchParams(window.location.search);
-const key = params.get("game");
-const g = games[key];
+const params=new URLSearchParams(window.location.search);
+const g=games[params.get("game")];
 
 if(g){
-  document.getElementById("gameTitle").innerText = g.title;
-  document.getElementById("gamePrice").innerText = g.price;
-  document.getElementById("gameImage").src = g.image;
-  document.getElementById("gameType").innerText = g.type;
+  gameTitle.innerText=g.title;
+  gamePrice.innerText=g.price;
+  gameImage.src=g.image;
+  gameType.innerText=g.type;
 
-  document.getElementById("orderBtn").href =
-    `https://wa.me/91XXXXXXXXXX?text=Game:%20${g.title}%0APrice:%20${g.price}%0AActivation:%20Offline`;
+  orderBtn.href=`https://wa.me/91XXXXXXXXXX?text=Game:%20${g.title}%0APrice:%20${g.price}`;
+  instaBtn.href=`https://instagram.com/yourpage`;
 
-  const ul = document.getElementById("gameSpecs");
-  ul.innerHTML="";
   g.specs.forEach(s=>{
-    const li=document.createElement("li");
+    let li=document.createElement("li");
     li.innerText=s;
-    ul.appendChild(li);
+    gameSpecs.appendChild(li);
   });
 }
 </script>

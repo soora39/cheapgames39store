@@ -5,7 +5,6 @@
 <title>cheapgames39store | Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -16,7 +15,7 @@
   --bg-secondary:#ECE3D8;
   --card-bg:#FFFFFF;
   --text-main:#1F1F1F;
-  --text-secondary:#2B2B2B;
+  --text-secondary:#555;
 }
 
 *{
@@ -27,37 +26,41 @@
 }
 
 body{
-  background:var(--bg-main);
+  background:linear-gradient(180deg,#F5F0E8,#EFE6DA);
   color:var(--text-main);
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 .header{
   position:sticky;
   top:0;
   z-index:1000;
-  background:var(--bg-main);
+  background:rgba(245,240,232,.95);
+  backdrop-filter:blur(6px);
   border-bottom:2px solid var(--accent);
   display:grid;
   grid-template-columns:auto 1fr auto;
   align-items:center;
   padding:14px 20px;
 }
+
 .logo-left img{height:36px;}
+
 .logo-center{
   text-align:center;
   font-size:13px;
   letter-spacing:3px;
-  font-weight:600;
+  font-weight:700;
   color:var(--text-secondary);
 }
+
 .menu-btn{
   font-size:28px;
   cursor:pointer;
   color:var(--accent);
 }
 
-/* OVERLAY */
+/* ================= OVERLAY ================= */
 .overlay{
   position:fixed;
   inset:0;
@@ -72,7 +75,7 @@ body{
   pointer-events:auto;
 }
 
-/* TOP SLIDE MENU */
+/* ================= TOP MENU ================= */
 .side-menu{
   position:fixed;
   top:-100%;
@@ -83,7 +86,7 @@ body{
   padding:22px 20px 30px;
   transition:.35s ease;
   z-index:999;
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
+  box-shadow:0 16px 40px rgba(0,0,0,.3);
 }
 .side-menu.active{ top:0; }
 
@@ -95,7 +98,6 @@ body{
   margin-bottom:18px;
 }
 
-/* MENU ITEMS */
 .menu-item{
   display:flex;
   align-items:center;
@@ -112,24 +114,21 @@ body{
   color:var(--text-main);
   transition:.25s;
 }
-.menu-item:hover{
-  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-  color:#fff;
-}
-.menu-img{
+
+.menu-item img{
   width:22px;
   height:22px;
-  object-fit:contain;
-  flex-shrink:0;
 }
+
+.menu-item:hover,
 .menu-item.active{
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 .hero{
-  min-height:70vh;
+  min-height:75vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -137,41 +136,63 @@ body{
   text-align:center;
   padding:40px 20px;
 }
+
 .hero h1{
-  font-size:42px;
+  font-size:44px;
   color:var(--accent);
   font-weight:800;
 }
+
 .hero p{
-  margin-top:8px;
+  margin-top:10px;
   font-size:16px;
   color:var(--text-secondary);
 }
-.hero span{
-  margin-top:6px;
-  font-size:13px;
-  color:#555;
+
+.hero .tagline{
+  margin-top:8px;
+  font-size:14px;
+  color:#444;
+  max-width:420px;
 }
+
 .hero .btn{
-  margin-top:26px;
-  padding:14px 42px;
+  margin-top:30px;
+  padding:14px 46px;
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
   border-radius:30px;
   text-decoration:none;
   font-weight:700;
+  transition:.25s;
 }
 
-/* TODAY OFFERS */
+.hero .btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 26px rgba(181,0,0,.4);
+}
+
+/* ================= OFFERS SECTION ================= */
 .today-offer{
-  padding:40px 20px 60px;
+  padding:30px 20px 60px;
   text-align:center;
 }
+
+/* 🔥 BORDER / DIVIDER */
+.section-divider{
+  width:120px;
+  height:4px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+  margin:0 auto 22px;
+  border-radius:10px;
+}
+
 .today-offer h2{
   font-size:22px;
   margin-bottom:26px;
   color:var(--accent);
 }
+
 .offer-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -179,32 +200,43 @@ body{
   max-width:1100px;
   margin:auto;
 }
+
 .offer-card{
   background:#fff;
-  border-radius:18px;
+  border-radius:20px;
   padding:14px;
   border:1px solid rgba(181,0,0,.25);
+  transition:.3s;
 }
+
+.offer-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 30px rgba(0,0,0,.18);
+}
+
 .offer-card img{
   width:100%;
   height:130px;
   object-fit:cover;
-  border-radius:12px;
+  border-radius:14px;
   margin-bottom:8px;
 }
+
 .offer-card h3{
   font-size:14px;
   font-weight:600;
 }
+
 .offer-price{
   font-size:16px;
   font-weight:700;
   color:var(--accent);
   margin-bottom:8px;
 }
+
 .offer-btn{
   display:inline-block;
-  padding:8px 22px;
+  padding:8px 24px;
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
   border-radius:22px;
@@ -213,7 +245,7 @@ body{
   font-weight:600;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer{
   background:var(--bg-secondary);
   border-top:2px solid var(--accent);
@@ -223,7 +255,7 @@ footer{
   color:var(--text-secondary);
 }
 
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 @media(max-width:900px){
   .offer-grid{ grid-template-columns:repeat(2,1fr); }
 }
@@ -239,7 +271,7 @@ footer{
 
 <header class="header">
   <div class="logo-left">
-    <img src="IMAGE/1000038482-removebg-preview.png" alt="Logo">
+    <img src="IMAGE/1000038482-removebg-preview.png">
   </div>
   <div class="logo-center">PC GAMES STORE</div>
   <div class="menu-btn" onclick="openMenu()">☰</div>
@@ -250,17 +282,17 @@ footer{
   <div class="close" onclick="closeMenu()">✕</div>
 
   <a href="index.html" class="menu-item active">
-    <img src="IMAGE/home.png" class="menu-img" alt="Home">
+    <img src="IMAGE/home.png">
     <span>Home</span>
   </a>
 
   <a href="games.html" class="menu-item">
-    <img src="IMAGE/game-controller.png" class="menu-img" alt="Games">
+    <img src="IMAGE/game-controller.png">
     <span>Games</span>
   </a>
 
   <a href="contact.html" class="menu-item">
-    <img src="IMAGE/information-button.png" class="menu-img" alt="About Us">
+    <img src="IMAGE/information-button.png">
     <span>About Us</span>
   </a>
 </div>
@@ -269,51 +301,60 @@ footer{
 <section class="hero">
   <h1>cheapgames39</h1>
   <p>PC Game Access & Installation Support</p>
-  <span>Trusted by Gamers in India</span>
-  <a class="btn" href="games.html">Order Game</a>
+  <div class="tagline">
+    Budget-friendly PC games • Offline activation • Trusted by Indian gamers
+  </div>
+  <a class="btn" href="games.html">Browse Games</a>
 </section>
 
-<!-- TODAY’S OFFERS -->
+<!-- TODAY OFFERS -->
 <section class="today-offer">
+  <div class="section-divider"></div>
   <h2>Today’s Offers</h2>
+
   <div class="offer-grid">
     <div class="offer-card">
-      <img src="IMAGE/header (11).jpg" alt="GTA V">
+      <img src="IMAGE/header (11).jpg">
       <h3>GTA V</h3>
-      <p class="offer-price">₹40</p>
+      <p class="offer-price">Rs. 40</p>
       <a class="offer-btn">View</a>
     </div>
+
     <div class="offer-card">
-      <img src="IMAGE/header (11).jpg" alt="God of War">
+      <img src="IMAGE/header (11).jpg">
       <h3>God of War</h3>
-      <p class="offer-price">₹49</p>
+      <p class="offer-price">Rs. 49</p>
       <a class="offer-btn">View</a>
     </div>
+
     <div class="offer-card">
-      <img src="IMAGE/header (11).jpg" alt="RDR 2">
+      <img src="IMAGE/header (11).jpg">
       <h3>RDR 2</h3>
-      <p class="offer-price">₹59</p>
+      <p class="offer-price">Rs. 59</p>
       <a class="offer-btn">View</a>
     </div>
+
     <div class="offer-card">
-      <img src="IMAGE/header (11).jpg" alt="Elden Ring">
+      <img src="IMAGE/header (11).jpg">
       <h3>Elden Ring</h3>
-      <p class="offer-price">₹69</p>
+      <p class="offer-price">Rs. 69</p>
       <a class="offer-btn">View</a>
     </div>
   </div>
 </section>
 
-<footer>© 2025 cheapgames39store</footer>
+<footer>
+  © 2025 cheapgames39
+</footer>
 
 <script>
 function openMenu(){
-  document.getElementById("sideMenu").classList.add("active");
-  document.getElementById("overlay").classList.add("active");
+  sideMenu.classList.add("active");
+  overlay.classList.add("active");
 }
 function closeMenu(){
-  document.getElementById("sideMenu").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
+  sideMenu.classList.remove("active");
+  overlay.classList.remove("active");
 }
 </script>
 

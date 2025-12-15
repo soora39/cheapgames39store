@@ -5,7 +5,7 @@
 <title>cheapgames39store | Games</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -15,7 +15,7 @@
   --bg-secondary:#ECE3D8;
   --card-bg:#FFFFFF;
   --text-main:#1F1F1F;
-  --text-secondary:#2B2B2B;
+  --text-secondary:#555;
 }
 
 *{
@@ -26,7 +26,7 @@
 }
 
 body{
-  background:var(--bg-main);
+  background:linear-gradient(180deg,#F5F0E8,#EFE6DA);
   color:var(--text-main);
   min-height:100vh;
   display:flex;
@@ -38,7 +38,8 @@ body{
   position:sticky;
   top:0;
   z-index:1000;
-  background:var(--bg-main);
+  background:rgba(245,240,232,.95);
+  backdrop-filter:blur(6px);
   border-bottom:2px solid var(--accent);
   display:grid;
   grid-template-columns:auto 1fr auto;
@@ -52,12 +53,12 @@ body{
   text-align:center;
   font-size:13px;
   letter-spacing:3px;
-  font-weight:600;
+  font-weight:700;
   color:var(--text-secondary);
 }
 
 .menu-btn{
-  font-size:28px;
+  font-size:30px;
   cursor:pointer;
   color:var(--accent);
 }
@@ -88,7 +89,7 @@ body{
   padding:22px 20px 30px;
   transition:.35s ease;
   z-index:999;
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
+  box-shadow:0 16px 40px rgba(0,0,0,.3);
 }
 .side-menu.active{ top:0; }
 
@@ -100,17 +101,16 @@ body{
   margin-bottom:18px;
 }
 
-/* MENU ITEMS */
 .menu-item{
   display:flex;
   align-items:center;
   gap:14px;
-  max-width:280px;
+  max-width:300px;
   margin:0 auto 14px;
   padding:14px 18px;
   background:#fff;
-  border:1.5px solid rgba(181,0,0,.35);
-  border-radius:16px;
+  border:1.5px solid rgba(181,0,0,.3);
+  border-radius:18px;
   font-size:15px;
   font-weight:600;
   text-decoration:none;
@@ -123,41 +123,17 @@ body{
   height:22px;
 }
 
-/* ACTIVE MENU */
+.menu-item:hover,
 .menu-item.active{
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
+  transform:translateY(-2px);
 }
 
 /* ================= SEARCH ================= */
 .search-box{
-  max-width:520px;
-  margin:30px auto;
-  position:relative;
-}
-
-.search-box input{
-  width:100%;
-  padding:14px 18px 14px 48px;
-  border-radius:30px;
-  border:2px solid var(--accent);
-  background:#FFF8EE;
-  outline:none;
-  font-size:14px;
-}
-
-.search-icon{
-  position:absolute;
-  left:18px;
-  top:50%;
-  transform:translateY(-50%);
-}
-
-.search-icon svg{fill:var(--accent);}
-
-.search-box{
-  max-width:520px;
-  margin:30px auto;
+  max-width:540px;
+  margin:28px auto;
   position:relative;
 }
 
@@ -170,22 +146,21 @@ body{
   height:18px;
 }
 
-.search-icon svg{
-  width:100%;
-  height:100%;
-  fill:var(--accent);
-}
+.search-icon svg{ fill:var(--accent); }
 
 .search-box input{
   width:100%;
-  padding:14px 18px 14px 48px; /* 👈 icon-ku space */
-  border-radius:30px;
+  padding:15px 20px 15px 50px;
+  border-radius:32px;
   border:2px solid var(--accent);
   background:#FFF8EE;
   outline:none;
   font-size:14px;
 }
 
+.search-box input:focus{
+  box-shadow:0 0 0 4px rgba(181,0,0,.15);
+}
 
 /* ================= GAME GRID ================= */
 .game-grid{
@@ -194,28 +169,35 @@ body{
   padding:0 16px;
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:16px;
+  gap:18px;
 }
 
 .game-card{
   background:#fff;
-  border-radius:18px;
+  border-radius:20px;
   padding:14px;
   border:1px solid rgba(181,0,0,.25);
   text-align:center;
+  transition:.35s;
+}
+
+.game-card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 18px 36px rgba(0,0,0,.18);
 }
 
 .game-card img{
   width:100%;
   height:140px;
   object-fit:cover;
-  border-radius:12px;
+  border-radius:14px;
   margin-bottom:10px;
 }
 
 .game-card h3{
   font-size:14px;
-  margin-bottom:6px;
+  margin-bottom:4px;
+  min-height:36px;
 }
 
 .price{
@@ -227,13 +209,13 @@ body{
 
 .game-card a{
   display:inline-block;
-  padding:8px 22px;
+  padding:9px 26px;
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
   text-decoration:none;
   font-size:13px;
   font-weight:700;
-  border-radius:20px;
+  border-radius:22px;
 }
 
 /* ================= NO GAME ================= */
@@ -243,7 +225,7 @@ body{
   margin:60px auto;
   background:#fff;
   border:2px dashed var(--accent);
-  border-radius:20px;
+  border-radius:22px;
   padding:30px;
   text-align:center;
 }
@@ -317,28 +299,28 @@ footer{
   <div class="game-card">
     <img src="IMAGE/header (11).jpg">
     <h3>GTA V</h3>
-    <p class="price">₹40</p>
+    <p class="price">Rs. 40</p>
     <a href="game.html?game=gta5">View</a>
   </div>
 
   <div class="game-card">
     <img src="IMAGE/header (11).jpg">
     <h3>God of War</h3>
-    <p class="price">₹49</p>
+    <p class="price">Rs. 49</p>
     <a href="game.html?game=godofwar2018">View</a>
   </div>
 
   <div class="game-card">
     <img src="IMAGE/header (11).jpg">
     <h3>RDR 2</h3>
-    <p class="price">₹59</p>
+    <p class="price">Rs. 59</p>
     <a href="game.html?game=rdr2">View</a>
   </div>
 
   <div class="game-card">
     <img src="IMAGE/header (11).jpg">
     <h3>Elden Ring</h3>
-    <p class="price">₹69</p>
+    <p class="price">Rs. 69</p>
     <a href="game.html?game=eldenring">View</a>
   </div>
 
@@ -349,7 +331,7 @@ footer{
   <p>No games match your search</p>
 </div>
 
-<footer>© 2025 cheapgames39store</footer>
+<footer>© 2025 cheapgames39</footer>
 
 <script>
 function openMenu(){
