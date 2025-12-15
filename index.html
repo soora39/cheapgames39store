@@ -137,6 +137,12 @@ body{
   border-color:#fff;
 }
 
+.menu-img{
+  width:20px;
+  height:20px;
+  object-fit:contain;
+}
+
 /* ================= HERO ================= */
 .hero{
   min-height:70vh;
@@ -268,32 +274,20 @@ footer{
   <div class="menu-btn" onclick="openMenu()">☰</div>
 </header>
 
-<!-- MENU -->
-<div class="side-menu" id="sideMenu">
-  <div class="close" onclick="closeMenu()">✕</div>
+<a href="index.html" class="menu-item">
+  <img src="IMAGE/icons/home.png" class="menu-img">
+  <span>Home</span>
+</a>
 
-  <a href="index.html" class="menu-item">
-    <div class="menu-icon"></div>
-    <span>Home</span>
-  </a>
+<a href="games.html" class="menu-item">
+  <img src="IMAGE/icons/games.png" class="menu-img">
+  <span>Games</span>
+</a>
 
-  <a href="games.html" class="menu-item">
-    <div class="menu-icon"></div>
-    <span>Games</span>
-  </a>
-
-  <a href="contact.html" class="menu-item">
-    <div class="menu-icon"></div>
-    <span>About Us</span>
-  </a>
-</div>
-
-<section class="hero">
-  <h1>cheapgames39</h1>
-  <p>PC Game Access & Installation Support</p>
-  <span>Trusted by Gamers in India</span>
-  <a class="btn" href="games.html">Order Game</a>
-</section>
+<a href="contact.html" class="menu-item">
+  <img src="IMAGE/icons/about.png" class="menu-img">
+  <span>About Us</span>
+</a>
 
 <!-- TODAY OFFERS -->
 <section class="today-offer">
