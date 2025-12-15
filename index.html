@@ -32,7 +32,7 @@ body{
 .header{
   position:sticky;
   top:0;
-  z-index:999;
+  z-index:1000;
   background:var(--bg-main);
   border-bottom:2px solid var(--accent);
   display:grid;
@@ -41,9 +41,7 @@ body{
   padding:14px 20px;
 }
 
-.logo-left img{
-  height:36px;
-}
+.logo-left img{ height:36px; }
 
 .logo-center{
   text-align:center;
@@ -52,54 +50,78 @@ body{
   color:var(--text-secondary);
 }
 
-/* HAMBURGER */
+/* MENU ICON */
 .menu-btn{
-  font-size:26px;
+  font-size:28px;
   cursor:pointer;
   color:var(--accent);
+}
+
+/* ================= OVERLAY ================= */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:998;
+}
+.overlay.active{
+  opacity:1;
+  pointer-events:auto;
 }
 
 /* ================= SIDE MENU ================= */
 .side-menu{
   position:fixed;
   top:0;
-  right:-260px;
-  width:260px;
+  right:-280px;
+  width:280px;
   height:100vh;
-  background:#fff;
-  border-left:2px solid var(--accent);
-  padding:20px;
-  transition:0.3s ease;
-  z-index:1000;
+  background:var(--bg-main);
+  border-left:3px solid var(--accent);
+  padding:24px 20px;
+  transition:.35s ease;
+  z-index:999;
+  box-shadow:-10px 0 30px rgba(0,0,0,.25);
 }
 
-.side-menu.active{
-  right:0;
-}
+.side-menu.active{ right:0; }
 
 .side-menu .close{
-  font-size:26px;
-  cursor:pointer;
+  font-size:28px;
   color:var(--accent);
+  cursor:pointer;
   text-align:right;
+  margin-bottom:30px;
 }
 
+/* MENU LINKS */
 .side-menu a{
-  display:block;
-  margin-top:20px;
-  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 16px;
+  margin-bottom:14px;
+  border-radius:14px;
   font-size:16px;
   font-weight:700;
+  text-decoration:none;
   color:var(--text-main);
+  background:#fff;
+  border:1px solid rgba(181,0,0,.25);
+  transition:.25s;
 }
 
 .side-menu a:hover{
-  color:var(--accent);
+  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+  color:#fff;
 }
 
 /* ================= HERO ================= */
 .hero{
-  min-height:75vh;
+  min-height:70vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -109,7 +131,7 @@ body{
 }
 
 .hero h1{
-  font-size:48px;
+  font-size:44px;
   color:var(--accent);
   font-weight:800;
 }
@@ -127,7 +149,7 @@ body{
 }
 
 .hero .btn{
-  margin-top:28px;
+  margin-top:26px;
   padding:14px 42px;
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
@@ -136,7 +158,7 @@ body{
   font-weight:700;
 }
 
-/* ================= TODAY OFFERS ================= */
+/* ================= OFFERS ================= */
 .today-offer{
   padding:40px 20px 60px;
   text-align:center;
@@ -157,7 +179,7 @@ body{
 }
 
 .offer-card{
-  background:var(--card-bg);
+  background:#fff;
   border-radius:18px;
   padding:16px;
   border:1px solid rgba(181,0,0,.25);
@@ -165,15 +187,13 @@ body{
 
 .offer-card img{
   width:100%;
-  height:150px;
+  height:140px;
   object-fit:cover;
   border-radius:12px;
   margin-bottom:10px;
 }
 
-.offer-card h3{
-  font-size:16px;
-}
+.offer-card h3{ font-size:16px; }
 
 .offer-price{
   font-size:18px;
@@ -205,20 +225,18 @@ footer{
 
 /* ================= RESPONSIVE ================= */
 @media(max-width:768px){
-  .offer-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .offer-grid{ grid-template-columns:repeat(2,1fr); }
 }
-
 @media(max-width:420px){
-  .offer-grid{
-    grid-template-columns:1fr;
-  }
+  .offer-grid{ grid-template-columns:1fr; }
 }
 </style>
 </head>
 
 <body>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <!-- HEADER -->
 <header class="header">
@@ -275,19 +293,18 @@ footer{
   </div>
 </section>
 
-<footer>
-  © 2025 cheapgames39store
-</footer>
+<footer>© 2025 cheapgames39store</footer>
 
 <script>
 function openMenu(){
   document.getElementById("sideMenu").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
 }
 function closeMenu(){
   document.getElementById("sideMenu").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
 }
 </script>
 
 </body>
 </html>
-git 
