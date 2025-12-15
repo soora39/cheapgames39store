@@ -125,6 +125,11 @@ body{
   height:22px;
 }
 
+.menu-item.active{
+  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+  color:#fff;
+}
+
 /* HERO */
 .hero{
   min-height:70vh;
@@ -257,7 +262,7 @@ footer{
 <!-- MENU -->
 <div class="side-menu" id="sideMenu">
   <div class="close" onclick="closeMenu()">✕</div>
-  
+
 <a href="index.html" class="menu-item active">Home</a>
     <img src="IMAGE/home.png">
     <span>Home</span>
