@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Cart | cheapgames39</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --accent:#b50000;
+  --bg:#f5f0e8;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:Poppins,sans-serif;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+}
+
+/* ================= HEADER ================= */
+header{
+  position:sticky;
+  top:0;
+  background:rgba(245,240,232,.95);
+  border-bottom:2px solid var(--accent);
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* BACK BUTTON */
+.back-btn{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:2px solid var(--accent);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  background:#fff;
+}
+
+.back-btn svg{
+  width:18px;
+  height:18px;
+  stroke:var(--accent);
+  stroke-width:2.5;
+}
+
+/* HEADER TITLE WITH IMAGE */
+.header-title{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.cart-icon{
+  width:20px;
+  height:20px;
+  object-fit:contain;
+}
+
+/* ================= CART ================= */
+.cart-container{
+  max-width:600px;
+  margin:20px auto;
+  padding:10px;
+}
+
+.cart-item{
+  display:flex;
+  gap:12px;
+  background:#fff;
+  padding:12px;
+  border-radius:14px;
+  margin-bottom:12px;
+  align-items:center;
+  border:1px solid rgba(181,0,0,.25);
+}
+
+.cart-item img{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.cart-item h4{
+  margin:0;
+  font-size:14px;
+}
+
+.cart-item p{
+  margin:4px 0;
+  color:var(--accent);
+  font-weight:600;
+}
+
+.remove{
+  margin-left:auto;
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  border-radius:20px;
+  padding:6px 14px;
+  cursor:pointer;
+}
+
+/* ================= CHECKOUT ================= */
+.checkout{
+  margin:30px 0;
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.checkout a{
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:700;
+  color:#fff;
+}
+
+.whatsapp{
+  background:#25D366;
+}
+
+.instagram{
+  background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);
+}
+
+.empty{
+  text-align:center;
+  margin-top:40px;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="back-btn" onclick="goBack()">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </div>
+
+  <div class="header-title">
+    <!-- 🔽 CHINNA IMAGE INGHA -->
+    <img src="IMAGE/grocery-store.png" class="cart-icon">
+    <span>Your Cart</span>
+  </div>
+</header>
+
+<!-- ================= CART LIST ================= -->
+<div class="cart-container" id="cartList"></div>
+
+<!-- ================= CHECKOUT ================= -->
+<div class="checkout">
+  <a class="whatsapp" id="whatsapp" href="#">Buy via WhatsApp</a>
+  <a class="instagram" id="instagram" href="#">Buy via Instagram</a>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const list = document.getElementById("cartList");
+
+function render(){
+  list.innerHTML = "";
+
+  if(cart.length === 0){
+    list.innerHTML = `<p class="empty">Your cart is empty</p>`;
+    document.querySelector(".checkout").style.display="none";
+    return;
+  }
+
+  let msg = "I want to buy:%0A";
+
+  cart.forEach((g,i)=>{
+    list.innerHTML += `
+      <div class="cart-item">
+        <img src="${g.image}">
+        <div>
+          <h4>${g.name}</h4>
+          <p>${g.price}</p>
+        </div>
+        <button class="remove" onclick="removeItem(${i})">Remove</button>
+      </div>
+    `;
+    msg += `• ${g.name} - ${g.price}%0A`;
+  });
+
+  document.getElementById("whatsapp").href =
+    "https://wa.me/91XXXXXXXXXX?text=" + msg;
+
+  document.getElementById("instagram").href =
+    "https://instagram.com/YOUR_PAGE";
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  render();
+}
+
+function goBack(){
+  window.history.back();
+}
+
+render();
+</script>
+
+</body>
+</html>

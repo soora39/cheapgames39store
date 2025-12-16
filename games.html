@@ -5,7 +5,7 @@
 <title>cheapgames39store | Games</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -13,21 +13,18 @@
   --accent-dark:#7A0000;
   --bg-main:#F5F0E8;
   --bg-secondary:#ECE3D8;
-  --card-bg:#FFFFFF;
   --text-main:#1F1F1F;
-  --text-secondary:#000000;
 }
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Poppins",sans-serif;
+  font-family:Poppins,sans-serif;
 }
 
 body{
   background:linear-gradient(180deg,#F5F0E8,#EFE6DA);
-  color:var(--text-main);
   min-height:100vh;
   display:flex;
   flex-direction:column;
@@ -39,31 +36,26 @@ body{
   top:0;
   z-index:1000;
   background:rgba(245,240,232,.95);
-  backdrop-filter:blur(6px);
   border-bottom:2px solid var(--accent);
   display:grid;
   grid-template-columns:auto 1fr auto;
   align-items:center;
   padding:14px 20px;
 }
-
 .logo-left img{height:36px;}
-
 .logo-center{
   text-align:center;
   font-size:13px;
   letter-spacing:3px;
   font-weight:700;
-  color:var(--text-secondary);
 }
-
 .menu-btn{
   font-size:30px;
-  cursor:pointer;
   color:var(--accent);
+  cursor:pointer;
 }
 
-/* ================= OVERLAY ================= */
+/* ================= MENU ================= */
 .overlay{
   position:fixed;
   inset:0;
@@ -73,12 +65,8 @@ body{
   transition:.3s;
   z-index:998;
 }
-.overlay.active{
-  opacity:1;
-  pointer-events:auto;
-}
+.overlay.active{opacity:1;pointer-events:auto;}
 
-/* ================= TOP SLIDE MENU ================= */
 .side-menu{
   position:fixed;
   top:-100%;
@@ -87,17 +75,16 @@ body{
   background:var(--bg-main);
   border-bottom:3px solid var(--accent);
   padding:22px 20px 30px;
-  transition:.35s ease;
+  transition:.35s;
   z-index:999;
-  box-shadow:0 16px 40px rgba(0,0,0,.3);
 }
-.side-menu.active{ top:0; }
+.side-menu.active{top:0;}
 
 .close{
+  text-align:right;
   font-size:26px;
   color:var(--accent);
   cursor:pointer;
-  text-align:right;
   margin-bottom:18px;
 }
 
@@ -109,125 +96,237 @@ body{
   margin:0 auto 14px;
   padding:14px 18px;
   background:#fff;
-  border:1.5px solid rgba(181,0,0,.3);
   border-radius:18px;
-  font-size:15px;
   font-weight:600;
   text-decoration:none;
-  color:var(--text-main);
-  transition:.25s;
+  color:#000;
+  border:1.5px solid rgba(181,0,0,.3);
 }
-
-.menu-item img{
-  width:22px;
-  height:22px;
-}
-
+.menu-item img{width:22px;}
 .menu-item:hover,
 .menu-item.active{
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
-  transform:translateY(-2px);
 }
 
-/* ================= SEARCH ================= */
+/* ================= SEARCH + CATEGORY ================= */
+.filter-wrap{
+  max-width:720px;
+  margin:26px auto;
+  padding:0 14px;
+  display:flex;
+  gap:12px;
+}
+
+/* SEARCH */
 .search-box{
-  max-width:540px;
-  margin:28px auto;
+  flex:1;
   position:relative;
 }
-
 .search-icon{
   position:absolute;
   left:18px;
   top:50%;
   transform:translateY(-50%);
-  width:18px;
-  height:18px;
 }
-
-.search-icon svg{ fill:var(--accent); }
-
 .search-box input{
   width:100%;
-  padding:15px 20px 15px 50px;
-  border-radius:32px;
+  padding:16px 22px 16px 54px;
+  border-radius:36px;
   border:2px solid var(--accent);
   background:#FFF8EE;
   outline:none;
-  font-size:14px;
+  font-size:15px;
 }
 
-.search-box input:focus{
-  box-shadow:0 0 0 4px rgba(181,0,0,.15);
+/* SEARCH GLOW */
+.search-box::after{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:42px;
+  border:2px solid rgba(181,0,0,.35);
+  opacity:0;
+  transform:scale(.96);
+  transition:.3s;
+  pointer-events:none;
+}
+.search-box:focus-within::after{
+  opacity:1;
+  transform:scale(1);
+  animation:pulse 1.4s ease infinite;
 }
 
-/* ================= GAME GRID ================= */
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(181,0,0,.35);}
+  70%{box-shadow:0 0 0 10px rgba(181,0,0,0);}
+  100%{box-shadow:0 0 0 0 rgba(181,0,0,0);}
+}
+
+/* CATEGORY */
+.category-box{
+  width:160px;
+  position:relative;
+}
+.category-box select{
+  width:100%;
+  padding:16px 18px;
+  border-radius:36px;
+  border:2px solid var(--accent);
+  background:#FFF8EE;
+  appearance:none;
+  outline:none;
+  cursor:pointer;
+}
+.category-box::before{
+  content:"▾";
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--accent);
+}
+
+.category-box{
+  position:relative;
+  width:160px;
+}
+
+.category-box::after{
+  content:"";
+  position:absolute;
+  top:-6px;
+  left:-6px;
+  right:-6px;
+  bottom:-1px;
+  border-radius:999px;   /* 🔥 PERFECT ROUND */
+  border:2px solid rgba(181,0,0,.35);
+  opacity:0;
+  transform:scale(.95);
+  transition:.3s ease;
+  pointer-events:none;
+}
+
+.category-box:focus-within::after{
+  opacity:1;
+  transform:scale(1);
+  animation:catGlow 1.4s ease infinite;
+}
+
+@keyframes catGlow{
+  0%{box-shadow:0 0 0 0 rgba(181,0,0,.35);}
+  70%{box-shadow:0 0 0 10px rgba(181,0,0,0);}
+  100%{box-shadow:0 0 0 0 rgba(181,0,0,0);}
+}
+/* ================= GRID ================= */
 .game-grid{
   max-width:1100px;
-  margin:0 auto 60px;
+  margin:0 auto 80px;
   padding:0 16px;
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:18px;
 }
+@media(min-width:768px){
+  .game-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(min-width:1024px){
+  .game-grid{grid-template-columns:repeat(4,1fr);}
+}
 
+
+/* NO GAME FOUND */
+#noGameFound{
+  display:none;
+  max-width:520px;
+  margin:40px auto 80px;
+  background:#fff;
+  border:2px dashed #B50000;
+  border-radius:22px;
+  padding:30px;
+  text-align:center;
+  font-weight:600;
+}
+
+
+/* ================= CARD ================= */
 .game-card{
+  position:relative;
   background:#fff;
   border-radius:20px;
   padding:14px;
   border:1px solid rgba(181,0,0,.25);
   text-align:center;
-  transition:.35s;
+  cursor:pointer;
+  transition:.3s;
 }
-
 .game-card:hover{
-  transform:translateY(-6px) scale(1.02);
+  transform:translateY(-6px);
   box-shadow:0 18px 36px rgba(0,0,0,.18);
 }
-
 .game-card img{
   width:100%;
   height:140px;
   object-fit:cover;
   border-radius:14px;
-  margin-bottom:10px;
 }
-
 .game-card h3{
   font-size:14px;
-  margin-bottom:4px;
+  margin:6px 0;
   min-height:36px;
 }
 
+.badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:var(--accent);
+  color:#fff;
+  padding:4px 8px;
+  border-radius:12px;
+  font-size:12px;
+}
+
 .price{
-  font-size:15px;
   font-weight:700;
   color:var(--accent);
-  margin-bottom:10px;
+}
+.old{
+  font-size:13px;
+  color:#888;
+  text-decoration:line-through;
 }
 
-.game-card a{
-  display:inline-block;
-  padding:9px 26px;
+.add-cart{
+  margin-top:8px;
+  padding:8px 22px;
+  border:none;
+  border-radius:22px;
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
-  text-decoration:none;
   font-size:13px;
-  font-weight:700;
-  border-radius:22px;
+  cursor:pointer;
 }
 
-/* ================= NO GAME ================= */
-#noGameFound{
-  display:none;
-  max-width:600px;
-  margin:60px auto;
-  background:#fff;
-  border:2px dashed var(--accent);
-  border-radius:22px;
-  padding:30px;
-  text-align:center;
+/* ================= CART FLOAT ================= */
+#cart{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:var(--accent);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+}
+#cart span{
+  font-size:12px;
+  margin-left:4px;
 }
 
 /* ================= FOOTER ================= */
@@ -238,15 +337,6 @@ footer{
   padding:18px;
   text-align:center;
   font-size:13px;
-  color:var(--text-secondary);
-}
-
-/* ================= RESPONSIVE ================= */
-@media(min-width:768px){
-  .game-grid{ grid-template-columns:repeat(3,1fr); }
-}
-@media(min-width:1024px){
-  .game-grid{ grid-template-columns:repeat(4,1fr); }
 }
 </style>
 </head>
@@ -256,141 +346,75 @@ footer{
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <header class="header">
-  <div class="logo-left">
-    <img src="IMAGE/1000038482-removebg-preview.png">
-  </div>
+  <div class="logo-left"><img src="IMAGE/1000038482-removebg-preview.png"></div>
   <div class="logo-center">PC GAMES STORE</div>
   <div class="menu-btn" onclick="openMenu()">☰</div>
 </header>
 
-<!-- MENU -->
 <div class="side-menu" id="sideMenu">
   <div class="close" onclick="closeMenu()">✕</div>
-
-  <a href="index.html" class="menu-item">
-    <img src="IMAGE/home.png">
-    <span>Home</span>
-  </a>
-
-  <a href="games.html" class="menu-item active">
-    <img src="IMAGE/game-controller.png">
-    <span>Games</span>
-  </a>
-
-  <a href="contact.html" class="menu-item">
-    <img src="IMAGE/information-button.png">
-    <span>About Us</span>
-  </a>
+  <a href="index.html" class="menu-item"><img src="IMAGE/home.png">Home</a>
+  <a href="games.html" class="menu-item active"><img src="IMAGE/game-controller.png">Games</a>
+  <a href="contact.html" class="menu-item"><img src="IMAGE/customer-service.png">Contact</a>
 </div>
 
-<!-- SEARCH -->
-<div class="search-box">
-  <span class="search-icon">
-    <svg viewBox="0 0 24 24">
-      <path d="M21 20l-5.2-5.2a7 7 0 10-1.4 1.4L20 21zM10 16a6 6 0 110-12 6 6 0 010 12z"/>
-    </svg>
-  </span>
-  <input type="text" id="gameSearch" placeholder="Search games...">
-</div>
+<!-- SEARCH + CATEGORY -->
+<div class="filter-wrap">
+  <div class="search-box">
+    <span class="search-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20">
+        <circle cx="11" cy="11" r="7" stroke="#B50000" stroke-width="2" fill="none"/>
+        <line x1="16.5" y1="16.5" x2="22" y2="22" stroke="#B50000" stroke-width="2"/>
+      </svg>
+    </span>
+    <input type="text" id="search" placeholder="Search games...">
+  </div>
 
+<div class="category-box">
+    <select id="category">
+     
+    <option value="all">All</option>
+
+    <option value="action">Action</option>
+    <option value="adventure">Adventure</option>
+    <option value="rpg">RPG</option>
+    <option value="strategy">Strategy</option>
+    <option value="simulation">Simulation</option>
+    <option value="sports">Sports</option>
+    <option value="racing">Racing</option>
+    <option value="horror">Horror</option>
+    <option value="fighting">Fighting</option>
+    <option value="puzzle">Puzzle</option>
+    <option value="survival">Survival</option>
+    <option value="indie">Indie</option>
+
+
+    </select>
+  </div>
+</div>
 <!-- GAMES -->
-<div class="game-grid">
-
- <div class="game-card">
-  <img src="IMAGE/rdr 2.jpg">
-  <h3>Red Dead Redemption 2</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=rdr2">View</a>
-</div>
-
-<div class="game-card">
-  <img src="IMAGE/header (11).jpg">
-  <h3>Grand Theft Auto V</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=gtav">View</a>
-</div>
-
-<div class="game-card">
-  <img src="IMAGE/the witcher 3.jpg">
-  <h3>The Witcher 3: Wild Hunt</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=witcher3">View</a>
-</div>
-
-<div class="game-card">
-  <img src="IMAGE/cyberpunk.jpg">
-  <h3>Cyberpunk 2077</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=cyberpunk2077">View</a>
-</div>
-<div class="game-card">
-  <img src="IMAGE/god of war.jpg">
-  <h3>God of War (2018)</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=godofwar2018">View</a>
-</div>
-
-<div class="game-card">
-  <img src="IMAGE/dragons dogna 2.jpg">
-  <h3>Dragon's Dogma 2</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=dragonsdogma2">View</a>
-</div>
-<div class="game-card">
-  <img src="IMAGE/header.jpg">
-  <h3>Hogwarts Legacy</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=hogwartslegacy">View</a>
-</div>
-<div class="game-card">
-  <img src="IMAGE/stray.jpg">
-  <h3>Stray</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=stray">View</a>
-</div>
-<div class="game-card">
-  <img src="IMAGE/baldurs gate 3.jpg">
-  <h3>Baldur's Gate 3</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=baldursgate3">View</a>
-</div>
-<div class="game-card">
-  <img src="IMAGE/elden ring.jpg">
-  <h3>Elden Ring</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=eldenring">View</a>
-</div>
-<div class="game-card">
-  <img src="IMAGE/header (1).jpg">
-  <h3>WWE 2K20</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=wwe2k20">View</a>
-</div>
-<div class="game-card">
-  <img src="IMAGE/cenaWWE.0.jpg">
-  <h3>WWE 2K15</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=wwe2k15">View</a>
-</div>
-<div class="game-card">
-  <img src="IMAGE/detroit become human.jpg">
-  <h3>Detroit: Become Human</h3>
-  <p class="price">Rs. 40</p>
-  <a href="game.html?game=detroitbecomehuman">View</a>
-</div>
-
-</div>
-
-<div id="noGameFound">
-  <h2>No Game Found</h2>
-  <p>No games match your search</p>
-</div>
+<div class="game-grid" id="grid">
 
 
 
-<footer>© 2025 cheapgames39</footer>
+</div>  <!-- game-grid close -->
+
+<div id="noGameFound">❌ No Games Found</div>
+
+<div id="cart" onclick="openCart()">🛒 <span id="count">0</span></div>
+
+<footer>
+© 2025 cheapgames39<br>
+<span style="font-size:12px;color:#777;">
+Disclaimer: We are not affiliated with any game publishers or platforms.
+</span>
+</footer>
 
 <script>
+/* ================= MENU ================= */
+const sideMenu = document.getElementById("sideMenu");
+const overlay  = document.getElementById("overlay");
+
 function openMenu(){
   sideMenu.classList.add("active");
   overlay.classList.add("active");
@@ -400,21 +424,183 @@ function closeMenu(){
   overlay.classList.remove("active");
 }
 
-const searchInput=document.getElementById("gameSearch");
-const cards=document.querySelectorAll(".game-card");
-const noGame=document.getElementById("noGameFound");
+/* ================= CART ================= */
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+document.getElementById("count").innerText = cart.length;
 
-searchInput.addEventListener("keyup",()=>{
-  let v=searchInput.value.toLowerCase();
-  let show=0;
-  cards.forEach(c=>{
-    if(c.innerText.toLowerCase().includes(v)){
-      c.style.display="block"; show++;
-    }else c.style.display="none";
-  });
-  noGame.style.display=show? "none":"block";
+/* ================= GAMES DATA ================= */
+const games = [
+  { key:"tekken7", name:"Tekken 7", image:"IMAGE/header (6).jpg", old:2499, price:40, cat:"fighting" },
+
+  { key:"ghostoftsushima", name:"Ghost of Tsushima", image:"IMAGE/header (7).jpg", old:3999, price:40, cat:"action" },
+
+  { key:"gowragnarok", name:"God of War Ragnarök", image:"IMAGE/header (8).jpg", old:4999, price:40, cat:"action" },
+
+  { key:"spiderman2", name:"Spider-Man 2", image:"IMAGE/header (9).jpg", old:4999, price:40, cat:"action" },
+
+  { key:"cuphead", name:"Cuphead", image:"IMAGE/cuphead.jpg", old:1299, price:40, cat:"action" },
+
+  { key:"phasmophobia", name:"Phasmophobia", image:"IMAGE/header (10).jpg", old:529, price:40, cat:"horror" },
+
+  { key:"rdr2", name:"Red Dead Redemption 2", image:"IMAGE/rdr 2.jpg", old:3199, price:40, cat:"action" },
+
+  { key:"gtav", name:"GTA V", image:"IMAGE/header (11).jpg", old:2499, price:40, cat:"action" },
+
+  { key:"witcher3", name:"The Witcher 3", image:"IMAGE/the witcher 3.jpg", old:2999, price:40, cat:"action" },
+
+  { key:"cyberpunk2077", name:"Cyberpunk 2077", image:"IMAGE/cyberpunk.jpg", old:2999, price:40, cat:"action" },
+
+  { key:"godofwar2018", name:"God of War (2018)", image:"IMAGE/god of war.jpg", old:3299, price:40, cat:"action" },
+
+  { key:"wwe2k20", name:"WWE 2K20", image:"IMAGE/header (1).jpg", old:4299, price:40, cat:"sports" },
+
+  { key:"eldenring", name:"Elden Ring", image:"IMAGE/elden ring.jpg", old:3599, price:40, cat:"action" },
+
+  { key:"stray", name:"Stray", image:"IMAGE/stray.jpg", old:2499, price:40, cat:"action" },
+
+  { key:"detroit", name:"Detroit: Become Human", image:"IMAGE/detroit become human.jpg", old:3299, price:40, cat:"action" },
+
+  {
+    key: "dragonsdogma2",
+    name: "Dragon’s Dogma 2",
+    image: "IMAGE/dragons dogna 2.jpg",
+    old: 4999,
+    price: 40,
+    cat: "action"
+  },
+  {
+    key: "hogwartslegacy",
+    name: "Hogwarts Legacy",
+    image: "IMAGE/header.jpg",
+    old: 3999,
+    price: 40,
+    cat: "action"
+  },
+  {
+    key: "baldursgate3",
+    name: "Baldur’s Gate 3",
+    image: "IMAGE/baldurs gate 3.jpg",
+    old: 4999,
+    price: 40,
+    cat: "rpg"
+  },
+  {
+    key: "spidermanremastered",
+    name: "Marvel’s Spider-Man Remastered",
+    image: "IMAGE/header (12).jpg",
+    old: 3999,
+    price: 40,
+    cat: "action"
+  },
+  {
+    key: "tlou2",
+    name: "The Last of Us Part II Remastered",
+    image: "IMAGE/header (13).jpg",
+    old: 4999,
+    price: 40,
+    cat: "action"
+  },
+  {
+    key: "wwe2k16",
+    name: "WWE 2K16",
+    image: "IMAGE/header (2).jpg",
+    old: 2999,
+    price: 40,
+    cat: "fighting"
+  },
+  {
+    key: "farmingsim22",
+    name: "Farming Simulator 22",
+    image: "IMAGE/header (15).jpg",
+    old: 2499,
+    price: 40,
+    cat: "simulation"
+  },
+  {
+    key: "farmingsim17",
+    name: "Farming Simulator 17",
+    image: "IMAGE/nCl16EEVoasiuu771ZYIq5ExSKpsKE0l.jpg",
+    old: 1999,
+    price: 40,
+    cat: "simulation"
+  }
+
+];
+const grid = document.getElementById("grid");
+
+/* ================= LOAD GAMES ================= */
+games.forEach(g=>{
+  const offer = Math.round(((g.old - g.price) / g.old) * 100);
+
+  grid.innerHTML += `
+    <div class="game-card" data-cat="${g.cat}" data-link="game.html?game=${g.key}">
+      <span class="badge">-${offer}%</span>
+      <img src="${g.image}">
+      <h3>${g.name}</h3>
+      <p class="price">
+        <span class="old">Rs.${g.old}</span> Rs.${g.price}
+      </p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  `;
 });
+
+/* ================= ADD TO CART ================= */
+document.querySelectorAll(".add-cart").forEach(btn=>{
+  btn.addEventListener("click", e=>{
+    e.stopPropagation();
+    const card = btn.closest(".game-card");
+
+    cart.push({
+      name: card.querySelector("h3").innerText,
+      price: "Rs.40",
+      image: card.querySelector("img").src
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    document.getElementById("count").innerText = cart.length;
+  });
+});
+
+/* ================= CARD CLICK ================= */
+document.querySelectorAll(".game-card").forEach(card=>{
+  card.addEventListener("click", e=>{
+    if(e.target.classList.contains("add-cart")) return;
+    window.location.href = card.dataset.link;
+  });
+});
+
+/* ================= SEARCH + CATEGORY ================= */
+const search   = document.getElementById("search");
+const category = document.getElementById("category");
+const noGame   = document.getElementById("noGameFound");
+
+function filterGames(){
+  let s = search.value.toLowerCase();
+  let c = category.value;
+  let visible = 0;
+
+  document.querySelectorAll(".game-card").forEach(card=>{
+    let ok =
+      card.innerText.toLowerCase().includes(s) &&
+      (c === "all" || card.dataset.cat === c);
+
+    card.style.display = ok ? "block" : "none";
+    if(ok) visible++;
+  });
+
+  noGame.style.display = visible === 0 ? "block" : "none";
+}
+
+search.addEventListener("keyup", filterGames);
+category.addEventListener("change", filterGames);
+
+/* ================= CART PAGE ================= */
+function openCart(){
+  window.location.href = "cart.html";
+}
 </script>
+
 
 </body>
 </html>

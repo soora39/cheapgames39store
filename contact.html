@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>cheapgames39store | About Us</title>
+<title>cheapgames39store | Contact</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -13,16 +13,14 @@
   --accent-dark:#7A0000;
   --bg-main:#F5F0E8;
   --bg-secondary:#ECE3D8;
-  --card-bg:#FFFFFF;
   --text-main:#1F1F1F;
-  --text-secondary:#000000;
 }
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Poppins",sans-serif;
+  font-family:Poppins,sans-serif;
 }
 
 body{
@@ -51,11 +49,10 @@ body{
   font-size:13px;
   letter-spacing:3px;
   font-weight:700;
-  color:var(--text-secondary);
 }
 
 .menu-btn{
-  font-size:28px;
+  font-size:30px;
   cursor:pointer;
   color:var(--accent);
 }
@@ -75,7 +72,7 @@ body{
   pointer-events:auto;
 }
 
-/* ================= TOP MENU ================= */
+/* ================= MENU ================= */
 .side-menu{
   position:fixed;
   top:-100%;
@@ -88,7 +85,7 @@ body{
   z-index:999;
   box-shadow:0 16px 40px rgba(0,0,0,.3);
 }
-.side-menu.active{ top:0; }
+.side-menu.active{top:0;}
 
 .close{
   font-size:26px;
@@ -102,23 +99,18 @@ body{
   display:flex;
   align-items:center;
   gap:14px;
-  max-width:280px;
+  max-width:300px;
   margin:0 auto 14px;
   padding:14px 18px;
   background:#fff;
-  border:1.5px solid rgba(181,0,0,.35);
-  border-radius:16px;
-  font-size:15px;
+  border:1.5px solid rgba(181,0,0,.3);
+  border-radius:18px;
   font-weight:600;
   text-decoration:none;
-  color:var(--text-main);
-  transition:.25s;
+  color:#000;
 }
 
-.menu-item img{
-  width:22px;
-  height:22px;
-}
+.menu-item img{width:22px;}
 
 .menu-item:hover,
 .menu-item.active{
@@ -126,76 +118,85 @@ body{
   color:#fff;
 }
 
-/* ================= ABOUT ================= */
-.about-wrapper{
+/* ================= CONTACT ================= */
+.contact-wrapper{
   max-width:900px;
   margin:60px auto;
   padding:0 20px;
 }
 
-.about-box{
+.contact-box{
   background:#fff;
-  border-radius:20px;
+  border-radius:22px;
   padding:36px 30px;
   border:1px solid rgba(181,0,0,.25);
   text-align:center;
 }
 
-.about-box h1{
+/* 🔴 RED STYLE */
+.red-box{
+  border-left:6px solid var(--accent);
+  background:linear-gradient(180deg,#fff,#fdf6f3);
+}
+
+.red-box h1{
   color:var(--accent);
   font-size:32px;
-  margin-bottom:14px;
+  margin-bottom:10px;
 }
 
-.about-box p{
+.tagline{
   font-size:15px;
-  color:var(--text-secondary);
-  line-height:1.8;
-  margin-bottom:14px;
+  font-weight:600;
+  color:#444;
+  margin-bottom:18px;
 }
 
-/* FEATURES */
-.features{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:18px;
-  margin-top:26px;
+.info-list{
+  text-align:left;
+  max-width:520px;
+  margin:0 auto 18px;
 }
 
-.feature{
-  background:#EFE5DB;
-  border-radius:14px;
-  padding:18px;
+.info-list p{
+  margin-bottom:8px;
   font-size:14px;
 }
 
-.feature strong{
-  display:block;
-  margin-bottom:6px;
-  color:var(--accent);
+.time-box{
+  margin:20px auto;
+  padding:12px;
+  background:#f5ebe6;
+  border-radius:10px;
+  font-size:14px;
+  max-width:520px;
 }
 
-/* ================= SOCIAL SECTION ================= */
+.note-box{
+  margin:20px auto;
+  padding:12px;
+  background:#f4ece3;
+  border-left:4px solid var(--accent);
+  border-radius:8px;
+  font-size:12px;
+  color:#555;
+  max-width:520px;
+}
+
+/* SOCIAL */
 .social-section{
   margin-top:30px;
-  text-align:center;
-}
-
-.social-title{
-  font-size:14px;
-  color:#666;
-  margin-bottom:14px;
 }
 
 .social-icons{
   display:flex;
   justify-content:center;
-  gap:20px;
+  gap:22px;
 }
 
 .social-icons a{
-  width:52px;
-  height:52px;
+  width:56px;
+  height:56px;
   background:#fff;
   border-radius:50%;
   display:flex;
@@ -206,12 +207,11 @@ body{
 }
 
 .social-icons img{
-  width:26px;
-  height:26px;
+  width:30px;
 }
 
 .social-icons a:hover{
-  transform:translateY(-4px);
+  transform:translateY(-5px);
   box-shadow:0 12px 26px rgba(0,0,0,.25);
 }
 
@@ -222,7 +222,6 @@ footer{
   padding:18px;
   text-align:center;
   font-size:13px;
-  color:var(--text-secondary);
   margin-top:60px;
 }
 </style>
@@ -245,64 +244,47 @@ footer{
   <div class="close" onclick="closeMenu()">✕</div>
 
   <a href="index.html" class="menu-item">
-    <img src="IMAGE/home.png">
-    <span>Home</span>
+    <img src="IMAGE/home.png"> Home
   </a>
 
   <a href="games.html" class="menu-item">
-    <img src="IMAGE/game-controller.png">
-    <span>Games</span>
+    <img src="IMAGE/game-controller.png"> Games
   </a>
 
   <a href="contact.html" class="menu-item active">
-    <img src="IMAGE/information-button.png">
-    <span>About Us</span>
+    <img src="IMAGE/customer-service.png"> Contact
   </a>
 </div>
 
-<!-- ABOUT -->
-<section class="about-wrapper">
-  <div class="about-box">
-    <h1>About cheapgames39</h1>
-<p>
-cheapgames39 is a PC games store dedicated to providing
-budget-friendly offline game activation and installation support
-for Windows PC and Laptop users across India.
-</p>
+<!-- CONTACT -->
+<section class="contact-wrapper">
+  <div class="contact-box red-box">
 
-<p>
-We focus on safe access, simple setup, and reliable service
-to help gamers enjoy premium PC games at affordable prices.
-</p>
+    <h1>Contact Cheapgames39</h1>
+    <p class="tagline">PC Game Purchase & Offline Activation Support</p>
 
-    <div class="features">
-      <div class="feature">
-        <strong>Offline Activation</strong>
-        Safe, simple & secured account
-      </div>
-      <div class="feature">
-        <strong>Budget Friendly</strong>
-        Popular PC games at Very low price
-      </div>
-      <div class="feature">
-        <strong>PC / Laptop support</strong>
-        Works on windows PC and Laptop
-      </div>
-      <div class="feature">
-        <strong>Trusted Service</strong>
-        Gamer friendly & reliable
-      </div>
+    <div class="info-list">
+      <p>✔ Trusted by Indian gamers</p>
+      <p>✔ Safe Offline Activation</p>
+      <p>✔ Step-by-Step Installation Help</p>
+      <p>✔ Fast & Friendly Response</p>
     </div>
 
-    <!-- SOCIAL -->
+    <div class="time-box">
+      🕒 Support Time: <strong>6:00 AM – 11:00 PM (IST)</strong>
+    </div>
+
+    <div class="note-box">
+      <strong>Note:</strong> We provide offline activation & support services only.
+    </div>
+
     <div class="social-section">
-      <div class="social-title">Connect with us</div>
       <div class="social-icons">
-        <a href="https://chat.whatsapp.com/FQfpsiwYv1pLqWScaIFc69" target="_blank">
-          <img src="IMAGE/whatsapp-fill-svgrepo-com.svg" alt="WhatsApp">
+        <a href="https://wa.me/919659868303" target="_blank">
+          <img src="IMAGE/whatsapp-fill-svgrepo-com.svg">
         </a>
         <a href="https://instagram.com/itsmymistake2025" target="_blank">
-          <img src="IMAGE/instagram-with-circle.svg" alt="Instagram">
+          <img src="IMAGE/instagram-with-circle.svg">
         </a>
       </div>
     </div>
@@ -311,17 +293,23 @@ to help gamers enjoy premium PC games at affordable prices.
 </section>
 
 <footer>
-  © 2025 cheapgames39
+© 2025 cheapgames39  
+<br>
+<span style="font-size:12px;color:#777;">
+Disclaimer: We are not affiliated with any game publishers or platforms.
+</span>
 </footer>
 
 <script>
 function openMenu(){
   sideMenu.classList.add("active");
   overlay.classList.add("active");
+  document.body.style.overflow="hidden";
 }
 function closeMenu(){
   sideMenu.classList.remove("active");
   overlay.classList.remove("active");
+  document.body.style.overflow="auto";
 }
 </script>
 

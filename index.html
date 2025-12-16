@@ -13,9 +13,7 @@
   --accent-dark:#7A0000;
   --bg-main:#F5F0E8;
   --bg-secondary:#ECE3D8;
-  --card-bg:#FFFFFF;
   --text-main:#1F1F1F;
-  --text-secondary:#000000;
 }
 
 *{
@@ -30,32 +28,36 @@ body{
   color:var(--text-main);
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER (SAME AS GAMES) ================= */
 .header{
   position:sticky;
   top:0;
   z-index:1000;
-  background:#F5F0E8;
+  background:rgba(245,240,232,.95);
+  backdrop-filter:blur(6px);
   border-bottom:2px solid var(--accent);
   display:grid;
   grid-template-columns:auto 1fr auto;
   align-items:center;
   padding:14px 20px;
 }
+
 .logo-left img{height:36px;}
+
 .logo-center{
   text-align:center;
   font-size:13px;
   letter-spacing:3px;
   font-weight:700;
 }
+
 .menu-btn{
-  font-size:28px;
+  font-size:30px;
   cursor:pointer;
   color:var(--accent);
 }
 
-/* ================= MENU ================= */
+/* ================= OVERLAY ================= */
 .overlay{
   position:fixed;
   inset:0;
@@ -65,8 +67,12 @@ body{
   transition:.3s;
   z-index:998;
 }
-.overlay.active{opacity:1;pointer-events:auto;}
+.overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
 
+/* ================= TOP SLIDE MENU ================= */
 .side-menu{
   position:fixed;
   top:-100%;
@@ -77,14 +83,15 @@ body{
   padding:22px 20px 30px;
   transition:.35s ease;
   z-index:999;
+  box-shadow:0 16px 40px rgba(0,0,0,.3);
 }
 .side-menu.active{top:0;}
 
 .close{
   font-size:26px;
   color:var(--accent);
-  text-align:right;
   cursor:pointer;
+  text-align:right;
   margin-bottom:18px;
 }
 
@@ -92,21 +99,26 @@ body{
   display:flex;
   align-items:center;
   gap:14px;
-  max-width:280px;
+  max-width:300px;
   margin:0 auto 14px;
   padding:14px 18px;
   background:#fff;
   border:1.5px solid rgba(181,0,0,.3);
-  border-radius:16px;
-  text-decoration:none;
-  color:#000;
+  border-radius:18px;
+  font-size:15px;
   font-weight:600;
+  text-decoration:none;
+  color:var(--text-main);
+  transition:.25s;
 }
+
 .menu-item img{width:22px;}
-.menu-item.active,
-.menu-item:hover{
+
+.menu-item:hover,
+.menu-item.active{
   background:linear-gradient(135deg,var(--accent),var(--accent-dark));
   color:#fff;
+  transform:translateY(-2px);
 }
 
 /* ================= HERO ================= */
@@ -119,10 +131,7 @@ body{
   color:var(--accent);
   font-weight:800;
 }
-.hero p{
-  margin-top:8px;
-  color:var(--text-secondary);
-}
+.hero p{margin-top:10px;}
 .hero a{
   display:inline-block;
   margin-top:26px;
@@ -141,6 +150,13 @@ body{
 .today-offer h2{
   text-align:center;
   color:var(--accent);
+  margin-bottom:8px;
+}
+
+#countdown{
+  text-align:center;
+  font-size:14px;
+  font-weight:600;
   margin-bottom:26px;
 }
 
@@ -152,16 +168,25 @@ body{
   gap:18px;
 }
 
-@media(min-width:900px){
-  .offer-grid{grid-template-columns:repeat(4,1fr);}
-}
-
 .offer-card{
+  position:relative;
   background:#fff;
   border-radius:20px;
   padding:14px;
   border:1px solid rgba(181,0,0,.25);
   text-align:center;
+}
+
+.offer-badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:linear-gradient(135deg,#ff3c3c,#b50000);
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  padding:4px 10px;
+  border-radius:14px;
 }
 
 .offer-card img{
@@ -171,15 +196,19 @@ body{
   border-radius:14px;
 }
 
-.offer-card h3{
-  font-size:14px;
-  margin:10px 0 4px;
+.price-box{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin:10px 0;
 }
-
-.offer-price{
-  color:var(--accent);
+.old-price{
+  color:#888;
+  text-decoration:line-through;
+}
+.new-price{
   font-weight:700;
-  margin-bottom:10px;
+  color:var(--accent);
 }
 
 .offer-btn{
@@ -209,69 +238,128 @@ footer{
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <header class="header">
-  <div class="logo-left"><img src="IMAGE/1000038482-removebg-preview.png"></div>
+  <div class="logo-left">
+    <img src="IMAGE/1000038482-removebg-preview.png">
+  </div>
   <div class="logo-center">PC GAMES STORE</div>
   <div class="menu-btn" onclick="openMenu()">☰</div>
 </header>
 
+<!-- MENU -->
 <div class="side-menu" id="sideMenu">
   <div class="close" onclick="closeMenu()">✕</div>
-  <a href="index.html" class="menu-item active"><img src="IMAGE/home.png">Home</a>
-  <a href="games.html" class="menu-item"><img src="IMAGE/game-controller.png">Games</a>
-  <a href="contact.html" class="menu-item"><img src="IMAGE/information-button.png">About Us</a>
+
+  <a href="index.html" class="menu-item active">
+    <img src="IMAGE/home.png"> Home
+  </a>
+
+  <a href="games.html" class="menu-item">
+    <img src="IMAGE/game-controller.png"> Games
+  </a>
+
+  <a href="contact.html" class="menu-item">
+    <img src="IMAGE/customer-service.png"> Contact Us
+  </a>
 </div>
 
 <section class="hero">
-  <h1>cheapgames39</h1>
-  <p>• PC Games • Offline Activation • Trusted Support</p>
+  <h1>Cheapgames39</h1>
+  <p>● PC Games ● Offline Activation ● Trusted Support</p>
   <a href="games.html">Browse Games</a>
 </section>
 
 <section class="today-offer">
-  <h2>Today’s Offers</h2>
+  <h2>This Week's Offer</h2>
+  <p id="countdown"></p>
 
   <div class="offer-grid">
-    <div class="offer-card">
-      <img src="IMAGE/header (11).jpg">
-      <h3>GTA V</h3>
-      <div class="offer-price">Rs. 40</div>
-      <a class="offer-btn" href="game.html?game=gta5">View</a>
+
+    <div class="offer-card" data-old="99" data-new="39">
+      <span class="offer-badge"></span>
+      <img src="IMAGE/header (3).jpg">
+      <h3>Metal Gear Solid Delta</h3>
+      <div class="price-box">
+        <span class="old-price">Rs. 99</span>
+        <span class="new-price">Rs. 39</span>
+      </div>
+      <a class="offer-btn" href="game.html?game=metalgearsoliddelta">View</a>
     </div>
 
-    <div class="offer-card">
-      <img src="IMAGE/header (11).jpg">
-      <h3>God of War</h3>
-      <div class="offer-price">Rs. 49</div>
-      <a class="offer-btn" href="game.html?game=godofwar2018">View</a>
+    <div class="offer-card" data-old="99" data-new="39">
+      <span class="offer-badge"></span>
+      <img src="IMAGE/header (4).jpg">
+      <h3>Dispatch</h3>
+      <div class="price-box">
+        <span class="old-price">Rs. 99</span>
+        <span class="new-price">Rs. 39</span>
+      </div>
+      <a class="offer-btn" href="game.html?game=dispatch">View</a>
     </div>
 
-    <div class="offer-card">
-      <img src="IMAGE/header (11).jpg">
-      <h3>RDR 2</h3>
-      <div class="offer-price">Rs. 59</div>
-      <a class="offer-btn" href="game.html?game=rdr2">View</a>
+    <div class="offer-card" data-old="99" data-new="39">
+      <span class="offer-badge"></span>
+      <img src="IMAGE/header (5).jpg">
+      <h3>Dying Light: The Beast</h3>
+      <div class="price-box">
+        <span class="old-price">Rs. 99</span>
+        <span class="new-price">Rs. 39</span>
+      </div>
+      <a class="offer-btn" href="game.html?game=dyinglightbeast">View</a>
     </div>
 
-    <div class="offer-card">
-      <img src="IMAGE/header (11).jpg">
-      <h3>Elden Ring</h3>
-      <div class="offer-price">Rs. 69</div>
-      <a class="offer-btn" href="game.html?game=eldenring">View</a>
+    <div class="offer-card" data-old="99" data-new="39">
+      <span class="offer-badge"></span>
+      <img src="IMAGE/header_alt_assets_1.jpg">
+      <h3>Silent Hill f</h3>
+      <div class="price-box">
+        <span class="old-price">Rs. 99</span>
+        <span class="new-price">Rs. 39</span>
+      </div>
+      <a class="offer-btn" href="game.html?game=silenthillf">View</a>
     </div>
+
   </div>
 </section>
 
-<footer>© 2025 cheapgames39</footer>
+<footer>
+© 2025 cheapgames39  
+<br>
+<span style="font-size:12px;color:#777;">
+Disclaimer: We are not affiliated with any game publishers or platforms.
+</span>
+</footer>
 
 <script>
 function openMenu(){
   sideMenu.classList.add("active");
   overlay.classList.add("active");
+  document.body.style.overflow="hidden";
 }
 function closeMenu(){
   sideMenu.classList.remove("active");
   overlay.classList.remove("active");
+  document.body.style.overflow="auto";
 }
+
+/* AUTO OFFER % */
+document.querySelectorAll(".offer-card").forEach(card=>{
+  const o=+card.dataset.old;
+  const n=+card.dataset.new;
+  card.querySelector(".offer-badge").innerText =
+    `-${Math.round(((o-n)/o)*100)}%`;
+});
+
+/* COUNTDOWN */
+const endDate=new Date();
+endDate.setDate(endDate.getDate()+7);
+setInterval(()=>{
+  const d=endDate-new Date();
+  const dd=Math.floor(d/(1000*60*60*24));
+  const hh=Math.floor(d/(1000*60*60)%24);
+  const mm=Math.floor(d/(1000*60)%60);
+  const ss=Math.floor(d/1000%60);
+  countdown.innerText=`⏳ Offer ends in ${dd}d ${hh}h ${mm}m ${ss}s`;
+},1000);
 </script>
 
 </body>

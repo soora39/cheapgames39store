@@ -9,56 +9,50 @@
 
 <style>
 :root{
-  --accent:#B50000;
-  --accent-dark:#7A0000;
-  --bg-main:#F5F0E8;
-  --card-bg:#FFFFFF;
-  --text-main:#1F1F1F;
-  --text-secondary:#555;
+  --accent:#b50000;
+  --bg:#f5f0e8;
 }
 
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
-  font-family:"Poppins",sans-serif;
+  font-family:Poppins,sans-serif;
 }
 
 body{
   background:linear-gradient(180deg,#F5F0E8,#EFE6DA);
-  color:var(--text-main);
 }
 
 /* ================= HEADER ================= */
-.header{
+header{
   position:sticky;
   top:0;
-  z-index:999;
+  z-index:9999;   /* 🔥 IMPORTANT */
   background:rgba(245,240,232,.95);
-  backdrop-filter:blur(6px);
   border-bottom:2px solid var(--accent);
-  padding:12px 16px;
+  padding:14px;
+  display:flex;
+  align-items:center;
 }
-
+/* 🔥 SAME BACK BUTTON AS CART */
 .back-btn{
   width:42px;
   height:42px;
   border-radius:50%;
+  border:2px solid var(--accent);
   display:flex;
   align-items:center;
   justify-content:center;
-  text-decoration:none;
+  cursor:pointer;
   background:#fff;
-  border:2px solid var(--accent);
-  color:var(--accent);
-  font-size:20px;
-  font-weight:700;
-  transition:.25s;
 }
-
-.back-btn:hover{
-  background:var(--accent);
-  color:#fff;
+.back-btn svg{
+  width:18px;
+  height:18px;
+  stroke:var(--accent);
+  stroke-width:2.5;
+  fill:none;
 }
 
 /* ================= PAGE ================= */
@@ -67,15 +61,27 @@ body{
   margin:24px auto;
   padding:0 16px;
 }
-
-/* IMAGE CARD */
+/* ================= IMAGE CARD ================= */
 .image-card{
-  background:var(--card-bg);
+  position:relative;
+  background:#fff;
   border-radius:22px;
   padding:18px;
   border:1px solid rgba(181,0,0,.25);
   text-align:center;
   box-shadow:0 14px 30px rgba(0,0,0,.15);
+}
+
+.offer-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  background:var(--accent);
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  padding:6px 12px;
+  border-radius:16px;
 }
 
 .game-img{
@@ -84,19 +90,25 @@ body{
   margin-bottom:14px;
 }
 
-/* PRICE BADGE */
-.price{
-  display:inline-block;
-  padding:8px 20px;
-  background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-  color:#fff;
+/* ================= PRICE ================= */
+.price-box{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:12px 0 18px;
+}
+.old-price{
+  font-size:16px;
+  color:#888;
+  text-decoration:line-through;
+}
+.new-price{
   font-size:22px;
   font-weight:800;
-  border-radius:30px;
-  margin:8px 0 18px;
+  color:var(--accent);
 }
 
-/* BUTTONS */
+/* ================= BUTTONS ================= */
 .btn{
   display:block;
   width:100%;
@@ -106,61 +118,37 @@ body{
   text-decoration:none;
   margin-bottom:12px;
   text-align:center;
-  transition:.25s;
-}
-
-/* WHATSAPP */
-.whatsapp-btn{
-  background:linear-gradient(135deg,#25D366,#1EBE57);
   color:#fff;
 }
-.whatsapp-btn:hover{ filter:brightness(1.1); }
-
-/* INSTAGRAM */
+.whatsapp-btn{background:#25D366;}
 .instagram-btn{
-  background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);
-  color:#fff;
+  background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);
 }
-.instagram-btn:hover{ filter:brightness(1.1); }
 
-/* DETAILS CARD */
+/* ================= DETAILS ================= */
 .details-card{
   margin-top:22px;
-  background:var(--card-bg);
+  background:#fff;
   border-radius:22px;
   padding:22px;
   border:1px solid rgba(181,0,0,.25);
-  box-shadow:0 14px 30px rgba(0,0,0,.12);
 }
-
 .details-card h1{
   font-size:22px;
-  font-weight:700;
   margin-bottom:6px;
 }
-
 .details-card p{
-  color:var(--text-secondary);
+  font-size:14px;
+  color:#555;
   margin-bottom:14px;
+}
+.details-card ul{padding-left:18px;}
+.details-card li{
   font-size:14px;
-}
-
-h3{
-  margin-top:18px;
-  margin-bottom:8px;
-  font-size:15px;
-}
-
-ul,ol{
-  padding-left:18px;
-}
-
-li{
   margin-bottom:6px;
-  font-size:14px;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer{
   margin:40px 0 20px;
   padding-top:14px;
@@ -174,224 +162,310 @@ footer{
 
 <body>
 
-<header class="header">
-  <a href="games.html" class="back-btn">←</a>
+<!-- HEADER -->
+<header>
+  <div class="back-btn" onclick="goBack()">
+    <svg viewBox="0 0 24 24">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </div>
 </header>
 
 <div class="container">
 
-  <!-- IMAGE + PRICE -->
   <div class="image-card">
-    <img id="gameImage" class="game-img" alt="Game Image">
-    <div class="price" id="gamePrice"></div>
+    <span class="offer-badge" id="offerBadge"></span>
+
+    <img id="gameImage" class="game-img">
+
+    <div class="price-box">
+      <span class="old-price" id="oldPrice"></span>
+      <span class="new-price" id="newPrice"></span>
+    </div>
 
     <a id="orderBtn" class="btn whatsapp-btn" target="_blank">
-      Order via WhatsApp
+      Buy via WhatsApp
     </a>
-
     <a id="instaBtn" class="btn instagram-btn" target="_blank">
-      Order via Instagram
+      Buy via Instagram
     </a>
   </div>
 
-  <!-- DETAILS -->
   <div class="details-card">
     <h1 id="gameTitle"></h1>
     <p id="gameType"></p>
 
     <h3>Game Specifications</h3>
     <ul id="gameSpecs"></ul>
-
-    <h3>Order Process</h3>
-    <ol>
-      <li>Click Order button</li>
-      <li>Pay mentioned amount</li>
-      <li>Offline activation support</li>
-      <li>Play anytime</li>
-    </ol>
   </div>
 
 </div>
 
 <footer>
-  © 2025 cheapgames39
+© 2025 cheapgames39<br>
+Disclaimer: We are not affiliated with any game publishers or platforms.
 </footer>
 
 <script>
-const games = {
-  rdr2:{
-  title:"Red Dead Redemption 2",
-  price:"Rs. 40",
-  image:"IMAGE/rdr 2.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story",
-    "Storage: 150GB",
-    "Internet: Setup only"
-  ]
-},
-gtav:{
-  title:"Grand Theft Auto V",
-  price:"Rs. 40",
-  image:"IMAGE/header (11).jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story + Online",
-    "Storage: 100GB",
-    "Internet: Required"
-  ]
-},
-witcher3:{
-  title:"The Witcher 3: Wild Hunt",
-  price:"Rs. 40",
-  image:"IMAGE/the witcher 3.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story",
-    "Storage: 50GB",
-    "Internet: Setup only"
-  ]
-},
-cyberpunk2077:{
-  title:"Cyberpunk 2077",
-  price:"Rs. 40",
-  image:"IMAGE/cyberpunk.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story",
-    "Storage: 70GB",
-    "Internet: Setup only"
-  ]
-},
-godofwar2018:{
-  title:"God of War (2018)",
-  price:"Rs. 40",
-  image:"IMAGE/god of war.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story",
-    "Storage: 70GB",
-    "Internet: Setup only"
-  ]
-},
-dragonsdogma2:{
-  title:"Dragon's Dogma 2",
-  price:"Rs. 40",
-  image:"IMAGE/dragons dogna 2.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story",
-    "Storage: 70GB",
-    "Internet: Setup only"
-  ]
-},
-hogwartslegacy:{
-  title:"Hogwarts Legacy",
-  price:"Rs. 40",
-  image:"IMAGE/header.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story",
-    "Storage: 85GB",
-    "Internet: Setup only"
-  ]
-},
-stray:{
-  title:"Stray",
-  price:"Rs. 40",
-  image:"IMAGE/stray.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story",
-    "Storage: 10GB",
-    "Internet: Setup only"
-  ]
-},
-baldursgate3:{
-  title:"Baldur's Gate 3",
-  price:"Rs. 40",
-  image:"IMAGE/baldurs gate 3.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story",
-    "Storage: 150GB",
-    "Internet: Setup only"
-  ]
-},
-eldenring:{
-  title:"Elden Ring",
-  price:"Rs. 40",
-  image:"IMAGE/elden ring.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story",
-    "Storage: 60GB",
-    "Internet: Setup only"
-  ]
-},
-wwe2k20:{
-  title:"WWE 2K20",
-  price:"Rs. 40",
-  image:"IMAGE/header (1).jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Offline",
-    "Storage: 50GB",
-    "Internet: Setup only"
-  ]
-},
-wwe2k15:{
-  title:"WWE 2K15",
-  price:"Rs. 40",
-  image:"IMAGE/cenaWWE.0.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Offline",
-    "Storage: 35GB",
-    "Internet: Setup only"
-  ]
-},
-detroitbecomehuman:{
-  title:"Detroit: Become Human",
-  price:"Rs. 40",
-  image:"IMAGE/detroit become human.jpg",
-  type:"Steam PC • Offline Activation",
-  specs:[
-    "Platform: PC",
-    "Mode: Story",
-    "Storage: 55GB",
-    "Internet: Setup only"
-  ]
+function goBack(){
+  window.history.back();
 }
 
+const games={
+  dispatch:{
+    title:"Dispatch",
+    image:"IMAGE/header (4).jpg",
+    oldPrice:99,newPrice:39,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 40GB"]
+  },
+  dyinglightbeast:{
+    title:"Dying Light: The Beast",
+    image:"IMAGE/header_alt_assets_1.jpg",
+    oldPrice:99,newPrice:39,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 60GB"]
+  },
+  silenthillf:{
+    title:"Silent Hill f",
+    image:"IMAGE/header (5).jpg",
+    oldPrice:99,newPrice:39,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 50GB"]
+  },
+  metalgearsoliddelta:{
+    title:"Metal Gear Solid Delta: Snake Eater",
+    image:"IMAGE/header (3).jpg",
+    oldPrice:99,newPrice:39,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 45GB"]
+  },
+  tekken7:{
+    title:"Tekken 7",
+    image:"IMAGE/header (6).jpg",
+    oldPrice:2499,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Fighting","Storage: 60GB"]
+  },
+
+  ghostoftsushima:{
+    title:"Ghost of Tsushima",
+    image:"IMAGE/header (7).jpg",
+    oldPrice:3999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 75GB"]
+  },
+
+  gowragnarok:{
+    title:"God of War Ragnarök",
+    image:"IMAGE/header (8).jpg",
+    oldPrice:4999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 90GB"]
+  },
+
+  spiderman2:{
+    title:"Marvel’s Spider-Man 2",
+    image:"IMAGE/header (9).jpg",
+    oldPrice:4999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 140GB"]
+  },
+
+  cuphead:{
+    title:"Cuphead",
+    image:"IMAGE/cuphead.jpg",
+    oldPrice:1299,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Arcade","Storage: 4GB"]
+  },
+
+  phasmophobia:{
+    title:"Phasmophobia",
+    image:"IMAGE/header (10).jpg",
+    oldPrice:529,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Horror Co-op","Storage: 21GB"]
+  },
+
+  rdr2:{
+    title:"Red Dead Redemption 2",
+    image:"IMAGE/rdr 2.jpg",
+    oldPrice:3199,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 150GB"]
+  },
+
+  gtav:{
+    title:"GTA V",
+    image:"IMAGE/header (11).jpg",
+    oldPrice:2499,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story + Online","Storage: 110GB"]
+  },
+
+  witcher3:{
+    title:"The Witcher 3",
+    image:"IMAGE/the witcher 3.jpg",
+    oldPrice:2999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: RPG","Storage: 50GB"]
+  },
+
+  cyberpunk2077:{
+    title:"Cyberpunk 2077",
+    image:"IMAGE/cyberpunk.jpg",
+    oldPrice:2999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: RPG","Storage: 70GB"]
+  },
+
+  godofwar2018:{
+    title:"God of War (2018)",
+    image:"IMAGE/god of war.jpg",
+    oldPrice:3299,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 70GB"]
+  },
+
+  wwe2k20:{
+    title:"WWE 2K20",
+    image:"IMAGE/header (1).jpg",
+    oldPrice:4299,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Sports","Storage: 50GB"]
+  },
+
+  eldenring:{
+    title:"Elden Ring",
+    image:"IMAGE/elden ring.jpg",
+    oldPrice:3599,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: RPG","Storage: 60GB"]
+  },
+
+  stray:{
+    title:"Stray",
+    image:"IMAGE/stray.jpg",
+    oldPrice:2499,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Adventure","Storage: 10GB"]
+  },
+
+  detroit:{
+    title:"Detroit: Become Human",
+    image:"IMAGE/detroit become human.jpg",
+    oldPrice:3299,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 60GB"]
+  },
+
+  dragonsdogma2:{
+    title:"Dragon’s Dogma 2",
+    image:"IMAGE/dragons dogna 2.jpg",
+    oldPrice:4999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: RPG","Storage: 90GB"]
+  },
+
+  hogwartslegacy:{
+    title:"Hogwarts Legacy",
+    image:"IMAGE/header.jpg",
+    oldPrice:3999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: RPG","Storage: 85GB"]
+  },
+
+  baldursgate3:{
+    title:"Baldur’s Gate 3",
+    image:"IMAGE/baldurs gate 3.jpg",
+    oldPrice:4999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: RPG","Storage: 150GB"]
+  },
+
+  spidermanremastered:{
+    title:"Marvel’s Spider-Man Remastered",
+    image:"IMAGE/header (12).jpg",
+    oldPrice:3999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 75GB"]
+  },
+
+  tlou2:{
+    title:"The Last of Us Part II Remastered",
+    image:"IMAGE/header (13).jpg",
+    oldPrice:4999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Story","Storage: 100GB"]
+  },
+
+  wwe2k16:{
+    title:"WWE 2K16",
+    image:"IMAGE/header (2).jpg",
+    oldPrice:2999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Fighting","Storage: 45GB"]
+  },
+
+  farmingsim22:{
+    title:"Farming Simulator 22",
+    image:"IMAGE/header (15).jpg",
+    oldPrice:2499,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Simulation","Storage: 35GB"]
+  },
+
+  farmingsim17:{
+    title:"Farming Simulator 17",
+    image:"IMAGE/nCl16EEVoasiuu771ZYIq5ExSKpsKE0l.jpg",
+    oldPrice:1999,
+    newPrice:40,
+    type:"PC • Offline Activation",
+    specs:["Platform: PC","Mode: Simulation","Storage: 20GB"]
+  }
 };
 
-const params=new URLSearchParams(window.location.search);
+const params=new URLSearchParams(location.search);
 const g=games[params.get("game")];
 
 if(g){
   gameTitle.innerText=g.title;
-  gamePrice.innerText=g.price;
-  gameImage.src=g.image;
   gameType.innerText=g.type;
+  gameImage.src=g.image;
+  oldPrice.innerText="Rs."+g.oldPrice;
+  newPrice.innerText="Rs."+g.newPrice;
+  offerBadge.innerText=
+    "-"+Math.round(((g.oldPrice-g.newPrice)/g.oldPrice)*100)+"%";
 
-  orderBtn.href=`https://wa.me/91XXXXXXXXXX?text=Game:%20${g.title}%0APrice:%20${g.price}`;
-  instaBtn.href=`https://instagram.com/yourpage`;
+  orderBtn.href=`https://wa.me/91XXXXXXXXXX?text=Game:${g.title}`;
+  instaBtn.href="https://instagram.com/USERNAME";
 
+  gameSpecs.innerHTML="";
   g.specs.forEach(s=>{
-    let li=document.createElement("li");
+    const li=document.createElement("li");
     li.innerText=s;
     gameSpecs.appendChild(li);
   });
