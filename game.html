@@ -5,7 +5,6 @@
 <title>Game Details | cheapgames39store</title>
 
 <link rel="icon" type="image/png" href="IMAGE/1000038482-removebg-preview.png">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -27,18 +26,18 @@ body{
   background:linear-gradient(180deg,#F5F0E8,#EFE6DA);
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
   position:sticky;
   top:0;
-  z-index:9999;   /* 🔥 IMPORTANT */
+  z-index:9999;
   background:rgba(245,240,232,.95);
   border-bottom:2px solid var(--accent);
   padding:14px;
   display:flex;
   align-items:center;
 }
-/* 🔥 SAME BACK BUTTON AS CART */
+
 .back-btn{
   width:42px;
   height:42px;
@@ -58,13 +57,14 @@ header{
   fill:none;
 }
 
-/* ================= PAGE ================= */
+/* PAGE */
 .container{
   max-width:520px;
   margin:24px auto;
-  padding:0 16px;
+  padding:0 16px 140px;
 }
-/* ================= IMAGE CARD ================= */
+
+/* IMAGE CARD */
 .image-card{
   position:relative;
   background:#fff;
@@ -93,7 +93,7 @@ header{
   margin-bottom:14px;
 }
 
-/* ================= PRICE ================= */
+/* PRICE */
 .price-box{
   display:flex;
   justify-content:center;
@@ -111,7 +111,7 @@ header{
   color:var(--accent);
 }
 
-/* ================= BUTTONS ================= */
+/* BUTTONS */
 .btn{
   display:block;
   width:100%;
@@ -128,7 +128,7 @@ header{
   background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);
 }
 
-/* ================= DETAILS ================= */
+/* DETAILS */
 .details-card{
   margin-top:22px;
   background:#fff;
@@ -145,29 +145,53 @@ header{
   color:#555;
   margin-bottom:14px;
 }
-.details-card ul{padding-left:18px;}
+.details-card ul{
+  padding-left:18px;
+}
 .details-card li{
   font-size:14px;
   margin-bottom:6px;
 }
 
+/* COMMON INFO */
+.common-card{
+  margin-top:22px;
+  background:#fff;
+  border-radius:22px;
+  padding:22px;
+  border:1px solid rgba(181,0,0,.25);
+}
+.common-card h3{
+  color:var(--accent);
+  font-size:16px;
+  margin-bottom:10px;
+}
+.common-card ul{
+  padding-left:18px;
+}
+.common-card li{
+  font-size:13px;
+  margin-bottom:6px;
+}
+
+
 /* ================= FOOTER ================= */
 footer{
-  margin:40px 0 20px;
-  padding-top:14px;
+  margin-top:auto;
+  background:var(--bg-secondary);
+  border-top:2px solid var(--accent);
+  padding:18px;
   text-align:center;
   font-size:13px;
-  color:#777;
-  border-top:2px solid var(--accent);
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
-  <div class="back-btn" onclick="goBack()">
+  <div class="back-btn" onclick="history.back()">
     <svg viewBox="0 0 24 24">
       <path d="M15 18l-6-6 6-6"/>
     </svg>
@@ -176,9 +200,9 @@ footer{
 
 <div class="container">
 
+  <!-- IMAGE + PRICE -->
   <div class="image-card">
     <span class="offer-badge" id="offerBadge"></span>
-
     <img id="gameImage" class="game-img">
 
     <div class="price-box">
@@ -186,14 +210,11 @@ footer{
       <span class="new-price" id="newPrice"></span>
     </div>
 
-    <a id="orderBtn" class="btn whatsapp-btn" target="_blank">
-      Buy via WhatsApp
-    </a>
-    <a id="instaBtn" class="btn instagram-btn" target="_blank">
-      Buy via Instagram
-    </a>
+    <a id="orderBtn" class="btn whatsapp-btn" target="_blank">Buy via WhatsApp</a>
+    <a id="instaBtn" class="btn instagram-btn" target="_blank">Buy via Instagram</a>
   </div>
 
+  <!-- GAME DETAILS -->
   <div class="details-card">
     <h1 id="gameTitle"></h1>
     <p id="gameType"></p>
@@ -202,276 +223,154 @@ footer{
     <ul id="gameSpecs"></ul>
   </div>
 
-</div>
+  <!-- COMMON TERMS -->
+  <div class="common-card">
+    <h3>Account Access & Features</h3>
+    <ul>
+      <li>Steam account provided in <strong>offline mode only</strong></li>
+      <li>Offline gameplay only – no online features</li>
+      <li>Licensed & authentic game version</li>
+      <li>Region-free – usable worldwide</li>
+      <li>Single-player access only</li>
+      <li>Multi-language supported</li>
+      <li>Activation & login support provided</li>
+      <li>100% safe – no third-party tools</li>
+    </ul>
 
+    <h3 style="margin-top:16px;">Terms & Conditions</h3>
+    <ul>
+      <li>Pre-activated Steam account only (No CD / DVD / Key)</li>
+      <li>Activation via official Steam app</li>
+      <li>Account remains property of owner</li>
+      <li>Password / security changes not allowed</li>
+      <li>No refund / no return</li>
+      <li>Exchange only if issue verified from our side</li>
+    </ul>
+  </div>
+
+</div>
 <footer>
-© 2025 cheapgames39<br>
-Disclaimer: We are not affiliated with any game publishers or platforms.
+  <p>© 2025 cheapgames39</p>
+
+  <p>
+    <a href="terms.html">Terms & Conditions</a>
+    &nbsp;&nbsp;
+    <a href="privacy.html">Privacy Policy</a>
+    &nbsp;&nbsp;
+    <a href="faq.html">FAQ</a>
+  </p>
+
+  <p>
+    Disclaimer: We are not affiliated with any game publishers or platforms.
+  </p>
 </footer>
 
 <script>
-function goBack(){
-  window.history.back();
-}
-
 const games={
-  dispatch:{
-    title:"Dispatch",
-    image:"IMAGE/header (4).jpg",
-    oldPrice:99,newPrice:39,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 40GB"]
-  },
-  dyinglightbeast:{
-    title:"Dying Light: The Beast",
-    image:"IMAGE/header_alt_assets_1.jpg",
-    oldPrice:99,newPrice:39,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 60GB"]
-  },
-  silenthillf:{
-    title:"Silent Hill f",
-    image:"IMAGE/header (5).jpg",
-    oldPrice:99,newPrice:39,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 50GB"]
-  },
-  metalgearsoliddelta:{
-    title:"Metal Gear Solid Delta: Snake Eater",
-    image:"IMAGE/header (3).jpg",
-    oldPrice:99,newPrice:39,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 45GB"]
-  },
+
   tekken7:{
     title:"Tekken 7",
     image:"IMAGE/header (6).jpg",
-    oldPrice:2499,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Fighting","Storage: 60GB"]
+    old:2499,
+    price:40,
+    mode:"Single Player",
+    storage:"60 GB",
+    languages:"English, French, German, Japanese"
   },
 
   ghostoftsushima:{
     title:"Ghost of Tsushima",
     image:"IMAGE/header (7).jpg",
-    oldPrice:3999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 75GB"]
+    old:3999,
+    price:40,
+    mode:"Single Player",
+    storage:"75 GB",
+    languages:"English, Japanese, French"
   },
 
   gowragnarok:{
     title:"God of War Ragnarök",
     image:"IMAGE/header (8).jpg",
-    oldPrice:4999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 90GB"]
+    old:4999,
+    price:40,
+    mode:"Single Player",
+    storage:"90 GB",
+    languages:"English, French, German"
   },
 
   spiderman2:{
-    title:"Marvel’s Spider-Man 2",
+    title:"Spider-Man 2",
     image:"IMAGE/header (9).jpg",
-    oldPrice:4999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 140GB"]
-  },
-
-  cuphead:{
-    title:"Cuphead",
-    image:"IMAGE/cuphead.jpg",
-    oldPrice:1299,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Arcade","Storage: 4GB"]
-  },
-
-  phasmophobia:{
-    title:"Phasmophobia",
-    image:"IMAGE/header (10).jpg",
-    oldPrice:529,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Horror Co-op","Storage: 21GB"]
+    old:4999,
+    price:40,
+    mode:"Single Player",
+    storage:"140 GB",
+    languages:"English, Spanish, French"
   },
 
   rdr2:{
     title:"Red Dead Redemption 2",
     image:"IMAGE/rdr 2.jpg",
-    oldPrice:3199,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 150GB"]
+    old:3199,
+    price:40,
+    mode:"Single Player",
+    storage:"150 GB",
+    languages:"English, French, German"
   },
 
   gtav:{
     title:"GTA V",
     image:"IMAGE/header (11).jpg",
-    oldPrice:2499,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story + Online","Storage: 110GB"]
-  },
-
-  witcher3:{
-    title:"The Witcher 3",
-    image:"IMAGE/the witcher 3.jpg",
-    oldPrice:2999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: RPG","Storage: 50GB"]
-  },
-
-  cyberpunk2077:{
-    title:"Cyberpunk 2077",
-    image:"IMAGE/cyberpunk.jpg",
-    oldPrice:2999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: RPG","Storage: 70GB"]
-  },
-
-  godofwar2018:{
-    title:"God of War (2018)",
-    image:"IMAGE/god of war.jpg",
-    oldPrice:3299,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 70GB"]
-  },
-
-  wwe2k20:{
-    title:"WWE 2K20",
-    image:"IMAGE/header (1).jpg",
-    oldPrice:4299,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Sports","Storage: 50GB"]
+    old:2499,
+    price:40,
+    mode:"Story Mode",
+    storage:"110 GB",
+    languages:"English, Spanish, German"
   },
 
   eldenring:{
     title:"Elden Ring",
     image:"IMAGE/elden ring.jpg",
-    oldPrice:3599,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: RPG","Storage: 60GB"]
-  },
-
-  stray:{
-    title:"Stray",
-    image:"IMAGE/stray.jpg",
-    oldPrice:2499,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Adventure","Storage: 10GB"]
-  },
-
-  detroit:{
-    title:"Detroit: Become Human",
-    image:"IMAGE/detroit become human.jpg",
-    oldPrice:3299,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 60GB"]
-  },
-
-  dragonsdogma2:{
-    title:"Dragon’s Dogma 2",
-    image:"IMAGE/dragons dogna 2.jpg",
-    oldPrice:4999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: RPG","Storage: 90GB"]
-  },
-
-  hogwartslegacy:{
-    title:"Hogwarts Legacy",
-    image:"IMAGE/header.jpg",
-    oldPrice:3999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: RPG","Storage: 85GB"]
-  },
-
-  baldursgate3:{
-    title:"Baldur’s Gate 3",
-    image:"IMAGE/baldurs gate 3.jpg",
-    oldPrice:4999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: RPG","Storage: 150GB"]
-  },
-
-  spidermanremastered:{
-    title:"Marvel’s Spider-Man Remastered",
-    image:"IMAGE/header (12).jpg",
-    oldPrice:3999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 75GB"]
-  },
-
-  tlou2:{
-    title:"The Last of Us Part II Remastered",
-    image:"IMAGE/header (13).jpg",
-    oldPrice:4999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Story","Storage: 100GB"]
-  },
-
-  wwe2k16:{
-    title:"WWE 2K16",
-    image:"IMAGE/header (2).jpg",
-    oldPrice:2999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Fighting","Storage: 45GB"]
-  },
-
-  farmingsim22:{
-    title:"Farming Simulator 22",
-    image:"IMAGE/header (15).jpg",
-    oldPrice:2499,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Simulation","Storage: 35GB"]
+    old:3599,
+    price:40,
+    mode:"Single Player",
+    storage:"60 GB",
+    languages:"English, Japanese"
   },
 
   farmingsim17:{
     title:"Farming Simulator 17",
     image:"IMAGE/nCl16EEVoasiuu771ZYIq5ExSKpsKE0l.jpg",
-    oldPrice:1999,
-    newPrice:40,
-    type:"PC • Offline Activation",
-    specs:["Platform: PC","Mode: Simulation","Storage: 20GB"]
+    old:1999,
+    price:40,
+    mode:"Single Player",
+    storage:"20 GB",
+    languages:"English, German"
   }
 };
-
-const params=new URLSearchParams(location.search);
-const g=games[params.get("game")];
+const key=new URLSearchParams(location.search).get("game");
+const g=games[key];
 
 if(g){
   gameTitle.innerText=g.title;
-  gameType.innerText=g.type;
+  gameType.innerText="• PC/Laptop • Offline Activation";
   gameImage.src=g.image;
-  oldPrice.innerText="Rs."+g.oldPrice;
-  newPrice.innerText="Rs."+g.newPrice;
-  offerBadge.innerText=
-    "-"+Math.round(((g.oldPrice-g.newPrice)/g.oldPrice)*100)+"%";
+  oldPrice.innerText="Rs."+g.old;
+  newPrice.innerText="Rs."+g.price;
 
-  orderBtn.href=`https://wa.me/91XXXXXXXXXX?text=Game:${g.title}`;
+  offerBadge.innerText="-"+Math.round(((g.old-g.price)/g.old)*100)+"%";
+
+  orderBtn.href="https://wa.me/91XXXXXXXXXX?text=I want to buy "+g.title;
   instaBtn.href="https://instagram.com/USERNAME";
 
-  gameSpecs.innerHTML="";
-  g.specs.forEach(s=>{
-    const li=document.createElement("li");
-    li.innerText=s;
-    gameSpecs.appendChild(li);
-  });
+  gameSpecs.innerHTML=`
+    <li><strong>Platform:</strong> PC (Steam)</li>
+    <li><strong>Activation:</strong> Offline Activation</li>
+    <li><strong>Game Mode:</strong> ${g.mode}</li>
+    <li><strong>Playable Mode:</strong> Offline Only</li>
+    <li><strong>Storage Required:</strong> ${g.storage}</li>
+    <li><strong>Languages:</strong> Multi-Language</li>
+  `;
 }
 </script>
 
