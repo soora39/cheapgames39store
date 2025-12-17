@@ -47,6 +47,7 @@ body{
   align-items:center;
   padding:14px 20px;
 }
+
 .logo-left img{height:36px;}
 .logo-center{
   font-family:'Inter', sans-serif;
@@ -335,6 +336,157 @@ body{
   margin-left:4px;
 }
 
+
+/* ================= BUNDLE CARD ================= */
+
+.bundle-card{
+  background:#fff;
+  border:2px dashed #b50000;
+  border-radius:22px;
+  padding:22px 16px;
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+  transition:.25s ease;
+}
+
+.bundle-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 40px rgba(181,0,0,.25);
+}
+
+/* BUNDLE BADGE */
+.bundle-badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:#b50000;
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  padding:4px 10px;
+  border-radius:14px;
+}
+
+/* ICON */
+.bundle-icon{
+  font-size:42px;
+  margin:12px 0;
+}
+
+/* TEXT */
+.bundle-title{
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+.bundle-sub{
+  font-size:13px;
+  color:#777;
+  margin-bottom:10px;
+}
+
+/* PRICE */
+.price-box{
+  margin:10px 0 14px;
+}
+
+.old-price{
+  color:#999;
+  text-decoration:line-through;
+  font-size:13px;
+  margin-right:6px;
+}
+
+.new-price{
+  color:#b50000;
+  font-size:18px;
+  font-weight:800;
+}
+
+/* BUTTON */
+.bundle-btn{
+  background:linear-gradient(135deg,#b50000,#7a0000);
+  color:#fff;
+  border:none;
+  border-radius:26px;
+  padding:10px 26px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.bundle-btn:active{
+  transform:scale(.96);
+}
+
+/* BUNDLE ADD TO CART BUTTON */
+.add-bundle-btn{
+  width:100%;
+  margin-top:12px;
+  padding:12px 0;
+  background:linear-gradient(135deg,#b50000,#7a0000);
+  color:#fff;
+  border:none;
+  border-radius:30px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+/* hover */
+.add-bundle-btn:hover{
+  box-shadow:0 10px 25px rgba(181,0,0,.35);
+  transform:translateY(-2px);
+}
+
+/* click */
+.add-bundle-btn:active{
+  transform:scale(.96);
+  box-shadow:0 4px 12px rgba(0,0,0,.3) inset;
+}
+
+
+.payment-box{
+  margin:28px auto 10px;
+  text-align:center;
+  background:#fff;
+  padding:18px;
+  border-radius:20px;
+  border:1px solid rgba(181,0,0,.25);
+  max-width:600px;
+}
+
+.payment-title{
+  font-weight:700;
+  color:#b50000;
+  margin-bottom:12px;
+}
+
+.payment-icons{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.payment-icons img{
+  height:36px;
+  object-fit:contain;
+  filter:grayscale(10%);
+}
+
+.payment-note{
+  margin-top:10px;
+  font-size:13px;
+  color:#555;
+}
+
+
+
+
 /* ================= FOOTER ================= */
 footer{
   margin-top:auto;
@@ -401,13 +553,50 @@ footer{
 <!-- GAMES -->
 <div class="game-grid" id="grid">
 
+<!-- BUNDLE CARD -->
+<div class="game-card bundle-card" data-link="bundle.html">
 
+  <span class="badge">BUNDLE</span>
+
+  <img src="IMAGE/Dynamic Collage of 120 Game Elements_20251217_184327_0000.png" alt="120 Games Bundle">
+
+  <h3>120 Games Mega Bundle</h3>
+
+  <p class="price">
+    <span class="old">Rs.39,999</span>
+    <span class="new">Rs.399</span>
+  </p>
+
+  <button class="add-bundle add-cart">
+    <span class="btn-text">Add to Cart</span>
+  </button>
+
+</div>
+
+</div>
 
 </div>  <!-- game-grid close -->
 
 <div id="noGameFound">🚫 No Games Found</div>
 
 <div id="cart" onclick="openCart()">🛒<span id="count">0</span></div>
+
+
+<!-- PAYMENT METHODS -->
+<div class="payment-box">
+  <p class="payment-title">Accepted Payment Methods</p>
+
+  <div class="payment-icons">
+    <img src="IMAGE/free-upi-logo-icon-svg-download-png-1747946.png" alt="UPI">
+    <img src="IMAGE/free-google-pay-logo-icon-svg-download-png-2944906.png" alt="Google Pay">
+    <img src="IMAGE/PhonePe_vertical-16158be8710408f3561e1d07d01d5d89.png" alt="PhonePe">
+    <img src="IMAGE/paytm-icon.png" alt="Paytm">
+  </div>
+
+  <p class="payment-note">
+    Secure & trusted payment options
+  </p>
+</div>
 
 <footer>
   <p>© 2025 cheapgames39</p>
@@ -459,7 +648,7 @@ const games = [
 
   { key:"rdr2", name:"Red Dead Redemption 2", image:"IMAGE/rdr 2.jpg", old:3199, price:40, cat:"action" },
 
-  { key:"gtav", name:"GTA V", image:"IMAGE/header (11).jpg", old:2499, price:40, cat:"action" },
+  { key:"gtav", name:"Grand Theft Auto V", image:"IMAGE/header (11).jpg", old:2499, price:40, cat:"action" },
 
   { key:"witcher3", name:"The Witcher 3", image:"IMAGE/the witcher 3.jpg", old:2999, price:40, cat:"action" },
 
@@ -568,7 +757,7 @@ const games = [
   {
     key: "codbo3",
     name: "Call of Duty: Black Ops III",
-    image: "IMAGE/codbo3.jpg",
+    image: "IMAGE/header (19).jpg",
     old: 4999,
     price: 40,
     cat: "action"
@@ -577,7 +766,7 @@ const games = [
   {
     key: "tombraider2013",
     name: "Tomb Raider (2013)",
-    image: "IMAGE/tombraider2013.jpg",
+    image: "IMAGE/header (20).jpg",
     old: 2499,
     price: 40,
     cat: "adventure"
@@ -585,7 +774,7 @@ const games = [
   {
     key: "riseofthetombraider",
     name: "Rise of the Tomb Raider",
-    image: "IMAGE/riseofthetombraider.jpg",
+    image: "IMAGE/header (21).jpg",
     old: 2999,
     price: 40,
     cat: "adventure"
@@ -593,7 +782,7 @@ const games = [
   {
     key: "shadowofthetombraider",
     name: "Shadow of the Tomb Raider",
-    image: "IMAGE/shadowofthetombraider.jpg",
+    image: "IMAGE/header (22).jpg",
     old: 3499,
     price: 40,
     cat: "adventure"
@@ -602,7 +791,7 @@ const games = [
   {
     key: "narutostorm1",
     name: "Naruto Shippuden: Ultimate Ninja Storm",
-    image: "IMAGE/narutostorm1.jpg",
+    image: "IMAGE/header (23).jpg",
     old: 1999,
     price: 40,
     cat: "fighting"
@@ -610,7 +799,7 @@ const games = [
   {
     key: "narutostorm2",
     name: "Naruto Shippuden: Ultimate Ninja Storm 2",
-    image: "IMAGE/narutostorm2.jpg",
+    image: "IMAGE/header (25).jpg",
     old: 1999,
     price: 40,
     cat: "fighting"
@@ -618,7 +807,7 @@ const games = [
   {
     key: "narutostorm3",
     name: "Naruto Shippuden: Ultimate Ninja Storm 3",
-    image: "IMAGE/narutostorm3.jpg",
+    image: "IMAGE/header (26).jpg",
     old: 1999,
     price: 40,
     cat: "fighting"
@@ -626,7 +815,7 @@ const games = [
   {
     key: "narutostorm4",
     name: "Naruto Shippuden: Ultimate Ninja Storm 4",
-    image: "IMAGE/narutostorm4.jpg",
+    image: "IMAGE/header (24).jpg",
     old: 2499,
     price: 40,
     cat: "fighting"
@@ -635,7 +824,7 @@ const games = [
   {
     key: "mk1",
     name: "Mortal Kombat 1",
-    image: "IMAGE/mk1.jpg",
+    image: "IMAGE/header (27).jpg",
     old: 4999,
     price: 40,
     cat: "fighting"
@@ -643,7 +832,7 @@ const games = [
   {
     key: "mk11",
     name: "Mortal Kombat 11",
-    image: "IMAGE/mk11.jpg",
+    image: "IMAGE/header (28).jpg",
     old: 3499,
     price: 40,
     cat: "fighting"
@@ -651,7 +840,7 @@ const games = [
   {
     key: "mkx",
     name: "Mortal Kombat X",
-    image: "IMAGE/mkx.jpg",
+    image: "IMAGE/header (29).jpg",
     old: 2499,
     price: 40,
     cat: "fighting"
@@ -660,7 +849,7 @@ const games = [
   {
     key: "gtavicecity",
     name: "Grand Theft Auto: Vice City",
-    image: "IMAGE/gtavicecity.jpg",
+    image: "IMAGE/OIP.webp",
     old: 999,
     price: 40,
     cat: "action"
@@ -668,7 +857,7 @@ const games = [
   {
     key: "gtasanandreas",
     name: "Grand Theft Auto: San Andreas",
-    image: "IMAGE/gtasanandreas.jpg",
+    image: "IMAGE/OIP (1).webp",
     old: 999,
     price: 40,
     cat: "action"
@@ -677,7 +866,7 @@ const games = [
   {
     key: "re2",
     name: "Resident Evil 2",
-    image: "IMAGE/re2.jpg",
+    image: "IMAGE/header (30).jpg",
     old: 2499,
     price: 40,
     cat: "horror"
@@ -685,7 +874,7 @@ const games = [
   {
     key: "re3",
     name: "Resident Evil 3",
-    image: "IMAGE/re3.jpg",
+    image: "IMAGE/header (31).jpg",
     old: 2499,
     price: 40,
     cat: "horror"
@@ -694,7 +883,7 @@ const games = [
   {
     key: "hitmanabsolution",
     name: "Hitman: Absolution",
-    image: "IMAGE/hitmanabsolution.jpg",
+    image: "IMAGE/header (32).jpg",
     old: 1499,
     price: 40,
     cat: "stealth"
@@ -703,7 +892,7 @@ const games = [
   {
     key: "sleepingdogs",
     name: "Sleeping Dogs: Definitive Edition",
-    image: "IMAGE/sleepingdogs.jpg",
+    image: "IMAGE/header (33).jpg",
     old: 1999,
     price: 40,
     cat: "action"
@@ -711,7 +900,7 @@ const games = [
   {
     key: "dragonballsparkingzero",
     name: "Dragon Ball: Sparking! ZERO",
-    image: "IMAGE/dragonballsz.jpg",
+    image: "IMAGE/header (34).jpg",
     old: 4999,
     price: 40,
     cat: "fighting"
@@ -719,7 +908,7 @@ const games = [
   {
     key: "streamerlifesim",
     name: "Streamer Life Simulator",
-    image: "IMAGE/streamerlife.jpg",
+    image: "IMAGE/header (35).jpg",
     old: 1299,
     price: 40,
     cat: "simulation"
@@ -727,7 +916,7 @@ const games = [
   {
     key: "contrabandpolice",
     name: "Contraband Police",
-    image: "IMAGE/contrabandpolice.jpg",
+    image: "IMAGE/header (36).jpg",
     old: 1699,
     price: 40,
     cat: "simulation"
@@ -735,7 +924,7 @@ const games = [
   {
     key: "silenthill2",
     name: "Silent Hill 2",
-    image: "IMAGE/silenthill2.jpg",
+    image: "IMAGE/header (37).jpg",
     old: 2999,
     price: 40,
     cat: "horror"
@@ -743,7 +932,7 @@ const games = [
   {
     key: "attackontitan2",
     name: "Attack on Titan 2",
-    image: "IMAGE/aot2.jpg",
+    image: "IMAGE/header (38).jpg",
     old: 3999,
     price: 40,
     cat: "action"
@@ -772,80 +961,117 @@ games.forEach(g=>{
   `;
 });
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ================= ADD TO CART FULL JS ================= */
-
+  /* ================= CART INIT ================= */
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   const sound = document.getElementById("addSound");
   const count = document.getElementById("count");
 
-  /* update cart count */
   function updateCartCount(){
-    if (count) count.innerText = cart.length;
+    if(count){
+      count.innerText = cart.length;
+    }
   }
   updateCartCount();
 
-  /* ADD TO CART BUTTON */
-  document.querySelectorAll(".add-cart").forEach(btn => {
+  /* ================= PLAY SOUND ================= */
+  function playSound(){
+    if(sound){
+      sound.currentTime = 0;
+      sound.play().catch(()=>{});
+    }
+  }
 
-    btn.addEventListener("click", function (e) {
-      e.stopPropagation(); // stop card redirect
+  /* ================= COMMON ADD FUNCTION ================= */
+  function addItemToCart(item, btn){
+    const textSpan = btn.querySelector(".btn-text");
+    if(!textSpan) return;
 
-      const card = btn.closest(".game-card");
-      if (!card) return;
+    playSound();
 
-      const nameEl  = card.querySelector("h3");
-      const imgEl   = card.querySelector("img");
-      const textSpan = btn.querySelector(".btn-text");
+    btn.disabled = true;
+    btn.style.opacity = "0.7";
+    textSpan.innerText = "Adding...";
 
-      if (!nameEl || !imgEl || !textSpan) return;
+    setTimeout(() => {
 
-      const name  = nameEl.innerText;
-      const image = imgEl.src;
-      const price = "Rs.40";
+      cart.push(item);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
 
-      /* 🔊 sound */
-      if (sound) {
-        sound.currentTime = 0;
-        sound.play().catch(()=>{});
-      }
-
-      /* loading animation */
-      btn.disabled = true;
-      btn.style.opacity = "0.7";
-      textSpan.innerText = "Adding...";
+      textSpan.innerText = "✓ Added";
+      btn.style.background =
+        "linear-gradient(135deg,#0f9d58,#0b8043)";
 
       setTimeout(() => {
-
-        cart.push({ name, image, price });
-        localStorage.setItem("cart", JSON.stringify(cart));
-        updateCartCount();
-
-        textSpan.innerText = "✓ Added";
+        textSpan.innerText = "Add to Cart";
         btn.style.background =
-          "linear-gradient(135deg,#0f9d58,#0b8043)";
+          "linear-gradient(135deg,#b50000,#7A0000)";
+        btn.disabled = false;
+        btn.style.opacity = "1";
+      }, 1000);
 
-        setTimeout(() => {
-          textSpan.innerText = "Add to Cart";
-          btn.style.background =
-            "linear-gradient(135deg,#b50000,#7A0000)";
-          btn.disabled = false;
-          btn.style.opacity = "1";
-        }, 1000);
+    }, 700);
+  }
 
-      }, 700);
+  /* ================= NORMAL GAME ADD ================= */
+  document.querySelectorAll(".add-cart").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.stopPropagation();
+
+      const card = btn.closest(".game-card");
+      if(!card) return;
+
+      const nameEl = card.querySelector("h3");
+      const imgEl  = card.querySelector("img");
+
+      if(!nameEl || !imgEl) return;
+
+      const item = {
+        name: nameEl.innerText,
+        image: imgEl.src,
+        price: "Rs.40",
+        type: "Game"
+      };
+
+      addItemToCart(item, btn);
     });
   });
 
-  /* ================= CARD CLICK ================= */
-  document.querySelectorAll(".game-card").forEach(card => {
-    card.addEventListener("click", e => {
-      if (e.target.closest(".add-cart")) return; // ✅ FIX
-      if (card.dataset.link) {
+  /* ================= BUNDLE ADD ================= */
+  document.querySelectorAll(".add-bundle").forEach(btn=>{
+    btn.addEventListener("click", e=>{
+      e.stopPropagation();
+
+      const item = {
+        name: "120 Games Mega Bundle",
+        image: "IMAGE/bundle-120.jpg",
+        price: "Rs.399",
+        type: "Bundle"
+      };
+
+      addItemToCart(item, btn);
+    });
+  });
+
+  /* ================= CARD CLICK (GAME + BUNDLE) ================= */
+  document.querySelectorAll(".game-card").forEach(card=>{
+    card.addEventListener("click", e=>{
+      if(e.target.closest(".add-cart") || e.target.closest(".add-bundle")) return;
+
+      if(card.dataset.link){
         window.location.href = card.dataset.link;
       }
+    });
+  });
+
+  document.querySelectorAll(".bundle-card").forEach(card=>{
+    card.addEventListener("click", e=>{
+      if(e.target.closest(".add-bundle")) return;
+      window.location.href = "bundle.html";
     });
   });
 
@@ -855,32 +1081,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const noGame   = document.getElementById("noGameFound");
 
   function filterGames(){
-    if (!search || !category) return;
+    if(!search || !category) return;
 
     let s = search.value.toLowerCase();
     let c = category.value;
     let visible = 0;
 
-    document.querySelectorAll(".game-card").forEach(card => {
+    document.querySelectorAll(".game-card").forEach(card=>{
       let ok =
         card.innerText.toLowerCase().includes(s) &&
         (c === "all" || card.dataset.cat === c);
 
       card.style.display = ok ? "block" : "none";
-      if (ok) visible++;
+      if(ok) visible++;
     });
 
-    if (noGame) {
+    if(noGame){
       noGame.style.display = visible === 0 ? "block" : "none";
     }
   }
 
-  if (search)   search.addEventListener("keyup", filterGames);
-  if (category) category.addEventListener("change", filterGames);
+  if(search)   search.addEventListener("keyup", filterGames);
+  if(category) category.addEventListener("change", filterGames);
 
 });
 
-/* ================= CART PAGE ================= */
+/* ================= OPEN CART ================= */
 function openCart(){
   window.location.href = "cart.html";
 }
