@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>cheapgames39store | Games</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+
 <link rel="icon" type="image/png" href="IMAGE/1000038482-removebg-preview.png">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,10 +49,11 @@ body{
 }
 .logo-left img{height:36px;}
 .logo-center{
+  font-family:'Inter', sans-serif;
+  font-size:20px;
+  font-weight:100;
+  letter-spacing:1.2px;
   text-align:center;
-  font-size:13px;
-  letter-spacing:3px;
-  font-weight:700;
 }
 .menu-btn{
   font-size:30px;
@@ -370,7 +373,7 @@ footer{
         <line x1="16.5" y1="16.5" x2="22" y2="22" stroke="#B50000" stroke-width="2"/>
       </svg>
     </span>
-    <input type="text" id="search" placeholder="Search games...">
+    <input type="text" id="search" placeholder="Search games">
   </div>
 
 <div class="category-box">
@@ -552,60 +555,120 @@ games.forEach(g=>{
       <p class="price">
         <span class="old">Rs.${g.old}</span> Rs.${g.price}
       </p>
-      <button class="add-cart">Add to Cart</button>
+     <button class="add-cart">
+  <span class="btn-text">Add to Cart</span>
+</button>
     </div>
   `;
 });
 
-/* ================= ADD TO CART ================= */
-document.querySelectorAll(".add-cart").forEach(btn=>{
-  btn.addEventListener("click", e=>{
-    e.stopPropagation();
-    const card = btn.closest(".game-card");
+document.addEventListener("DOMContentLoaded", () => {
 
-    cart.push({
-      name: card.querySelector("h3").innerText,
-      price: "Rs.40",
-      image: card.querySelector("img").src
+  /* ================= ADD TO CART FULL JS ================= */
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const sound = document.getElementById("addSound");
+  const count = document.getElementById("count");
+
+  /* update cart count */
+  function updateCartCount(){
+    if (count) count.innerText = cart.length;
+  }
+  updateCartCount();
+
+  /* ADD TO CART BUTTON */
+  document.querySelectorAll(".add-cart").forEach(btn => {
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation(); // stop card redirect
+
+      const card = btn.closest(".game-card");
+      if (!card) return;
+
+      const nameEl  = card.querySelector("h3");
+      const imgEl   = card.querySelector("img");
+      const textSpan = btn.querySelector(".btn-text");
+
+      if (!nameEl || !imgEl || !textSpan) return;
+
+      const name  = nameEl.innerText;
+      const image = imgEl.src;
+      const price = "Rs.40";
+
+      /* 🔊 sound */
+      if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(()=>{});
+      }
+
+      /* loading animation */
+      btn.disabled = true;
+      btn.style.opacity = "0.7";
+      textSpan.innerText = "Adding...";
+
+      setTimeout(() => {
+
+        cart.push({ name, image, price });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+
+        textSpan.innerText = "✓ Added";
+        btn.style.background =
+          "linear-gradient(135deg,#0f9d58,#0b8043)";
+
+        setTimeout(() => {
+          textSpan.innerText = "Add to Cart";
+          btn.style.background =
+            "linear-gradient(135deg,#b50000,#7A0000)";
+          btn.disabled = false;
+          btn.style.opacity = "1";
+        }, 1000);
+
+      }, 700);
+    });
+  });
+
+  /* ================= CARD CLICK ================= */
+  document.querySelectorAll(".game-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (e.target.closest(".add-cart")) return; // ✅ FIX
+      if (card.dataset.link) {
+        window.location.href = card.dataset.link;
+      }
+    });
+  });
+
+  /* ================= SEARCH + CATEGORY ================= */
+  const search   = document.getElementById("search");
+  const category = document.getElementById("category");
+  const noGame   = document.getElementById("noGameFound");
+
+  function filterGames(){
+    if (!search || !category) return;
+
+    let s = search.value.toLowerCase();
+    let c = category.value;
+    let visible = 0;
+
+    document.querySelectorAll(".game-card").forEach(card => {
+      let ok =
+        card.innerText.toLowerCase().includes(s) &&
+        (c === "all" || card.dataset.cat === c);
+
+      card.style.display = ok ? "block" : "none";
+      if (ok) visible++;
     });
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    document.getElementById("count").innerText = cart.length;
-  });
+    if (noGame) {
+      noGame.style.display = visible === 0 ? "block" : "none";
+    }
+  }
+
+  if (search)   search.addEventListener("keyup", filterGames);
+  if (category) category.addEventListener("change", filterGames);
+
 });
-
-/* ================= CARD CLICK ================= */
-document.querySelectorAll(".game-card").forEach(card=>{
-  card.addEventListener("click", e=>{
-    if(e.target.classList.contains("add-cart")) return;
-    window.location.href = card.dataset.link;
-  });
-});
-
-/* ================= SEARCH + CATEGORY ================= */
-const search   = document.getElementById("search");
-const category = document.getElementById("category");
-const noGame   = document.getElementById("noGameFound");
-
-function filterGames(){
-  let s = search.value.toLowerCase();
-  let c = category.value;
-  let visible = 0;
-
-  document.querySelectorAll(".game-card").forEach(card=>{
-    let ok =
-      card.innerText.toLowerCase().includes(s) &&
-      (c === "all" || card.dataset.cat === c);
-
-    card.style.display = ok ? "block" : "none";
-    if(ok) visible++;
-  });
-
-  noGame.style.display = visible === 0 ? "block" : "none";
-}
-
-search.addEventListener("keyup", filterGames);
-category.addEventListener("change", filterGames);
 
 /* ================= CART PAGE ================= */
 function openCart(){
@@ -613,6 +676,7 @@ function openCart(){
 }
 </script>
 
+<audio id="addSound" src="audio/click-151673.mp3" preload="auto"></audio>
 
 </body>
 </html>

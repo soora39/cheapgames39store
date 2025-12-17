@@ -5,7 +5,6 @@
 <title>My Cart | cheapgames39</title>
 
 <link rel="icon" type="image/png" href="IMAGE/1000038482-removebg-preview.png">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -30,7 +29,8 @@ body{
 header{
   position:sticky;
   top:0;
-  background:rgba(245,240,232,.95);
+  z-index:1000;
+  background:rgba(245,240,232,.97);
   border-bottom:2px solid var(--accent);
   padding:14px;
   display:flex;
@@ -58,28 +58,26 @@ header{
   stroke-width:2.5;
 }
 
-/* HEADER TITLE WITH IMAGE */
+/* HEADER TITLE */
 .header-title{
   flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
   gap:8px;
-  font-weight:700;
-  letter-spacing:2px;
+  font-weight:600;      /* normal weight */
+  letter-spacing:0;     /* 🔥 remove spacing */
 }
 
 .cart-icon{
   width:20px;
-  height:20px;
-  object-fit:contain;
 }
 
 /* ================= CART ================= */
-.cart-container{
-  max-width:600px;
-  margin:20px auto;
-  padding:10px;
+.container{
+  max-width:100px;
+  margin:24px auto;
+  padding:0 16px 140px;
 }
 
 .cart-item{
@@ -119,6 +117,11 @@ header{
   border-radius:20px;
   padding:6px 14px;
   cursor:pointer;
+  transition:transform .15s ease;
+}
+
+.remove:active{
+  transform:scale(0.95);
 }
 
 /* ================= CHECKOUT ================= */
@@ -139,10 +142,7 @@ header{
   color:#fff;
 }
 
-.whatsapp{
-  background:#25D366;
-}
-
+.whatsapp{background:#25D366;}
 .instagram{
   background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);
 }
@@ -157,33 +157,33 @@ header{
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
-  <div class="back-btn" onclick="goBack()">
+  <div class="back-btn" onclick="history.back()">
     <svg viewBox="0 0 24 24" fill="none">
       <path d="M15 18l-6-6 6-6"/>
     </svg>
   </div>
 
   <div class="header-title">
-    <!-- 🔽 CHINNA IMAGE INGHA -->
-    <img src="IMAGE/grocery-store.png" class="cart-icon">
-    <span>Your Cart</span>
+    <img src="IMAGE/shopping-cart.png" class="cart-icon">
+    <span>YOUR CART</span>
   </div>
 </header>
 
-<!-- ================= CART LIST ================= -->
 <div class="cart-container" id="cartList"></div>
 
-<!-- ================= CHECKOUT ================= -->
 <div class="checkout">
   <a class="whatsapp" id="whatsapp" href="#">Buy via WhatsApp</a>
   <a class="instagram" id="instagram" href="#">Buy via Instagram</a>
 </div>
 
+<!-- 🔊 REMOVE SOUND -->
+<audio id="removeSound" src="audio/click-151673.mp3" preload="auto"></audio>
+
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 const list = document.getElementById("cartList");
+const sound = document.getElementById("removeSound");
 
 function render(){
   list.innerHTML = "";
@@ -218,13 +218,14 @@ function render(){
 }
 
 function removeItem(i){
+  if(sound){
+    sound.currentTime = 0;
+    sound.play().catch(()=>{});
+  }
+
   cart.splice(i,1);
   localStorage.setItem("cart", JSON.stringify(cart));
   render();
-}
-
-function goBack(){
-  window.history.back();
 }
 
 render();

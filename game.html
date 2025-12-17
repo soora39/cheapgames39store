@@ -185,6 +185,41 @@ footer{
   font-size:13px;
 }
 
+
+/* ================= LOADING BUTTON ================= */
+.btn.loading,
+.add-cart.loading{
+  pointer-events:none;
+  opacity:.8;
+}
+
+/* TEXT HIDE */
+.btn.loading span,
+.add-cart.loading span{
+  visibility:hidden;
+}
+
+/* SPINNER */
+.btn.loading::before,
+.add-cart.loading::before{
+  content:"";
+  width:22px;
+  height:22px;
+  border:3px solid rgba(255,255,255,.5);
+  border-top-color:#fff;
+  border-radius:50%;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+
+
 </style>
 </head>
 
@@ -266,87 +301,229 @@ footer{
 </footer>
 
 <script>
-const games={
+
+const games = {
 
   tekken7:{
     title:"Tekken 7",
     image:"IMAGE/header (6).jpg",
-    old:2499,
-    price:40,
-    mode:"Single Player",
-    storage:"60 GB",
-    languages:"English, French, German, Japanese"
+    old:2499, price:40,
+    mode:"Fighting",
+    storage:"60 GB"
   },
 
   ghostoftsushima:{
     title:"Ghost of Tsushima",
     image:"IMAGE/header (7).jpg",
-    old:3999,
-    price:40,
-    mode:"Single Player",
-    storage:"75 GB",
-    languages:"English, Japanese, French"
+    old:3999, price:40,
+    mode:"Story",
+    storage:"75 GB"
   },
 
   gowragnarok:{
     title:"God of War Ragnarök",
     image:"IMAGE/header (8).jpg",
-    old:4999,
-    price:40,
-    mode:"Single Player",
-    storage:"90 GB",
-    languages:"English, French, German"
+    old:4999, price:40,
+    mode:"Story",
+    storage:"90 GB"
   },
 
   spiderman2:{
-    title:"Spider-Man 2",
+    title:"Marvel’s Spider-Man 2",
     image:"IMAGE/header (9).jpg",
-    old:4999,
-    price:40,
-    mode:"Single Player",
-    storage:"140 GB",
-    languages:"English, Spanish, French"
+    old:4999, price:40,
+    mode:"Story",
+    storage:"140 GB"
+  },
+
+  cuphead:{
+    title:"Cuphead",
+    image:"IMAGE/cuphead.jpg",
+    old:1299, price:40,
+    mode:"Arcade",
+    storage:"4 GB"
+  },
+
+  phasmophobia:{
+    title:"Phasmophobia",
+    image:"IMAGE/header (10).jpg",
+    old:529, price:40,
+    mode:"Horror",
+    storage:"21 GB"
   },
 
   rdr2:{
     title:"Red Dead Redemption 2",
     image:"IMAGE/rdr 2.jpg",
-    old:3199,
-    price:40,
-    mode:"Single Player",
-    storage:"150 GB",
-    languages:"English, French, German"
+    old:3199, price:40,
+    mode:"Story",
+    storage:"150 GB"
   },
 
   gtav:{
-    title:"GTA V",
+    title:"Grand Theft Auto V",
     image:"IMAGE/header (11).jpg",
-    old:2499,
-    price:40,
-    mode:"Story Mode",
-    storage:"110 GB",
-    languages:"English, Spanish, German"
+    old:2499, price:40,
+    mode:"Story",
+    storage:"110 GB"
+  },
+
+  witcher3:{
+    title:"The Witcher 3: Wild Hunt",
+    image:"IMAGE/the witcher 3.jpg",
+    old:2999, price:40,
+    mode:"RPG",
+    storage:"50 GB"
+  },
+
+  cyberpunk2077:{
+    title:"Cyberpunk 2077",
+    image:"IMAGE/cyberpunk.jpg",
+    old:2999, price:40,
+    mode:"RPG",
+    storage:"70 GB"
+  },
+
+  godofwar2018:{
+    title:"God of War (2018)",
+    image:"IMAGE/god of war.jpg",
+    old:3299, price:40,
+    mode:"Story",
+    storage:"70 GB"
+  },
+
+  wwe2k20:{
+    title:"WWE 2K20",
+    image:"IMAGE/header (1).jpg",
+    old:4299, price:40,
+    mode:"Sports",
+    storage:"50 GB"
   },
 
   eldenring:{
     title:"Elden Ring",
     image:"IMAGE/elden ring.jpg",
-    old:3599,
-    price:40,
-    mode:"Single Player",
-    storage:"60 GB",
-    languages:"English, Japanese"
+    old:3599, price:40,
+    mode:"RPG",
+    storage:"60 GB"
+  },
+
+  stray:{
+    title:"Stray",
+    image:"IMAGE/stray.jpg",
+    old:2499, price:40,
+    mode:"Adventure",
+    storage:"10 GB"
+  },
+
+  detroit:{
+    title:"Detroit: Become Human",
+    image:"IMAGE/detroit become human.jpg",
+    old:3299, price:40,
+    mode:"Story",
+    storage:"60 GB"
+  },
+
+  dragonsdogma2:{
+    title:"Dragon’s Dogma 2",
+    image:"IMAGE/dragons dogna 2.jpg",
+    old:4999, price:40,
+    mode:"RPG",
+    storage:"90 GB"
+  },
+
+  hogwartslegacy:{
+    title:"Hogwarts Legacy",
+    image:"IMAGE/header.jpg",
+    old:3999, price:40,
+    mode:"RPG",
+    storage:"85 GB"
+  },
+
+  baldursgate3:{
+    title:"Baldur’s Gate 3",
+    image:"IMAGE/baldurs gate 3.jpg",
+    old:4999, price:40,
+    mode:"RPG",
+    storage:"150 GB"
+  },
+
+  spidermanremastered:{
+    title:"Marvel’s Spider-Man Remastered",
+    image:"IMAGE/header (12).jpg",
+    old:3999, price:40,
+    mode:"Story",
+    storage:"75 GB"
+  },
+
+  tlou2:{
+    title:"The Last of Us Part II Remastered",
+    image:"IMAGE/header (13).jpg",
+    old:4999, price:40,
+    mode:"Story",
+    storage:"100 GB"
+  },
+
+  wwe2k16:{
+    title:"WWE 2K16",
+    image:"IMAGE/header (2).jpg",
+    old:2999, price:40,
+    mode:"Fighting",
+    storage:"45 GB"
+  },
+
+  farmingsim22:{
+    title:"Farming Simulator 22",
+    image:"IMAGE/header (15).jpg",
+    old:2499, price:40,
+    mode:"Simulation",
+    storage:"35 GB"
   },
 
   farmingsim17:{
     title:"Farming Simulator 17",
     image:"IMAGE/nCl16EEVoasiuu771ZYIq5ExSKpsKE0l.jpg",
-    old:1999,
-    price:40,
-    mode:"Single Player",
-    storage:"20 GB",
-    languages:"English, German"
-  }
+    old:1999, price:40,
+    mode:"Simulation",
+    storage:"20 GB"
+  },
+
+  dispatch:{
+  title:"Dispatch",
+  image:"IMAGE/header (4).jpg",
+  old:1999,
+  price:40,
+  mode:"Story",
+  storage:"40 GB"
+},
+
+dyinglightbeast:{
+  title:"Dying Light: The Beast",
+  image:"IMAGE/header_alt_assets_1.jpg",
+  old:2999,
+  price:40,
+  mode:"Survival",
+  storage:"60 GB"
+},
+
+silenthillf:{
+  title:"Silent Hill f",
+  image:"IMAGE/header (5).jpg",
+  old:3499,
+  price:40,
+  mode:"Horror",
+  storage:"50 GB"
+},
+
+metalgearsoliddelta:{
+  title:"Metal Gear Solid Delta: Snake Eater",
+  image:"IMAGE/header (3).jpg",
+  old:3999,
+  price:40,
+  mode:"Story",
+  storage:"45 GB"
+}
+
 };
 const key=new URLSearchParams(location.search).get("game");
 const g=games[key];
@@ -372,6 +549,7 @@ if(g){
     <li><strong>Languages:</strong> Multi-Language</li>
   `;
 }
+
 </script>
 
 </body>

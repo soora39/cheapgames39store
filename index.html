@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>cheapgames39store | Home</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+
 <link rel="icon" type="image/png" href="IMAGE/1000038482-removebg-preview.png">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,27 +39,24 @@ body{
   top:0;
   z-index:1000;
   background:rgba(245,240,232,.95);
-  backdrop-filter:blur(6px);
   border-bottom:2px solid var(--accent);
   display:grid;
   grid-template-columns:auto 1fr auto;
   align-items:center;
   padding:14px 20px;
 }
-
 .logo-left img{height:36px;}
-
 .logo-center{
+  font-family:'Inter', sans-serif;
+  font-size:20px;
+  font-weight:100;
+  letter-spacing:1.2px;
   text-align:center;
-  font-size:13px;
-  letter-spacing:3px;
-  font-weight:700;
 }
-
 .menu-btn{
   font-size:30px;
-  cursor:pointer;
   color:var(--accent);
+  cursor:pointer;
 }
 
 /* ================= OVERLAY ================= */
@@ -338,39 +337,81 @@ footer{
     Disclaimer: We are not affiliated with any game publishers or platforms.
   </p>
 </footer>
-
 <script>
+/* ================= MENU OPEN / CLOSE ================= */
+const sideMenu = document.getElementById("sideMenu");
+const overlay  = document.getElementById("overlay");
+
 function openMenu(){
   sideMenu.classList.add("active");
   overlay.classList.add("active");
-  document.body.style.overflow="hidden";
+  document.body.style.overflow = "hidden";
 }
+
 function closeMenu(){
   sideMenu.classList.remove("active");
   overlay.classList.remove("active");
-  document.body.style.overflow="auto";
+  document.body.style.overflow = "auto";
 }
 
-/* AUTO OFFER % */
+/* ================= AUTO OFFER PERCENT ================= */
 document.querySelectorAll(".offer-card").forEach(card=>{
-  const o=+card.dataset.old;
-  const n=+card.dataset.new;
-  card.querySelector(".offer-badge").innerText =
-    `-${Math.round(((o-n)/o)*100)}%`;
+  const oldPrice = Number(card.dataset.old);
+  const newPrice = Number(card.dataset.new);
+  const badge = card.querySelector(".offer-badge");
+
+  if(oldPrice && newPrice && badge){
+    const percent = Math.round(((oldPrice - newPrice) / oldPrice) * 100);
+    badge.innerText = `-${percent}%`;
+  }
 });
 
-/* COUNTDOWN */
-const endDate=new Date();
-endDate.setDate(endDate.getDate()+7);
-setInterval(()=>{
-  const d=endDate-new Date();
-  const dd=Math.floor(d/(1000*60*60*24));
-  const hh=Math.floor(d/(1000*60*60)%24);
-  const mm=Math.floor(d/(1000*60)%60);
-  const ss=Math.floor(d/1000%60);
-  countdown.innerText=`⏳ Offer ends in ${dd}d ${hh}h ${mm}m ${ss}s`;
-},1000);
+/* ================= REAL COUNTDOWN TIMER ================= */
+
+const countdown = document.getElementById("countdown");
+
+/* 🔥 UNIQUE KEY (site-ku one time) */
+const TIMER_KEY = "cheapgames39_offer_end";
+
+/* ⏱️ OFFER DURATION (CHANGE ONLY THIS) */
+const OFFER_DAYS = 3; // 3 days offer
+
+let endDate;
+
+/* ✅ First time only set aagum */
+if (localStorage.getItem(TIMER_KEY)) {
+  endDate = new Date(localStorage.getItem(TIMER_KEY));
+} else {
+  endDate = new Date();
+  endDate.setDate(endDate.getDate() + OFFER_DAYS);
+  localStorage.setItem(TIMER_KEY, endDate.toISOString());
+}
+
+/* 🔄 UPDATE TIMER */
+function updateCountdown(){
+  const now = new Date();
+  const diff = endDate - now;
+
+  if(diff <= 0){
+    countdown.innerText = "⏰ Offer Ended";
+    localStorage.removeItem(TIMER_KEY); // optional reset
+    return;
+  }
+
+  const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const mins  = Math.floor((diff / (1000 * 60)) % 60);
+  const secs  = Math.floor((diff / 1000) % 60);
+
+  countdown.innerText =
+    `⏳ Offer ends in ${days}d ${hours}h ${mins}m ${secs}s`;
+}
+
+/* ⏰ Start */
+updateCountdown();
+setInterval(updateCountdown, 1000);
 </script>
 
+</audio>
 </body>
 </html>
