@@ -56,6 +56,7 @@ header{
   height:18px;
   stroke:var(--accent);
   stroke-width:2.5;
+  fill:none;
 }
 
 /* HEADER TITLE */
@@ -65,8 +66,7 @@ header{
   align-items:center;
   justify-content:center;
   gap:8px;
-  font-weight:600;      /* normal weight */
-  letter-spacing:0;     /* 🔥 remove spacing */
+  font-weight:600;
 }
 
 .cart-icon{
@@ -74,10 +74,10 @@ header{
 }
 
 /* ================= CART ================= */
-.container{
-  max-width:100px;
-  margin:24px auto;
-  padding:0 16px 140px;
+.cart-container{
+  max-width:600px;
+  margin:20px auto;
+  padding:0 14px 120px;
 }
 
 .cart-item{
@@ -106,7 +106,7 @@ header{
 .cart-item p{
   margin:4px 0;
   color:var(--accent);
-  font-weight:600;
+  font-weight:700;
 }
 
 .remove{
@@ -117,7 +117,6 @@ header{
   border-radius:20px;
   padding:6px 14px;
   cursor:pointer;
-  transition:transform .15s ease;
 }
 
 .remove:active{
@@ -126,15 +125,19 @@ header{
 
 /* ================= CHECKOUT ================= */
 .checkout{
-  margin:30px 0;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#ECE3D8;
+  border-top:2px solid var(--accent);
+  padding:14px;
   display:flex;
-  gap:14px;
+  gap:12px;
   justify-content:center;
-  flex-wrap:wrap;
 }
 
 .checkout a{
-  display:inline-block;
   padding:14px 28px;
   border-radius:30px;
   text-decoration:none;
@@ -159,7 +162,7 @@ header{
 
 <header>
   <div class="back-btn" onclick="history.back()">
-    <svg viewBox="0 0 24 24" fill="none">
+    <svg viewBox="0 0 24 24">
       <path d="M15 18l-6-6 6-6"/>
     </svg>
   </div>
@@ -172,49 +175,52 @@ header{
 
 <div class="cart-container" id="cartList"></div>
 
-<div class="checkout">
+<div class="checkout" id="checkoutBtns">
   <a class="whatsapp" id="whatsapp" href="#">Buy via WhatsApp</a>
   <a class="instagram" id="instagram" href="#">Buy via Instagram</a>
 </div>
 
-<!-- 🔊 REMOVE SOUND -->
 <audio id="removeSound" src="audio/click-151673.mp3" preload="auto"></audio>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 const list = document.getElementById("cartList");
 const sound = document.getElementById("removeSound");
+const checkout = document.getElementById("checkoutBtns");
 
 function render(){
   list.innerHTML = "";
 
   if(cart.length === 0){
     list.innerHTML = `<p class="empty">Your cart is empty</p>`;
-    document.querySelector(".checkout").style.display="none";
+    checkout.style.display = "none";
     return;
   }
 
+  checkout.style.display = "flex";
+
   let msg = "I want to buy:%0A";
 
-  cart.forEach((g,i)=>{
+  cart.forEach((item,index)=>{
     list.innerHTML += `
       <div class="cart-item">
-        <img src="${g.image}">
+        <img src="${item.image}">
         <div>
-          <h4>${g.name}</h4>
-          <p>${g.price}</p>
+          <h4>${item.name}</h4>
+          <p>Rs.${item.price}</p>
         </div>
-        <button class="remove" onclick="removeItem(${i})">Remove</button>
+        <button class="remove" onclick="removeItem(${index})">Remove</button>
       </div>
     `;
-    msg += `• ${g.name} - ${g.price}%0A`;
+
+    msg += `• ${item.name} - Rs.${item.price}%0A`;
   });
 
   document.getElementById("whatsapp").href =
     "https://wa.me/91XXXXXXXXXX?text=" + msg;
 
   document.getElementById("instagram").href =
-    "https://instagram.com/YOUR_PAGE";
+    "https://instagram.com/cheapgames39_official";
 }
 
 function removeItem(i){
