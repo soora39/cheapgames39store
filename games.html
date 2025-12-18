@@ -28,6 +28,7 @@
   font-family:Poppins,sans-serif;
 }
 
+
 body{
   background:linear-gradient(180deg,#F5F0E8,#EFE6DA);
   min-height:100vh;
@@ -49,6 +50,8 @@ body{
 }
 
 .logo-left img{height:36px;}
+
+
 .logo-center{
   font-family:'Inter', sans-serif;
   font-size:20px;
@@ -56,6 +59,8 @@ body{
   letter-spacing:1.2px;
   text-align:center;
 }
+
+
 .menu-btn{
   font-size:30px;
   color:var(--accent);
@@ -109,6 +114,7 @@ body{
   color:#000;
   border:1.5px solid rgba(181,0,0,.3);
 }
+
 .menu-item img{width:22px;}
 .menu-item:hover,
 .menu-item.active{
@@ -225,6 +231,62 @@ body{
   70%{box-shadow:0 0 0 10px rgba(181,0,0,0);}
   100%{box-shadow:0 0 0 0 rgba(181,0,0,0);}
 }
+
+/* ================= EXPLORE SECTION ================= */
+.explore-wrap{
+  max-width:1100px;
+  margin:12px auto 22px;
+  padding:16px 18px;
+  background:linear-gradient(
+    135deg,
+    rgba(181,0,0,0.08),
+    rgba(181,0,0,0.02)
+  );
+  border-left:4px solid var(--accent);
+  border-radius:14px;
+}
+
+.explore-title{
+  font-size:20px;
+  font-weight:800;
+  color:#7A0000;
+  letter-spacing:.3px;
+}
+
+.explore-title::after{
+  content:"";
+  display:block;
+  width:42px;
+  height:3px;
+  margin-top:6px;
+  border-radius:6px;
+  background:linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent-dark)
+  );
+}
+
+.explore-subtitle{
+  font-size:13px;
+  color:#555;
+  margin-top:6px;
+  line-height:1.5;
+}
+
+/* MOBILE POLISH */
+@media(max-width:600px){
+  .explore-wrap{
+    padding:14px 14px;
+    margin-top:8px;
+  }
+
+  .explore-title{
+    font-size:18px;
+  }
+}
+
+
 /* ================= GRID ================= */
 .game-grid{
   max-width:1100px;
@@ -390,6 +452,61 @@ body{
   box-shadow:0 10px 24px rgba(26,115,232,.35);
 }
 
+/* ================= PAGINATION ================= */
+.pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  margin:30px 0 50px;
+}
+
+/* PREV & NEXT BUTTON */
+.pagination button{
+  padding:10px 22px;
+  border-radius:22px;
+  border:1.5px solid #b50000;
+  background:#fff;
+  color:#b50000;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+/* HOVER */
+.pagination button:hover{
+  background:#b50000;
+  color:#fff;
+}
+
+/* DISABLED */
+.pagination button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+  background:#f3f3f3;
+  color:#888;
+  border-color:#ccc;
+}
+
+/* PAGE INFO */
+#pageInfo{
+  font-size:14px;
+  font-weight:500;
+  color:#333;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:600px){
+  .pagination{
+    gap:10px;
+  }
+
+  .pagination button{
+    padding:8px 16px;
+    font-size:13px;
+  }
+}
 
 /* ================= FOOTER ================= */
 footer{
@@ -405,11 +522,18 @@ footer{
 
 <body>
 
+
+
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <header class="header">
   <div class="logo-left"><img src="IMAGE/1000038482-removebg-preview.png"></div>
-  <div class="logo-center">PC GAMES STORE</div>
+    <div class="logo-center">
+  PC Games Hub
+  <span style="display:block;font-size:12px;color:#777;">
+   ✮ Affordable Games ✮ Trusted Store
+  </span>
+</div>
   <div class="menu-btn" onclick="openMenu()">☰</div>
 </header>
 
@@ -454,6 +578,13 @@ footer{
     </select>
   </div>
 </div>
+
+<!-- EXPLORE SECTION -->
+<div class="explore-wrap">
+  <h2 class="explore-title">Explore Games</h2>
+  <p class="explore-subtitle">Play more. Pay less. Repeat.</p>
+</div>
+
 <!-- GAMES -->
 <div class="game-grid" id="grid">
 
@@ -484,6 +615,12 @@ footer{
 <div id="noGameFound">🚫 No Games Found</div>
 
 <div id="cart" onclick="openCart()">🛒<span id="count">0</span></div>
+
+<div class="pagination">
+  <button id="prevPage">◀ Previous</button>
+  <span id="pageInfo"></span>
+  <button id="nextPage">Next ▶</button>
+</div>
 
 
 <!-- PAYMENT METHODS -->
@@ -845,68 +982,131 @@ const games = [
 ];
 
 
-/* ================= GRID ================= */
+/* ================= BASIC ================= */
 const grid = document.getElementById("grid");
-
-/* ================= LOAD GAMES ================= */
-games.forEach(g=>{
-  const offer = Math.round(((g.old - g.price) / g.old) * 100);
-
-  grid.innerHTML += `
-    <div class="game-card" data-cat="${g.cat}" data-link="game.html?game=${g.key}">
-      <span class="badge">-${offer}%</span>
-      <img src="${g.image}">
-      <h3>${g.name}</h3>
-      <p class="price">
-        <span class="old">Rs.${g.old}</span> Rs.${g.price}
-      </p>
-      <button class="add-cart">
-        <span class="btn-text">Add to Cart</span>
-      </button>
-    </div>
-  `;
-});
-
-/* ================= CART INIT ================= */
-
 const count = document.getElementById("count");
+const search = document.getElementById("search");
+const category = document.getElementById("category");
+const noGame = document.getElementById("noGameFound");
+
+
 if(count) count.innerText = cart.length;
 
+/* ================= PAGINATION CONFIG ================= */
+const PER_PAGE = 20;
+let currentPage = 1;
+let filteredGames = [...games];
+
+/* ================= SOUND ================= */
 function playSound(){
   const sound = document.getElementById("addSound");
   if(!sound) return;
 
-  sound.pause();              // reset
   sound.currentTime = 0;
-
-  sound.play().catch(err=>{
-    console.log("Sound blocked:", err);
-  });
+  sound.play().catch(()=>{});
 }
 
-/* ================= GLOBAL CLICK HANDLER ================= */
-document.addEventListener("click", e => {
+/* ================= RENDER GAMES ================= */
+function renderGames(){
+  grid.innerHTML = "";
 
-  /* ===== ADD TO CART (NORMAL GAMES ONLY) ===== */
+  /* ✅ Bundle only on first page + only when no filter */
+  if(currentPage === 1 && search.value === "" && category.value === "all"){
+    grid.insertAdjacentHTML("beforeend", `
+      <div class="game-card bundle-card" data-link="bundle.html">
+        <span class="badge">BUNDLE</span>
+        <img src="IMAGE/Dynamic Collage of 120 Game Elements_20251217_184327_0000.png">
+        <h3>120 Games Mega Bundle</h3>
+        <p class="price">
+          <span class="old">Rs.39,999</span> Rs.399
+        </p>
+        <button class="view-btn">View Bundle</button>
+      </div>
+    `);
+  }
+
+  const start = (currentPage - 1) * PER_PAGE;
+  const end = start + PER_PAGE;
+
+  filteredGames.slice(start, end).forEach(g=>{
+    const offer = Math.round(((g.old - g.price) / g.old) * 100);
+
+    grid.insertAdjacentHTML("beforeend", `
+      <div class="game-card" data-cat="${g.cat}" data-link="game.html?game=${g.key}">
+        <span class="badge">-${offer}%</span>
+        <img src="${g.image}">
+        <h3>${g.name}</h3>
+        <p class="price">
+          <span class="old">Rs.${g.old}</span> Rs.${g.price}
+        </p>
+        <button class="add-cart">
+          <span class="btn-text">Add to Cart</span>
+        </button>
+      </div>
+    `);
+  });
+
+  updatePagination();
+}
+
+/* ================= PAGINATION ================= */
+function updatePagination(){
+  const totalPages = Math.ceil(filteredGames.length / PER_PAGE);
+  document.getElementById("pageInfo").innerText =
+    `Page ${currentPage} / ${totalPages}`;
+
+  document.getElementById("prevPage").disabled = currentPage === 1;
+  document.getElementById("nextPage").disabled = currentPage === totalPages;
+}
+
+document.getElementById("prevPage").onclick = ()=>{
+  if(currentPage > 1){
+    currentPage--;
+    renderGames();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+};
+
+document.getElementById("nextPage").onclick = ()=>{
+  const totalPages = Math.ceil(filteredGames.length / PER_PAGE);
+  if(currentPage < totalPages){
+    currentPage++;
+    renderGames();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+};
+
+/* ================= SEARCH + CATEGORY ================= */
+function applyFilter(){
+  const s = search.value.toLowerCase();
+  const c = category.value;
+
+  filteredGames = games.filter(g=>{
+    return g.name.toLowerCase().includes(s) &&
+           (c === "all" || g.cat === c);
+  });
+
+  currentPage = 1;
+  noGame.style.display = filteredGames.length === 0 ? "block" : "none";
+  renderGames();
+}
+
+search.addEventListener("keyup", applyFilter);
+category.addEventListener("change", applyFilter);
+
+
+/* ================= CLICK HANDLER ================= */
+document.addEventListener("click", e=>{
+
   const addBtn = e.target.closest(".add-cart");
-
   if(addBtn){
     e.stopPropagation();
 
     const card = addBtn.closest(".game-card");
-
-    /* 🚫 IF BUNDLE → DO NOTHING */
-    if(card.classList.contains("bundle-card")) return;
+    if(!card || card.classList.contains("bundle-card")) return;
 
     if(addBtn.dataset.loading === "true") return;
     addBtn.dataset.loading = "true";
-
-    const item = {
-      name  : card.querySelector("h3").innerText,
-      image : card.querySelector("img").src,
-      price : "Rs.40",
-      type  : "Game"
-    };
 
     const text = addBtn.querySelector(".btn-text");
 
@@ -915,77 +1115,61 @@ document.addEventListener("click", e => {
     addBtn.disabled = true;
     text.innerText = "Adding...";
 
+    const item = {
+      name: card.querySelector("h3").innerText,
+      image: card.querySelector("img").src,
+      price: 40,
+      type: "Game"
+    };
+
     setTimeout(()=>{
       cart.push(item);
       localStorage.setItem("cart", JSON.stringify(cart));
-      if(count) count.innerText = cart.length;
+      count.innerText = cart.length;
 
-   text.innerText = "✓ Added";
-addBtn.style.background = "linear-gradient(135deg,#0f9d58,#0b8043)";
-addBtn.style.color = "#fff";
+      /* ✅ GREEN SUCCESS */
+      text.innerText = "✓ Added";
+      addBtn.style.background =
+        "linear-gradient(135deg,#0f9d58,#0b8043)";
+      addBtn.style.color = "#fff";
 
       setTimeout(()=>{
-      text.innerText = "Add to Cart";
-addBtn.style.background =
-  "linear-gradient(135deg,#b50000,#7A0000)";
-addBtn.style.color = "#fff";
-addBtn.disabled = false;
-addBtn.dataset.loading = "false";
-      },800);
+        text.innerText = "Add to Cart";
+        addBtn.style.background =
+          "linear-gradient(135deg,#b50000,#7A0000)";
+        addBtn.disabled = false;
+        addBtn.dataset.loading = "false";
+      }, 900);
 
-    },600);
+    }, 600);
 
     return;
   }
 
-  /* ===== BUNDLE VIEW ONLY ===== */
-  const bundleCard = e.target.closest(".bundle-card");
-  if(bundleCard){
+  /* ===== BUNDLE VIEW ===== */
+  const bundle = e.target.closest(".bundle-card");
+  if(bundle){
     window.location.href = "bundle.html";
     return;
   }
 
-  /* ===== NORMAL GAME VIEW ===== */
+  /* ===== GAME VIEW ===== */
   const gameCard = e.target.closest(".game-card");
   if(gameCard && !e.target.closest("button")){
     window.location.href = gameCard.dataset.link;
   }
-
 });
 
-/* ================= SEARCH + CATEGORY ================= */
-const search   = document.getElementById("search");
-const category = document.getElementById("category");
-const noGame   = document.getElementById("noGameFound");
 
-function filterGames(){
-  let s = search.value.toLowerCase();
-  let c = category.value;
-  let visible = 0;
 
-  document.querySelectorAll(".game-card").forEach(card=>{
-    let ok =
-      card.innerText.toLowerCase().includes(s) &&
-      (c === "all" || card.dataset.cat === c);
-
-    card.style.display = ok ? "block" : "none";
-    if(ok) visible++;
-  });
-
-  if(noGame){
-    noGame.style.display = visible === 0 ? "block" : "none";
-  }
-}
-
-if(search)   search.addEventListener("keyup", filterGames);
-if(category) category.addEventListener("change", filterGames);
-
-/* ================= OPEN CART ================= */
+/* ================= CART ================= */
 function openCart(){
   window.location.href = "cart.html";
 }
-</script>
 
+/* ================= INIT ================= */
+applyFilter();
+</script>
 <audio id="addSound" src="audio/click-151673.mp3" preload="auto"></audio>
 
 </body>
